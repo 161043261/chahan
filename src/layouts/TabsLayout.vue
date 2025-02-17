@@ -64,7 +64,7 @@ watch(
       <template #label>
         <div class="flex items-center gap-[5px]">
           <ElIcon>
-            <component :is="Icons[icon]"></component>
+            <component :is="Icons.get(icon)"></component>
           </ElIcon>
           <span>{{ name }}</span>
         </div>

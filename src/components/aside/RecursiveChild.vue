@@ -42,7 +42,7 @@ const handleClick = (item: IMenuItem) => {
   <ElSubMenu v-if="item.children" :index="item.url">
     <template #title>
       <ElIcon>
-        <component :is="Icons[item.icon]"></component>
+        <component :is="Icons.get(item.icon)"></component>
       </ElIcon>
       <span>{{ item.name }}</span>
     </template>
@@ -56,7 +56,7 @@ const handleClick = (item: IMenuItem) => {
     @click="handleClick(item)"
   >
     <ElIcon>
-      <component :is="Icons[item.icon]"></component>
+      <component :is="Icons.get(item.icon)"></component>
     </ElIcon>
     <span>{{ item.name }}</span>
   </ElMenuItem>

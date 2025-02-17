@@ -17,20 +17,20 @@ import {
 } from '@icon-park/vue-next'
 import type { Component } from 'vue'
 
-export const Icons: Record<string, Component> = {
-  DataScreen,
-  KnifeFork,
-  SurveillanceCameras,
-  RobotOne,
-  Excel,
-  LocalTwo,
-  Tag,
-  Order,
-  Find,
-  Bill,
-  Tool,
-  LightMember,
-  CooperativeHandshake,
-  System,
-  People,
-}
+export const Icons = new Map<string, Component>([
+  ['DataScreen', DataScreen],
+  ['KnifeFork', KnifeFork],
+  ['SurveillanceCameras', SurveillanceCameras],
+  ['RobotOne', RobotOne],
+  ['Excel', Excel],
+  ['LocalTwo', LocalTwo],
+  ['Tag', Tag],
+  ['Order', Order],
+  ['Find', Find],
+  ['Bill', Bill],
+  ['Tool', Tool],
+  ['LightMember', LightMember],
+  ['CooperativeHandshake', CooperativeHandshake],
+  ['System', System],
+  ['People', People],
+])

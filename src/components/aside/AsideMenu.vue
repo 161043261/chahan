@@ -4,15 +4,20 @@ import { storeToRefs } from 'pinia'
 import RecursiveChild from './RecursiveChild.vue'
 import { ElMenu, ElScrollbar } from 'element-plus'
 import { Rice } from '@icon-park/vue-next'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
 const userStore = useUserStore()
 const { menuList } = storeToRefs(userStore)
 const route = useRoute()
+const router = useRouter()
+const handleClick = () => router.push({ name: 'Home' })
 </script>
 
 <template>
-  <div class="h-[70px] flex justify-center items-center px-[10px] gap-[10px]">
+  <div
+    class="h-[70px] flex justify-center items-center px-[10px] gap-[10px] cursor-pointer"
+    @click="handleClick"
+  >
     <Rice theme="two-tone" size="48" :fill="['#333', '#b8e986']" :strokeWidth="3" />
     <h1 class="text-[20px]">炒饭机器人</h1>
   </div>
