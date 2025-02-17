@@ -5,14 +5,15 @@ enum Api {
   Login = '/login',
 }
 
-async function _loginApi(data: ILoginReqData): Promise<ILoginResData> {
+async function loginApi(data: ILoginReqData): Promise<ILoginResData> {
   // return post(Api.Login, data)
   return get(Api.Login, data)
 }
 
-async function loginApi(data: ILoginReqData) {
-  fetch(`/login?username=${data.username}&password=${data.password}`)
-    .then((res) => console.log(res))
+async function _loginApi(data: ILoginReqData) {
+  return fetch(`${Api.Login}?username=${data.username}&password=${data.password}`).then((res) =>
+    res.json(),
+  )
 }
 
 export { _loginApi, loginApi }

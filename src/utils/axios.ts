@@ -5,7 +5,7 @@ import { h } from 'vue'
 // axios 实例
 const httpClient: AxiosInstance = axios.create({
   // todo: 将硬编码替换为环境变量
-  baseURL: 'https://localhost:5173', // 路由前缀
+  baseURL: 'http://localhost:5173', // 路由前缀
   timeout: 5000, // 请求超时时间
 })
 

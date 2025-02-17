@@ -1,6 +1,6 @@
 import { fileURLToPath, URL } from 'node:url'
 
-import { defineConfig, Plugin } from 'vite'
+import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import vueDevTools from 'vite-plugin-vue-devtools'
@@ -8,36 +8,12 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import tailwindcss from '@tailwindcss/vite'
-import url from 'node:url'
-// import mockServer from './plugins/mock_server'
-
-function mockServer(): Plugin {
-  return {
-    name: 'mock-server',
-    configureServer(server) {
-      server.middlewares.use('/login', (req, res) => {
-        const parseUrl = url.parse(req.originalUrl!, true /* parseQueryString */).query
-        console.log('parseUrl:', parseUrl)
-        // res.setHeader('Content-Type', 'application/json')
-        // const data = mockjs.mock({
-        //   'list|1000': [
-        //     {
-        //       'id|+1': 1,
-        //       name: parseUrl.keyword,
-        //       address: '@county(true)',
-        //     },
-        //   ],
-        // })
-        res.end('JSON.stringify(data)')
-      })
-    },
-  }
-}
+import viteServer from './plugins/vite_server'
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
-    mockServer(),
+    viteServer(),
     vue(),
     vueJsx(),
     vueDevTools(),
