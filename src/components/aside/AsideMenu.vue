@@ -13,12 +13,7 @@ const route = useRoute()
 
 <template>
   <div class="h-[70px] flex justify-center items-center px-[10px] gap-[10px]">
-    <Rice
-      theme="multi-color"
-      size="48"
-      :fill="['#333', '#b8e986', '#FFF', '#43CCF8']"
-      :strokeWidth="3"
-    />
+    <Rice theme="two-tone" size="48" :fill="['#333', '#b8e986']" :strokeWidth="3" />
     <h1 class="text-[20px]">炒饭机器人</h1>
   </div>
 

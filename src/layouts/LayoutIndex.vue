@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ElContainer, ElHeader, ElAside, ElMain } from 'element-plus'
 import AsideMenu from '@/components/aside/AsideMenu.vue'
+import HeaderIndex from '@/components/header/HeaderIndex.vue'
 </script>
 
 <template>
@@ -9,7 +10,9 @@ import AsideMenu from '@/components/aside/AsideMenu.vue'
       <AsideMenu></AsideMenu>
     </ElAside>
     <ElContainer>
-      <ElHeader class="!p-0">Header</ElHeader>
+      <ElHeader class="!p-0">
+        <HeaderIndex></HeaderIndex>
+      </ElHeader>
       <ElMain class="h-[80vh] overflow-auto">
         <RouterView></RouterView>
       </ElMain>

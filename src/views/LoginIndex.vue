@@ -55,12 +55,7 @@ const handleLogin = () => {
       <div class="flex justify-center items-center gap-[10px] mb-[20px]">
         <!-- <img src="@/assets/logo.svg" alt="logo" class="w-[70px] h-[70px]" />
           -->
-        <Rice
-          theme="multi-color"
-          size="48"
-          :fill="['#333', '#b8e986', '#FFF', '#43CCF8']"
-          :strokeWidth="3"
-        />
+        <Rice theme="two-tone" size="48" :fill="['#333', '#b8e986']" :strokeWidth="3" />
         <h1 class="text-slate-500 text-3xl">炒饭机器人管理平台</h1>
       </div>
 

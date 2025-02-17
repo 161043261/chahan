@@ -12,14 +12,6 @@ import { ref } from 'vue'
 // const login = async (data: LoginReqData, router: Router) => {}
 
 export const useUserStore = defineStore('user', () => {
-  //! 空值合并运算符 ??
-  // 左侧表达式等于 null 或 undefined 时, 返回右侧表达式
-  // 否则返回左侧表达式
-
-  //! 逻辑或运算符 ||
-  // 从左到右, 返回第一个真值
-  // 如果全部为假值, 则返回最后一个假值
-
   //! state
   // 菜单
   const menuList = ref<IMenuItem[]>(JSON.parse(sessionStorage.getItem('menuList') ?? '[]'))
@@ -77,6 +69,15 @@ export const useUserStore = defineStore('user', () => {
     }
   }
 
+  const logout = () => {
+    menuList.value = []
+    token.value = ''
+    nickname.value = ''
+    roles.value = []
+    // sessionStorage.removeItem('token')
+    sessionStorage.clear()
+  }
+
   //! getters (使用 computed 计算属性)
 
   return {
@@ -85,5 +86,6 @@ export const useUserStore = defineStore('user', () => {
     nickname,
     roles,
     login,
+    logout,
   }
 })
