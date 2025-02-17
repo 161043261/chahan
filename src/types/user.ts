@@ -17,7 +17,7 @@ export interface ILoginResData {
     token: string
     user: {
       nickname: string
-      roles: string[]
+      auths: string[]
     }
   }
   message: string

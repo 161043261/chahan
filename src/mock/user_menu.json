@@ -11,7 +11,7 @@
     "children": [
       { "name": "炒饭机器人监控", "url": "/chahan/monitor", "icon": "SurveillanceCameras" },
       { "name": "炒饭机器人管理", "url": "/chahan/robot", "icon": "RobotOne" },
-      { "name": "财务管理", "url": "/chahan/finance", "icon": "Excel" }
+      { "name": "财务报表", "url": "/chahan/finance", "icon": "Excel" }
     ]
   },
   {
@@ -42,7 +42,7 @@
     ]
   },
   {
-    "name": "维修管理",
+    "name": "炒饭机器人维修",
     "url": "/repair",
     "icon": "Tool"
   },
@@ -52,7 +52,7 @@
     "icon": "System"
   },
   {
-    "name": "个人中心",
+    "name": "我的账号",
     "url": "/personal",
     "icon": "People"
   }

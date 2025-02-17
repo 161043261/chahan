@@ -3,10 +3,11 @@ import { useTabStore } from '@/stores/tab'
 import { storeToRefs } from 'pinia'
 import { ElTabs, ElTabPane, ElIcon, type TabsPaneContext, type TabPaneName } from 'element-plus'
 import { Icons } from '@/utils/icons'
-import { watch } from 'vue'
-import { useRouter } from 'vue-router'
+// import { watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { ref, watch } from 'vue'
 const tabStore = useTabStore()
-const { tabList, currentTab } = storeToRefs(tabStore)
+const { tabList } = storeToRefs(tabStore)
 
 // actions 可以直接解构, 不需要 storeToRefs
 // state, getters 不可以直接解构, 需要 storeToRefs
@@ -20,16 +21,12 @@ const handleClick = (tab: TabsPaneContext) => {
     console.log(
       '@/layouts/TabsLayout.vue: handleClick:\n',
       `tabIndex: ${idx}\n`,
-      `tabLabel(name): ${name}\n`,
-      `tabName(url): ${url}\n`,
+      `tabLabel(name): ${name}, ${tabList.value[idx].name}\n`,
+      `tabName(url): ${url}, ${tabList.value[idx].url}\n`,
       `typeof url: ${typeof url}\n`,
     )
   }
   router.push(url as string)
-  if (!Number.isNaN(idx)) {
-    // tabStore.setCurrentTab(tabList.value[idx].name, tabList.value[idx].url)
-    tabStore.setCurrentTab(name, url as string)
-  }
 }
 
 const handleRemove = (tabName /** url */ : TabPaneName) => {
@@ -43,19 +40,20 @@ const handleRemove = (tabName /** url */ : TabPaneName) => {
   }
 }
 
-if (import.meta.env.DEV) {
-  watch(
-    () => currentTab.value.name,
-    () => {
-      console.log('@/layouts/TabsLayout.vue: currentTab.value.name:', currentTab.value.name)
-    },
-  )
-}
+const route = useRoute()
+const activeName = ref(route.path)
+watch(
+  () => route.path,
+  () => {
+    activeName.value = route.path
+  },
+)
 </script>
 
 <template>
+  <!-- v-model="route.path" -->
   <ElTabs
-    v-model="currentTab.url"
+    v-model="activeName"
     class="tabs"
     @tab-click="handleClick"
     type="card"

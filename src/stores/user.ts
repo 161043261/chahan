@@ -20,7 +20,7 @@ export const useUserStore = defineStore('user', () => {
   // 昵称
   const nickname = ref<string>(sessionStorage.getItem('nickname') ?? '')
   // 权限
-  const roles = ref<string[]>(JSON.parse(sessionStorage.getItem('roles') ?? '[]'))
+  const auths = ref<string[]>(JSON.parse(sessionStorage.getItem('auths') ?? '[]'))
 
   //! actions
   const login = async (data: ILoginReqData) => {
@@ -33,7 +33,7 @@ export const useUserStore = defineStore('user', () => {
         data: {
           menuList: menuList_,
           token: token_,
-          user: { nickname: nickname_, roles: roles_ },
+          user: { nickname: nickname_, auths: roles_ },
         },
         message,
       } = resData
@@ -43,14 +43,14 @@ export const useUserStore = defineStore('user', () => {
         // console.log('@/stores/user.ts: menuList:', menuList_)
         // console.log('@/stores/user.ts: token:', token_)
         // console.log('@/stores/user.ts: nickname:', nickname_)
-        // console.log('@/stores/user.ts: roles:', roles_)
+        // console.log('@/stores/user.ts: auths:', roles_)
         console.log('@/stores/user.ts: message:', message)
       }
 
       menuList.value = menuList_
       token.value = token_
       nickname.value = nickname_
-      roles.value = roles_
+      auths.value = roles_
 
       // 页面刷新后, pinia 中的数据 (state) 丢失
       // pinia 持久化
@@ -59,7 +59,7 @@ export const useUserStore = defineStore('user', () => {
       sessionStorage.setItem('menuList', JSON.stringify(menuList_))
       sessionStorage.setItem('token', token_)
       sessionStorage.setItem('nickname', nickname_)
-      sessionStorage.setItem('roles', JSON.stringify(roles_))
+      sessionStorage.setItem('auths', JSON.stringify(roles_))
 
       //// router.push('/')
     } catch (err) {
@@ -73,7 +73,7 @@ export const useUserStore = defineStore('user', () => {
     menuList.value = []
     token.value = ''
     nickname.value = ''
-    roles.value = []
+    auths.value = []
     // sessionStorage.removeItem('token')
     sessionStorage.clear()
   }
@@ -84,7 +84,7 @@ export const useUserStore = defineStore('user', () => {
     menuList,
     token,
     nickname,
-    roles,
+    auths,
     login,
     logout,
   }

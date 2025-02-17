@@ -15,7 +15,7 @@ const tabStore = useTabStore()
 
 // actions 可以直接解构, 不需要 storeToRefs
 // state, getters 不可以直接解构, 需要 storeToRefs
-const { addTab, setCurrentTab } = tabStore
+const { addTab } = tabStore
 
 const handleClick = (item: IMenuItem) => {
   const { name, icon, url } = item
@@ -28,7 +28,6 @@ const handleClick = (item: IMenuItem) => {
     )
   }
   addTab(name, icon, url)
-  setCurrentTab(name, url)
 }
 
 // if (import.meta.env.DEV) {

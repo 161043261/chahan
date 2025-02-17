@@ -45,7 +45,7 @@ const handleCommand = async (command: Command) => {
         <span class="cursor-pointer outline-none text-lg"> 欢迎: {{ nickname }} </span>
         <template #dropdown>
           <ElDropdownMenu>
-            <ElDropdownItem :icon="User" :command="Command.User">个人中心</ElDropdownItem>
+            <ElDropdownItem :icon="User" :command="Command.User">我的账号</ElDropdownItem>
             <ElDropdownItem :icon="Power" :command="Command.Logout">退出登录</ElDropdownItem>
           </ElDropdownMenu>
         </template>

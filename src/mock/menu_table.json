@@ -4,7 +4,7 @@
     "url": "/dashboard",
     "icon": "DataScreen",
     "meta": {
-      "roles": ["admin", "user"]
+      "auths": ["admin", "user"]
     }
   },
   {
@@ -12,7 +12,7 @@
     "url": "/chahan",
     "icon": "KnifeFork",
     "meta": {
-      "roles": ["admin", "user"]
+      "auths": ["admin", "user"]
     },
     "children": [
       {
@@ -20,7 +20,7 @@
         "url": "/chahan/monitor",
         "icon": "SurveillanceCameras",
         "meta": {
-          "roles": ["admin", "user"]
+          "auths": ["admin", "user"]
         }
       },
       {
@@ -28,15 +28,15 @@
         "url": "/chahan/robot",
         "icon": "RobotOne",
         "meta": {
-          "roles": ["admin", "user"]
+          "auths": ["admin", "user"]
         }
       },
       {
-        "name": "财务管理",
+        "name": "财务报表",
         "url": "/chahan/finance",
         "icon": "Excel",
         "meta": {
-          "roles": ["admin", "user"]
+          "auths": ["admin", "user"]
         }
       }
     ]
@@ -46,7 +46,7 @@
     "url": "/map",
     "icon": "LocalTwo",
     "meta": {
-      "roles": ["admin", "user"]
+      "auths": ["admin", "user"]
     }
   },
   {
@@ -54,7 +54,7 @@
     "url": "/operations",
     "icon": "Tag",
     "meta": {
-      "roles": ["admin", "user"]
+      "auths": ["admin", "user"]
     },
     "children": [
       {
@@ -62,7 +62,7 @@
         "url": "/operations/order",
         "icon": "Order",
         "meta": {
-          "roles": ["admin", "user"]
+          "auths": ["admin", "user"]
         }
       },
       {
@@ -70,7 +70,7 @@
         "url": "/operations/detail",
         "icon": "Find",
         "meta": {
-          "roles": ["admin", "user"]
+          "auths": ["admin", "user"]
         }
       },
       {
@@ -78,33 +78,33 @@
         "url": "/operations/bill",
         "icon": "Bill",
         "meta": {
-          "roles": ["admin", "user"]
+          "auths": ["admin", "user"]
         }
       }
     ]
   },
   {
-    "name": "维修管理",
+    "name": "炒饭机器人维修",
     "url": "/repair",
     "icon": "Tool",
     "meta": {
-      "roles": ["admin", "user"]
+      "auths": ["admin", "user"]
     }
   },
   {
-    "name": "会员管理",
+    "name": "会员中心",
     "url": "/member",
     "icon": "LightMember",
     "meta": {
-      "roles": ["admin", "user"]
+      "auths": ["admin"]
     }
   },
   {
-    "name": "加盟管理",
+    "name": "加盟中心",
     "url": "/join",
     "icon": "CooperativeHandshake",
     "meta": {
-      "roles": ["admin", "user"]
+      "auths": ["admin"]
     }
   },
   {
@@ -112,15 +112,15 @@
     "url": "/system",
     "icon": "System",
     "meta": {
-      "roles": ["admin", "user"]
+      "auths": ["admin", "user"]
     }
   },
   {
-    "name": "个人中心",
+    "name": "我的账号",
     "url": "/personal",
     "icon": "People",
     "meta": {
-      "roles": ["admin", "user"]
+      "auths": ["admin", "user"]
     }
   }
 ]

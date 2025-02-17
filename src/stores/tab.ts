@@ -6,13 +6,7 @@ import { ref } from 'vue'
 type ITabItem = Omit<IMenuItem, 'children'>
 
 export const useTabStore = defineStore('tab', () => {
-  const tabList = ref<ITabItem[]>([
-    {
-      name: '数据看板',
-      icon: 'DataScreen',
-      url: '/dashboard',
-    },
-  ])
+  const tabList = ref<ITabItem[]>([])
 
   const addTab = (name: string, icon: string, url: string) => {
     if (tabList.value.some((item) => url == item.url)) {
@@ -21,18 +15,8 @@ export const useTabStore = defineStore('tab', () => {
     tabList.value.push({ name, icon, url })
   }
 
-  const currentTab = ref<{ name: string; url: string }>({
-    name: '数据看板',
-    url: '/dashboard',
-  })
-  const setCurrentTab = (name: string, url: string) => {
-    currentTab.value = { name, url }
-  }
-
   return {
     tabList,
     addTab,
-    currentTab,
-    setCurrentTab,
   }
 })

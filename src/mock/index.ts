@@ -18,7 +18,7 @@ Mock.mock('https://chahan.com/login', 'post', (options: MockjsRequestOptions) =>
         token: 'chahan.com',
         user: {
           nickname: '蛋炒饭之神',
-          roles: ['admin'],
+          auths: ['admin'],
         },
         menuList: adminMenu,
       },
@@ -30,8 +30,8 @@ Mock.mock('https://chahan.com/login', 'post', (options: MockjsRequestOptions) =>
       data: {
         token: 'chahan.com',
         user: {
-          nickname: '',
-          roles: ['user'],
+          nickname: '菜鸟',
+          auths: ['user'],
         },
         menuList: userMenu,
       },
