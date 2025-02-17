@@ -69,5 +69,5 @@ pnpm add mockjs @types/mockjs -D
 
 ## 路由权限控制
 
-1. 前端不创建完整路由表, 在包含路由信息的 JSON 文件 [menu_table.jsonc](./src/mock/menu_table.jsonc) 中, 使用路由元信息 `meta` 指定路由权限, 前端根据后端返回的权限, 过滤对应权限的路由, 动态添加路由 `router.addRoute()`, 
-2. 前端创建完整路由表 [router_table.ts](./src/router/route_table.ts), 并使用路由元信息 `meta` 指定路由权限; 在路由守卫中校验权限
+1. 前端不创建完整路由表, 前端根据后端返回的路由权限, 动态添加路由 `router.addRoute()`, 
+2. 前端创建完整路由表 [route_table.ts](./src/router/route_table.ts), 使用路由元信息 `meta` 指定路由权限, 并在路由守卫中校验权限 (本项目使用 2)

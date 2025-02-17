@@ -7,7 +7,7 @@ Mock.setup({
 })
 
 // 登录接口
-Mock.mock('https://chahan.com/login', 'post', (options: MockjsRequestOptions) => {
+Mock.mock('https://localhost:5173/login', 'post', (options: MockjsRequestOptions) => {
   const { username, password } = JSON.parse(options.body)
   if (username === 'admin' && password === '1111') {
     return {
@@ -15,7 +15,7 @@ Mock.mock('https://chahan.com/login', 'post', (options: MockjsRequestOptions) =>
       message: '登录成功',
       data: {
         // todo: JWT
-        token: 'chahan.com',
+        token: 'localhost:5173',
         user: {
           nickname: '蛋炒饭之神',
           auths: ['admin'],
@@ -28,7 +28,7 @@ Mock.mock('https://chahan.com/login', 'post', (options: MockjsRequestOptions) =>
       code: 200,
       message: '登录成功',
       data: {
-        token: 'chahan.com',
+        token: 'localhost:5173',
         user: {
           nickname: '菜鸟',
           auths: ['user'],

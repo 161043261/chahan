@@ -8,6 +8,7 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import tailwindcss from '@tailwindcss/vite'
+import mockServer from './plugins/mock_server'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -22,6 +23,7 @@ export default defineConfig({
       resolvers: [ElementPlusResolver()],
     }),
     tailwindcss(),
+    mockServer(),
   ],
   resolve: {
     alias: {
@@ -35,4 +37,13 @@ export default defineConfig({
       },
     },
   },
+  // server: {
+  //   proxy: {
+  //     '/api': {
+  //       target: 'http://localhost:5173',
+  //       // changeOrigin: true,
+  //       rewrite: (path) => path.replace(/^\/api/, '')
+  //     },
+  //   },
+  // },
 })

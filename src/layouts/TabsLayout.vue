@@ -35,13 +35,13 @@ const handleRemove = (tabName /** url */ : TabPaneName) => {
       '@/layouts/TabsLayout.vue: handleRemove: tabName:',
       tabName,
       'typeof tabName:',
-      tabName,
+      typeof tabName,
     )
   }
 }
 
 const route = useRoute()
-const activeName = ref(route.path)
+const activeName = ref<string>(route.path)
 watch(
   () => route.path,
   () => {

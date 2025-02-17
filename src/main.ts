@@ -13,7 +13,7 @@ import router from '@/router'
 import '@/router/guard'
 
 // todo: 使用 vite 插件
-import '@/mock'
+// import '@/mock'
 
 const app = createApp(App)
 const pinia = createPinia()
