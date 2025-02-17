@@ -2,7 +2,7 @@ import type { ILoginReqData, ILoginResData } from '@/types/user'
 import { get } from '@/utils/http'
 
 enum Api {
-  Login = '/login',
+  Login = '/api/login',
 }
 
 async function loginApi(data: ILoginReqData): Promise<ILoginResData> {

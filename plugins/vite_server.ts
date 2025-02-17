@@ -23,9 +23,9 @@ export default function viteServer(): Plugin {
       server.middlewares.use('/login', (req, res) => {
         const parseUrl = url.parse(req.originalUrl!, true /* parseQueryString */).query
         const { username, password } = parseUrl
-        console.log("vite-server:", username, password);
+        console.log(`plugins/vite_server.ts: username: ${username}, password: ${password}`)
         res.setHeader('Content-Type', 'application/json')
-        let resData: IResData;
+        let resData: IResData
         if (username === 'admin' && password === '1111') {
           resData = {
             code: 200,
