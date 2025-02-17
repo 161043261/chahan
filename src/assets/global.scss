@@ -1,0 +1,23 @@
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+.clear-float::after {
+  content: '';
+  /* height: 0; */
+  display: block;
+  clear: both;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+:root {
+  --chahan-green: #b8e986;
+  --chahan-green-light: rgba(184, 233, 134, 0.5);
+}
