@@ -33,9 +33,16 @@ const handleCommand = async (command: Command) => {
         ><Remind theme="two-tone" size="25" :fill="['#333', '#b8e986']" :strokeWidth="3"
       /></ElBadge>
 
-      <DataUser theme="two-tone" size="30" :fill="['#333', '#b8e986']" :strokeWidth="3" />
+      <DataUser
+        theme="two-tone"
+        size="30"
+        :fill="['#333', '#b8e986']"
+        :strokeWidth="3"
+        class="cursor-pointer"
+      />
+
       <ElDropdown @command="handleCommand">
-        <span class="cursor-pointer outline-none"> 欢迎, {{ nickname }} </span>
+        <span class="cursor-pointer outline-none text-lg"> 欢迎: {{ nickname }} </span>
         <template #dropdown>
           <ElDropdownMenu>
             <ElDropdownItem :icon="User" :command="Command.User">个人中心</ElDropdownItem>

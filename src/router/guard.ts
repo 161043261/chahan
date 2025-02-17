@@ -1,7 +1,7 @@
 // 路由前置守卫, 前置守卫函数在 redirect 重定向后, 路由跳转前执行
 import router from '@/router'
 import { useUserStore } from '@/stores/user'
-
+import { useTabStore } from '@/stores/tab'
 //! const userStore = useUserStore()
 const whiteList = new Set<string>(['/login'])
 
@@ -26,8 +26,8 @@ const whiteList = new Set<string>(['/login'])
 //     if (
 //       userStore.token &&
 //       (to.path === '/login' ||
-//         (to.meta?.authorization &&
-//           !userStore.roles.some((role) => (to.meta.authorization as string[]).includes(role))))
+//         (to.meta?.auths &&
+//           !userStore.roles.some((role) => (to.meta.auths as string[]).includes(role))))
 //     ) {
 //       next({ name: 'Home' })
 //       return
@@ -53,9 +53,11 @@ router.beforeEach((to) => {
   if (
     userStore.token &&
     (to.path === '/login' ||
-      (to.meta?.authorization &&
-        !userStore.roles.some((role) => (to.meta.authorization as string[]).includes(role))))
+      (to.meta?.auths &&
+        !userStore.roles.some((role) => (to.meta.auths as string[]).includes(role))))
   ) {
     return { name: 'Home' }
   }
+
+  const tabStore = useTabStore()
 })

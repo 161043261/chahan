@@ -18,24 +18,32 @@ const route = useRoute()
   </div>
 
   <ElScrollbar>
-    <ElMenu class="!border-none" :router="true" :default-active="route.path">
+    <ElMenu class="!border-none menu" :router="true" :default-active="route.path">
       <RecursiveChild v-for="item of menuList" :key="item.url" :item="item"></RecursiveChild>
     </ElMenu>
   </ElScrollbar>
 </template>
 
 <style scoped lang="scss">
-:deep(.el-menu-item:hover) {
-  background-color: var(--chahan-green-light) !important;
+.menu {
+  :deep(.is-active) {
+    background-color: var(--chahan-green) !important;
+    color: #fff;
+    font-size: 16px;
+    transition: all;
+  }
 }
 
-:deep(.el-sub-menu__title:hover) {
-  background-color: var(--chahan-green-light) !important;
+:deep(.el-menu-item) {
+  border-radius: 10px;
+  &:hover {
+    background-color: var(--chahan-green-light) !important;
+  }
 }
 
-:deep(.is-active) {
-  background-color: var(--chahan-green) !important;
-  color: #fff;
-  font-size: 16px;
+:deep(.el-sub-menu__title) {
+  &:hover {
+    background-color: var(--chahan-green-light) !important;
+  }
 }
 </style>

@@ -2,6 +2,7 @@
 import { ElContainer, ElHeader, ElAside, ElMain } from 'element-plus'
 import AsideMenu from '@/components/aside/AsideMenu.vue'
 import HeaderIndex from '@/components/header/HeaderIndex.vue'
+import TabsLayout from './TabsLayout.vue'
 </script>
 
 <template>
@@ -14,7 +15,7 @@ import HeaderIndex from '@/components/header/HeaderIndex.vue'
         <HeaderIndex></HeaderIndex>
       </ElHeader>
       <ElMain class="h-[80vh] overflow-auto">
-        <RouterView></RouterView>
+        <TabsLayout></TabsLayout>
       </ElMain>
     </ElContainer>
   </ElContainer>

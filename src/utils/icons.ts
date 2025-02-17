@@ -1,0 +1,36 @@
+import {
+  DataScreen,
+  KnifeFork,
+  SurveillanceCameras,
+  RobotOne,
+  Excel,
+  LocalTwo,
+  Tag,
+  Order,
+  Find,
+  Bill,
+  Tool,
+  LightMember,
+  CooperativeHandshake,
+  System,
+  People,
+} from '@icon-park/vue-next'
+import type { Component } from 'vue'
+
+export const Icons: Record<string, Component> = {
+  DataScreen,
+  KnifeFork,
+  SurveillanceCameras,
+  RobotOne,
+  Excel,
+  LocalTwo,
+  Tag,
+  Order,
+  Find,
+  Bill,
+  Tool,
+  LightMember,
+  CooperativeHandshake,
+  System,
+  People,
+}

@@ -14,6 +14,8 @@ declare module 'vue' {
     ElDropdownItem: typeof import('element-plus/es')['ElDropdownItem']
     ElDropdownMenu: typeof import('element-plus/es')['ElDropdownMenu']
     ElIcon: typeof import('element-plus/es')['ElIcon']
+    ElTabPane: typeof import('element-plus/es')['ElTabPane']
+    ElTabs: typeof import('element-plus/es')['ElTabs']
     HeaderIndex: typeof import('./src/components/header/HeaderIndex.vue')['default']
     NavMenu: typeof import('./src/components/navigation/NavMenu.vue')['default']
     RecursiveChild: typeof import('./src/components/aside/RecursiveChild.vue')['default']

@@ -13,6 +13,7 @@ const routes: RouteRecordRaw[] = [
         path: '/dashboard',
         name: 'Dashboard',
         component: () => import('@/views/dashboard/DashboardIndex.vue'),
+        meta: {},
       },
       {
         path: '/chahan/monitor',
@@ -61,7 +62,7 @@ const routes: RouteRecordRaw[] = [
         component: () => import('@/views/member/MemberIndex.vue'),
         // 创建完整路由表, 并使用路由元信息 meta 指定路由权限
         meta: {
-          authorization: ['admin'],
+          auths: ['admin'],
         },
       },
       {
@@ -69,7 +70,7 @@ const routes: RouteRecordRaw[] = [
         name: 'Join',
         component: () => import('@/views/join/JoinIndex.vue'),
         meta: {
-          authorization: ['admin'],
+          auths: ['admin'],
         },
       },
       {
