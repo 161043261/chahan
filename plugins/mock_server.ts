@@ -3,11 +3,9 @@ import url from 'node:url'
 
 export default function mockServer(): Plugin {
   return {
-    name: 'vite-mock-server',
+    name: 'mock-server',
     configureServer(server) {
       server.middlewares.use('/login', (req, res) => {
-        console.log(req)
-        console.log(res)
         const parseUrl = url.parse(req.originalUrl!, true /* parseQueryString */).query
         console.log('parseUrl:', parseUrl)
         // res.setHeader('Content-Type', 'application/json')
