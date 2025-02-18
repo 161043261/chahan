@@ -1,5 +1,6 @@
 import '@/assets/style.css'
 import '@/assets/global.scss'
+import 'animate.css'
 
 import 'element-plus/dist/index.css'
 import '@icon-park/vue-next/styles/index.css'

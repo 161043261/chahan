@@ -69,5 +69,15 @@ pnpm add mockjs @types/mockjs -D
 
 ## 路由权限控制
 
-1. 前端不创建完整路由表, 前端根据后端返回的路由权限, 动态添加路由 `router.addRoute()`, 
-2. 前端创建完整路由表 [route_table.ts](./src/router/route_table.ts), 使用路由元信息 `meta` 指定路由权限, 并在路由守卫中校验权限 (本项目使用 2)
+1. 前端不创建完整路由表, 前端根据后端返回的路由权限, 动态添加路由 `router.addRoute()`,
+2. 前端创建完整路由表 [route_table.ts](./src/router/route_table.ts), 使用路由元信息 `meta` 指定路由权限, 并在路由守卫中校验权限
+
+## 响应式布局
+
+|     |             |                   |
+| --- | ----------- | ----------------- |
+| xs  | extra small | <768px 超小屏幕   |
+| sm  | small       | >=768px 小屏幕    |
+| md  | middle      | >=992px 中等屏幕  |
+| lg  | large       | >=1200px 大屏幕   |
+| xl  | extra large | >=1920px 超大屏幕 |

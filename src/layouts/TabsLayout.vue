@@ -40,21 +40,15 @@ const handleRemove = (url: TabPaneName) => {
 
   const idx = tabStore.findTab(url as string)
   tabStore.removeTab(idx)
-  if (url !== activeName.value) {
+  if (tabList.value.length === 0) {
+    router.push({ name: 'Home' })
     return
   }
-  // url === activeName.value
-  if (idx > 0) {
+  if (tabList.value.length === idx) {
     router.push(tabList.value[idx - 1].url)
     return
   }
-  // idx === 0
-  if (tabList.value.length > 0) {
-    router.push(tabList.value[0].url)
-    return
-  }
-  // tabList.value.length === 0
-  router.push({ name: 'Home' })
+  router.push(tabList.value[idx].url)
 }
 
 const route = useRoute()
