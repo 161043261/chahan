@@ -16,12 +16,12 @@ const enum Command {
 const handleCommand = async (command: Command) => {
   switch (command) {
     case Command.User:
-      router.push('/personal')
+      router.push({ name: 'Personal' })
       break
 
     case Command.Logout:
       userStore.logout()
-      router.replace('/login')
+      router.replace({ name: 'Login' })
   }
 }
 </script>

@@ -34,13 +34,13 @@ const router = useRouter()
 
 const handleLogin = () => {
   // 如果不使用 async...await
-  // 则 router.push('/') 可能先于 userStore.login(formData) 执行
+  // 则 router.replace({ name: 'Home' }) 可能先于 userStore.login(formData) 执行
   // 第一次点击登录按钮时, sessionStorage 未存储 token, 被前置守卫重定向到登录页面
   // 第二次点击登录按钮时, sessionStorage 已存储 token, 才可以正常跳转
   formRef.value?.validate(async (isValid: boolean) => {
     if (isValid) {
       await userStore.login(formData)
-      router.push('/')
+      router.replace({ name: 'Home' })
     }
   })
 }

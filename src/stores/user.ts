@@ -60,8 +60,6 @@ export const useUserStore = defineStore('user', () => {
       sessionStorage.setItem('token', token_)
       sessionStorage.setItem('nickname', nickname_)
       sessionStorage.setItem('auths', JSON.stringify(roles_))
-
-      //// router.push('/')
     } catch (err) {
       if (import.meta.env.DEV) {
         console.error('@/stores/user.ts', err)

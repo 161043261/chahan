@@ -7,10 +7,9 @@ import { Icons } from '@/utils/icons'
 import { useRoute, useRouter } from 'vue-router'
 import { ref, watch } from 'vue'
 const tabStore = useTabStore()
-const { tabList } = storeToRefs(tabStore)
-
 // actions 可以直接解构, 不需要 storeToRefs
 // state, getters 不可以直接解构, 需要 storeToRefs
+const { tabList } = storeToRefs(tabStore)
 const router = useRouter()
 
 const handleClick = (tab: TabsPaneContext) => {
@@ -29,15 +28,33 @@ const handleClick = (tab: TabsPaneContext) => {
   router.push(url as string)
 }
 
-const handleRemove = (tabName /** url */ : TabPaneName) => {
+const handleRemove = (url: TabPaneName) => {
   if (import.meta.env.DEV) {
     console.log(
       '@/layouts/TabsLayout.vue: handleRemove: tabName:',
-      tabName,
+      url,
       'typeof tabName:',
-      typeof tabName,
+      typeof url,
     )
   }
+
+  const idx = tabStore.findTab(url as string)
+  tabStore.removeTab(idx)
+  if (url !== activeName.value) {
+    return
+  }
+  // url === activeName.value
+  if (idx > 0) {
+    router.push(tabList.value[idx - 1].url)
+    return
+  }
+  // idx === 0
+  if (tabList.value.length > 0) {
+    router.push(tabList.value[0].url)
+    return
+  }
+  // tabList.value.length === 0
+  router.push({ name: 'Home' })
 }
 
 const route = useRoute()
