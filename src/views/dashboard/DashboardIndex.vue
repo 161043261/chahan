@@ -55,7 +55,7 @@ const handleClick = () => {
         <ElCard class="!rounded-xl">
           <div class="flex items-center">
             <h1 class="text-[20px]">炒饭机器人运行状态</h1>
-            <p class="mr-[10px] ml-[20px] text-slate-500">
+            <p class="ml-[20px] w-[150px] text-slate-500">
               更新时间 {{ `${timeList[0]}:${timeList[1]}:${timeList[2]}` }}
             </p>
             <Refresh
@@ -63,7 +63,7 @@ const handleClick = () => {
               size="20"
               fill="#333"
               :strokeWidth="3"
-              class="hover:cursor-pointer"
+              class="rounded-full border-[1px] p-[3px] hover:cursor-pointer"
               @click="handleClick"
               :class="{ refresh: animated }"
             />

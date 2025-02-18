@@ -71,12 +71,12 @@ watch(
 
 const userStore = useUserStore()
 
-const isShow = ref<boolean>(false)
-const handleWindowClick = () => (isShow.value = false)
+const isAlive = ref<boolean>(false)
+const handleWindowClick = () => (isAlive.value = false)
 watch(
-  () => isShow.value,
+  () => isAlive.value,
   () => {
-    if (isShow.value) {
+    if (isAlive.value) {
       addEventListener('click', handleWindowClick)
     } else {
       removeEventListener('click', handleWindowClick)
@@ -87,9 +87,12 @@ watch(
 const ctxMenuX = ref<string>('0')
 const ctxMenuY = ref<string>('0')
 const handleCtxMenu = (ev: MouseEvent) => {
+  if (tabList.value.length === 0) {
+    return
+  }
   ctxMenuX.value = `${ev.pageX}px`
   ctxMenuY.value = `${ev.pageY}px`
-  isShow.value = true
+  isAlive.value = true
 }
 
 const removeAll = () => {
@@ -150,7 +153,7 @@ const removeAll = () => {
   >
     <ul
       class="ctx-menu fixed z-10 inline-block rounded-lg bg-slate-100 text-sm text-slate-500 shadow-lg"
-      v-show="isShow"
+      v-if="isAlive"
     >
       <li @click="removeAll">关闭全部标签页</li>
       <li @click="tabStore.removeTab(0)">关闭第一个标签页</li>

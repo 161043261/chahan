@@ -1,40 +1,41 @@
 <script setup lang="ts">
+import { ElCard } from 'element-plus'
 import { ref } from 'vue'
-import { Play } from '@icon-park/vue-next'
+import { useRouter } from 'vue-router'
+const router = useRouter()
 
-const playing = ref<boolean>(false)
+const animated = ref(false)
+let timer: number | null = null
 
+const handleClick = () => {
+  if (timer) {
+    return
+  }
+  animated.value = true
+  timer = setTimeout(() => {
+    router.push({ name: 'Dashboard' })
+    timer = null
+  }, 2000)
+}
 </script>
 
 <template>
   <main class="flex h-[80vh] items-center justify-center">
-    <div
-      class="flex h-[520px] w-[520px] translate-y-[-5vh] items-center justify-center rounded-full bg-linear-to-t from-blue-900 to-sky-50"
-      :class="{ playing: playing }"
+    <ElCard
+      class="el-card flex h-[100px] w-[300px] cursor-pointer items-center justify-center duration-2000 hover:scale-150"
+      :class="{ animate__animated: animated, animate__hinge: animated }"
+      @click="handleClick"
     >
-      <Play
-        theme="outline"
-        size="48"
-        fill="#fff"
-        :strokeWidth="3"
-        class="scale-[3] cursor-pointer opacity-50"
-        @click="handleClick"
-      />
-    </div>
+      <div class="!text-3xl text-slate-500">开始今天的工作</div>
+    </ElCard>
   </main>
 </template>
 
 <style scoped lang="scss">
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
+.el-card {
+  border-radius: 50px;
+  &:hover {
+    background-color: var(--chahan-green-light);
   }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.playing {
-  animation: spin 10s linear infinite;
 }
 </style>
