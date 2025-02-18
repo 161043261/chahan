@@ -9,6 +9,7 @@ import {
   type TabPaneName,
   ElWatermark,
 } from 'element-plus'
+
 import { name2icon } from '@/utils/icons'
 // import { watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
@@ -86,10 +87,14 @@ watch(
 const ctxMenuX = ref<string>('0')
 const ctxMenuY = ref<string>('0')
 const handleCtxMenu = (ev: MouseEvent) => {
-  console.log(ev.target as HTMLDivElement)
   ctxMenuX.value = `${ev.pageX}px`
   ctxMenuY.value = `${ev.pageY}px`
   isShow.value = true
+}
+
+const removeAll = () => {
+  tabList.value = []
+  router.push({ name: 'Home' })
 }
 </script>
 
@@ -104,7 +109,13 @@ const handleCtxMenu = (ev: MouseEvent) => {
     @tab-remove="handleRemove"
     @contextmenu.prevent="handleCtxMenu"
   >
-    <ElTabPane v-for="{ name, icon, url } of tabList" :key="url" :label="name" :name="url">
+    <ElTabPane
+      v-for="{ name, icon, url } of tabList"
+      :key="url"
+      :label="name"
+      :name="url"
+      class="rounded-lg"
+    >
       <template #label>
         <div class="flex items-center gap-[5px]">
           <ElIcon>
@@ -126,21 +137,26 @@ const handleCtxMenu = (ev: MouseEvent) => {
   <!--! <RouterView> can no longer be used directly inside <Transition> or <KeepAlive>. Use slot props instead -->
   <ElWatermark :content="userStore.nickname" :font="{ fontSize: 28 }">
     <RouterView v-slot="{ Component }">
-      <Transition
-        enter-active-class="animate__animated animate__zoomInLeft"
-        leave-active-class="animate__animated animate__zoomOutRight"
+      <!-- leave-active-class="animate__animated animate__fadeOutUp" -->
+      <Transition enter-active-class="animate__animated animate__fadeInDown"
         ><Component :is="Component"></Component
       ></Transition>
     </RouterView>
   </ElWatermark>
 
-  <ul
-    class="ctx-menu fixed z-10 inline-block rounded-lg bg-slate-100 text-sm text-slate-500 shadow-lg"
-    v-show="isShow"
+  <Transition
+    enter-active-class="animated__animated animate__flipInX"
+    leave-active-class="animated__animated animate__flipOutX"
   >
-    <li>排序标签页</li>
-    <li>关闭全部标签页</li>
-  </ul>
+    <ul
+      class="ctx-menu fixed z-10 inline-block rounded-lg bg-slate-100 text-sm text-slate-500 shadow-lg"
+      v-show="isShow"
+    >
+      <li @click="removeAll">关闭全部标签页</li>
+      <li @click="tabStore.removeTab(0)">关闭第一个标签页</li>
+      <li @click="tabStore.removeTab(tabList.length - 1)">关闭最后一个标签页</li>
+    </ul>
+  </Transition>
 </template>
 
 <style scoped lang="scss">
@@ -167,6 +183,19 @@ const handleCtxMenu = (ev: MouseEvent) => {
     &:hover {
       background-color: #cad5e2;
     }
+  }
+}
+
+:deep(.el-tabs__nav),
+:deep(.el-tabs__item) {
+  border-radius: 20px !important;
+}
+
+:deep(.is-icon-close) {
+  transform: scale(1.5) !important;
+  margin-left: 10px;
+  &:hover {
+    background-color: lightpink;
   }
 }
 </style>

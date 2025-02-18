@@ -40,7 +40,7 @@ const handleClick = () => router.push({ name: 'Home' })
 }
 
 :deep(.el-menu-item) {
-  border-radius: 10px;
+  border-radius: 20px;
   &:hover {
     background-color: var(--chahan-green-light) !important;
   }
