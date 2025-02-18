@@ -17,7 +17,7 @@ import {
 } from '@icon-park/vue-next'
 import type { Component } from 'vue'
 
-export const Icons = new Map<string, Component>([
+export const name2icon = new Map<string, Component>([
   ['DataScreen', DataScreen],
   ['KnifeFork', KnifeFork],
   ['SurveillanceCameras', SurveillanceCameras],

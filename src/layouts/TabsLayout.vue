@@ -2,7 +2,7 @@
 import { useTabStore } from '@/stores/tab'
 import { storeToRefs } from 'pinia'
 import { ElTabs, ElTabPane, ElIcon, type TabsPaneContext, type TabPaneName } from 'element-plus'
-import { Icons } from '@/utils/icons'
+import { name2icon } from '@/utils/icons'
 // import { watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { ref, watch } from 'vue'
@@ -75,7 +75,7 @@ watch(
       <template #label>
         <div class="flex items-center gap-[5px]">
           <ElIcon>
-            <component :is="Icons.get(icon)"></component>
+            <component :is="name2icon.get(icon)"></component>
           </ElIcon>
           <span>{{ name }}</span>
         </div>
@@ -89,7 +89,16 @@ watch(
       <!-- <RouterView></RouterView> -->
     </ElTabPane>
   </ElTabs>
-  <RouterView></RouterView>
+
+  <!--! <RouterView> can no longer be used directly inside <Transition> or <KeepAlive>. Use slot props instead -->
+  <RouterView v-slot="{ Component }">
+    <Transition
+      enter-active-class="animate__animated animate__backInLeft"
+      leave-active-class="animate__animated animate__backOutRight"
+    >
+      <component :is="Component" />
+    </Transition>
+  </RouterView>
 </template>
 
 <style scoped lang="scss">

@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import { ElSubMenu, ElMenuItem, ElIcon } from 'element-plus'
 import { type IMenuItem } from '@/types/user'
-import { Icons } from '@/utils/icons'
+import { name2icon } from '@/utils/icons'
 import { useTabStore } from '@/stores/tab'
+import { ref } from 'vue'
+
+// 冗余
 defineOptions({
   name: 'RecursiveChild',
 })
@@ -17,6 +20,8 @@ const tabStore = useTabStore()
 // state, getters 不可以直接解构, 需要 storeToRefs
 const { addTab } = tabStore
 
+let timer: number | null = null
+const animated = ref<boolean>(false)
 const handleClick = (item: IMenuItem) => {
   const { name, icon, url } = item
   if (import.meta.env.DEV) {
@@ -28,6 +33,15 @@ const handleClick = (item: IMenuItem) => {
     )
   }
   addTab(name, icon, url)
+
+  if (timer) {
+    return
+  }
+  animated.value = true
+  timer = setTimeout(() => {
+    animated.value = false
+    timer = null
+  }, 1000)
 }
 
 // if (import.meta.env.DEV) {
@@ -42,7 +56,7 @@ const handleClick = (item: IMenuItem) => {
   <ElSubMenu v-if="item.children" :index="item.url">
     <template #title>
       <ElIcon>
-        <component :is="Icons.get(item.icon)"></component>
+        <component :is="name2icon.get(item.icon)"></component>
       </ElIcon>
       <span>{{ item.name }}</span>
     </template>
@@ -54,9 +68,11 @@ const handleClick = (item: IMenuItem) => {
     :index="item.url"
     v-show="item.url !== '/operation/detail'"
     @click="handleClick(item)"
+    :class="{ animate__animated: animated, animate__zoomIn: animated }"
+    style="animation-duration: 500ms"
   >
     <ElIcon>
-      <component :is="Icons.get(item.icon)"></component>
+      <component :is="name2icon.get(item.icon)"></component>
     </ElIcon>
     <span>{{ item.name }}</span>
   </ElMenuItem>
