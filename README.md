@@ -37,6 +37,7 @@ import 'element-plus/dist/index.css'
 
 ```bash
 pnpm install tailwindcss @tailwindcss/vite -D
+pnpm i prettier-plugin-tailwindcss -D
 ```
 
 vite.config.ts

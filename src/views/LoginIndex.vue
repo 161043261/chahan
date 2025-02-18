@@ -47,20 +47,20 @@ const handleLogin = () => {
 </script>
 
 <template>
-  <main class="bg-linear-to-r from-white to-green-100 bg-cover bg-center bg-no-repeat h-dvh">
+  <main class="h-dvh bg-linear-to-r from-white to-green-100 bg-cover bg-center bg-no-repeat">
     <div
-      class="w-[500px] h-[300px] p-[50px] shadow-lg shadow-slate-300 absolute top-[50%] translate-y-[-50%] left-[10%] rounded-lg"
+      class="absolute top-[50%] left-[10%] h-[300px] w-[500px] translate-y-[-50%] rounded-lg p-[50px] shadow-lg shadow-slate-300"
     >
       <!-- gap: 20px; -->
-      <div class="flex justify-center items-center gap-[10px] mb-[20px]">
+      <div class="mb-[20px] flex items-center justify-center gap-[10px]">
         <!-- <img src="@/assets/logo.svg" alt="logo" class="w-[70px] h-[70px]" />
           -->
         <Rice theme="two-tone" size="48" :fill="['#333', '#b8e986']" :strokeWidth="3" />
-        <h1 class="text-slate-500 text-3xl">炒饭机器人管理平台</h1>
+        <h1 class="text-3xl text-slate-500">炒饭机器人管理平台</h1>
       </div>
 
       <ElForm
-        class="w-[80%] m-auto"
+        class="m-auto w-[80%]"
         :model="formData"
         label-width="auto"
         :rules="formRules"
@@ -79,7 +79,7 @@ const handleLogin = () => {
           />
         </ElFormItem>
 
-        <div class="flex justify-between w-[100%]">
+        <div class="flex w-[100%] justify-between">
           <ElButton type="default" class="w-[150px]">注册</ElButton>
           <ElButton type="success" class="w-[150px]" @click="handleLogin">登录</ElButton>
         </div>

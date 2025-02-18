@@ -7,7 +7,7 @@ import TabsLayout from './TabsLayout.vue'
 
 <template>
   <ElContainer>
-    <ElAside class="h-dvh bg-white shadow-xl !w-[200px]">
+    <ElAside class="h-dvh !w-[200px] bg-white shadow-xl">
       <AsideMenu></AsideMenu>
     </ElAside>
     <ElContainer>

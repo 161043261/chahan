@@ -47,7 +47,7 @@ const handleCommand = async (command: Command) => {
 
 <template>
   <main class="h-[60px] px-[20px]">
-    <div class="float-right h-[60px] flex items-center gap-[20px]">
+    <div class="float-right flex h-[60px] items-center gap-[20px]">
       <ElBadge
         :is-dot="true"
         class="item mt-[5px] cursor-pointer"
@@ -69,7 +69,7 @@ const handleCommand = async (command: Command) => {
       />
 
       <ElDropdown @command="handleCommand">
-        <span class="cursor-pointer outline-none text-lg"> 欢迎: {{ nickname }} </span>
+        <span class="cursor-pointer text-lg outline-none"> 欢迎: {{ nickname }} </span>
         <template #dropdown>
           <ElDropdownMenu>
             <ElDropdownItem :icon="User" :command="Command.User">我的账号</ElDropdownItem>

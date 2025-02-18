@@ -15,7 +15,7 @@ const handleClick = () => router.push({ name: 'Home' })
 
 <template>
   <div
-    class="h-[70px] flex justify-center items-center px-[10px] gap-[10px] cursor-pointer"
+    class="flex h-[70px] cursor-pointer items-center justify-center gap-[10px] px-[10px]"
     @click="handleClick"
   >
     <Rice theme="two-tone" size="48" :fill="['#333', '#b8e986']" :strokeWidth="3" />
@@ -23,7 +23,7 @@ const handleClick = () => router.push({ name: 'Home' })
   </div>
 
   <ElScrollbar>
-    <ElMenu class="!border-none menu" :router="true" :default-active="route.path">
+    <ElMenu class="menu !border-none" :router="true" :default-active="route.path">
       <RecursiveChild v-for="item of menuList" :key="item.url" :item="item"></RecursiveChild>
     </ElMenu>
   </ElScrollbar>

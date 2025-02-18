@@ -1,11 +1,19 @@
 <script setup lang="ts">
 import { useTabStore } from '@/stores/tab'
 import { storeToRefs } from 'pinia'
-import { ElTabs, ElTabPane, ElIcon, type TabsPaneContext, type TabPaneName } from 'element-plus'
+import {
+  ElTabs,
+  ElTabPane,
+  ElIcon,
+  type TabsPaneContext,
+  type TabPaneName,
+  ElWatermark,
+} from 'element-plus'
 import { name2icon } from '@/utils/icons'
 // import { watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { ref, watch } from 'vue'
+import { useUserStore } from '@/stores/user'
 const tabStore = useTabStore()
 // actions 可以直接解构, 不需要 storeToRefs
 // state, getters 不可以直接解构, 需要 storeToRefs
@@ -59,6 +67,30 @@ watch(
     activeName.value = route.path
   },
 )
+
+const userStore = useUserStore()
+
+const isShow = ref<boolean>(false)
+const handleWindowClick = () => (isShow.value = false)
+watch(
+  () => isShow.value,
+  () => {
+    if (isShow.value) {
+      addEventListener('click', handleWindowClick)
+    } else {
+      removeEventListener('click', handleWindowClick)
+    }
+  },
+)
+
+const ctxMenuX = ref<string>('0')
+const ctxMenuY = ref<string>('0')
+const handleCtxMenu = (ev: MouseEvent) => {
+  console.log(ev.target as HTMLDivElement)
+  ctxMenuX.value = `${ev.pageX}px`
+  ctxMenuY.value = `${ev.pageY}px`
+  isShow.value = true
+}
 </script>
 
 <template>
@@ -70,6 +102,7 @@ watch(
     type="card"
     closable
     @tab-remove="handleRemove"
+    @contextmenu.prevent="handleCtxMenu"
   >
     <ElTabPane v-for="{ name, icon, url } of tabList" :key="url" :label="name" :name="url">
       <template #label>
@@ -91,14 +124,23 @@ watch(
   </ElTabs>
 
   <!--! <RouterView> can no longer be used directly inside <Transition> or <KeepAlive>. Use slot props instead -->
-  <RouterView v-slot="{ Component }">
-    <Transition
-      enter-active-class="animate__animated animate__backInLeft"
-      leave-active-class="animate__animated animate__backOutRight"
-    >
-      <component :is="Component" />
-    </Transition>
-  </RouterView>
+  <ElWatermark :content="userStore.nickname" :font="{ fontSize: 28 }">
+    <RouterView v-slot="{ Component }">
+      <Transition
+        enter-active-class="animate__animated animate__zoomInLeft"
+        leave-active-class="animate__animated animate__zoomOutRight"
+        ><Component :is="Component"></Component
+      ></Transition>
+    </RouterView>
+  </ElWatermark>
+
+  <ul
+    class="ctx-menu fixed z-10 inline-block rounded-lg bg-slate-100 text-sm text-slate-500 shadow-lg"
+    v-show="isShow"
+  >
+    <li>排序标签页</li>
+    <li>关闭全部标签页</li>
+  </ul>
 </template>
 
 <style scoped lang="scss">
@@ -112,6 +154,19 @@ watch(
 :deep(.el-tabs__item) {
   &:hover {
     color: #000 !important;
+  }
+}
+
+.ctx-menu {
+  left: v-bind(ctxMenuX);
+  top: v-bind(ctxMenuY);
+  li {
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 5px 8px;
+    &:hover {
+      background-color: #cad5e2;
+    }
   }
 }
 </style>

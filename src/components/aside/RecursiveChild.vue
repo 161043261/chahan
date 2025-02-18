@@ -56,7 +56,7 @@ const handleClick = (item: IMenuItem) => {
   <ElSubMenu v-if="item.children" :index="item.url">
     <template #title>
       <ElIcon>
-        <component :is="name2icon.get(item.icon)"></component>
+        <Component :is="name2icon.get(item.icon)"></Component>
       </ElIcon>
       <span>{{ item.name }}</span>
     </template>
@@ -68,11 +68,11 @@ const handleClick = (item: IMenuItem) => {
     :index="item.url"
     v-show="item.url !== '/operation/detail'"
     @click="handleClick(item)"
+    class="duration-500"
     :class="{ animate__animated: animated, animate__zoomIn: animated }"
-    style="animation-duration: 500ms"
   >
     <ElIcon>
-      <component :is="name2icon.get(item.icon)"></component>
+      <Component :is="name2icon.get(item.icon)"></Component>
     </ElIcon>
     <span>{{ item.name }}</span>
   </ElMenuItem>
