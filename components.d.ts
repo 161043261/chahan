@@ -32,6 +32,7 @@ declare module 'vue' {
     'ElTag<': typeof import('element-plus/es')['ElTag<']
     HeaderIndex: typeof import('./src/components/header/HeaderIndex.vue')['default']
     HeaderTabs: typeof import('./src/components/header/HeaderTabs.vue')['default']
+    MapContainer: typeof import('./src/components/map/MapContainer.vue')['default']
     RecursiveChild: typeof import('./src/components/aside/RecursiveChild.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
