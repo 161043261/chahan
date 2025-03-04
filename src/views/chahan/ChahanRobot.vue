@@ -129,8 +129,8 @@ watch(
     </ElCard>
 
     <ElCard class="mt-[20px] !rounded-3xl">
-      <!-- row-gap: 20px; -->
-      <div class="flex h-[100%] flex-wrap justify-between gap-y-[20px]">
+      <!-- flex h-[100%] flex-wrap justify-between gap-y-[20px] -->
+      <div class="grid-layout">
         <RobotCard
           v-for="robot of robotList"
           :key="robot.id"
@@ -156,4 +156,19 @@ watch(
   </main>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.grid-layout {
+  // 开启网格布局
+  display: grid;
+  // 各列的列宽
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  // 指定隐式网格的行高
+  grid-auto-rows: 250px;
+  // 行/列间距
+  gap: 20px;
+  // 网格项目的水平位置
+  justify-items: center;
+  // 网格项目的垂直位置
+  align-items: center;
+}
+</style>
