@@ -7,9 +7,12 @@ import {
   chartDataFn4,
   countryListFn,
   loginFn,
+  robotAddFn,
+  robotDeleteFn,
   robotQueryFn,
+  mapListFn,
+  robotUpdateFn,
 } from './funcs'
-import { robotAddFn, robotDeleteFn, robotUpdateFn } from './funcs/robot_fn'
 
 export default function viteServer(): Plugin {
   return {
@@ -25,6 +28,7 @@ export default function viteServer(): Plugin {
       server.middlewares.use(Api.RobotAdd, robotAddFn)
       server.middlewares.use(Api.RobotUpdate, robotUpdateFn)
       server.middlewares.use(Api.RobotDelete, robotDeleteFn)
+      server.middlewares.use(Api.MapList, mapListFn)
     },
   }
 }

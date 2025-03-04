@@ -12,6 +12,7 @@ export const enum Api {
   RobotAdd = '/robotAdd',
   RobotDelete = '/robotDelete',
   RobotUpdate = '/robotUpdate',
+  MapList = '/mapList',
 }
 
 export { adminMenu, userMenu }

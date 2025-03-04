@@ -1,9 +1,18 @@
+<!-- eslint-disable @typescript-eslint/no-explicit-any -->
 <script setup lang="ts">
 import AMapLoader from '@amap/amap-jsapi-loader'
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
+import { mapListApi } from '@/apis/map'
+import type { IMapList } from '@/types/robot'
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-let map = null
+//! import.meta.glob
+const pngList: Record<string, { default: string }> = import.meta.glob('@/assets/*.png', {
+  eager: true,
+})
+
+let map: any = null
+
+const mapList = ref<IMapList['data']['list']>()
 onMounted(() => {
   AMapLoader.load({
     key: 'e5e46a8ca6baad8f8c9b5c52af11bed1',
@@ -16,7 +25,20 @@ onMounted(() => {
       map = new AMap.Map('map-container', {
         viewMode: '3D',
         zoom: 11,
-        center: [121.3912291, 31.2513263],
+        center: [121.3912291 /** lat */, 31.2513263 /** lng */],
+      })
+
+      mapListApi().then(({ data: { list } }) => {
+        mapList.value = list
+        mapList.value.forEach((item) => {
+          const { lng, lat } = item
+          const marker = new AMap.Marker({
+            position: [lat, lng],
+            title: item.address,
+            icon: Object.keys(pngList)[0],
+          })
+          map.add(marker)
+        })
       })
     })
     .catch((err) => {

@@ -2,6 +2,8 @@ import { Connect } from 'vite'
 import url from 'node:url'
 import fs from 'node:fs'
 import { type IRobotList } from '../types'
+import { mockMapList } from '../mock'
+import { randNum } from '../utils'
 
 function readRobotList(): IRobotList['data'] {
   const jsonStr = fs.readFileSync('./plugins/assets/robot_list.json', 'utf8')
@@ -138,6 +140,20 @@ export const robotUpdateFn: Connect.NextHandleFunction = (req, res) => {
     JSON.stringify({
       code: 200,
       message: '更新机器人成功',
+    }),
+  )
+}
+
+export const mapListFn: Connect.NextHandleFunction = (req, res) => {
+  res.setHeader('Content-Type', 'application/json')
+  const resData = mockMapList(randNum(20, 50)) // 不需要深拷贝
+  resData[0].lng = 31.2513263
+  resData[0].lat = 121.3912291
+  res.end(
+    JSON.stringify({
+      code: 200,
+      message: '查询机器人列表',
+      data: { list: resData },
     }),
   )
 }

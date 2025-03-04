@@ -31,4 +31,32 @@ const mockRobotList = (amount: number): IRobotList['data'] => {
   return robotList
 }
 
-export { mockCountryList, mockRobotList }
+const mockMapList = (
+  amount: number,
+): /** ! 类型体操 */ (IRobotList['data'][number] & {
+  lat: number
+  lng: number
+})[] => {
+  return mockjs.mock({
+    [`robotList|${amount}`]: [
+      {
+        'id|+1': 1, // id: '@id()'
+        'lng|28-30.7': 30,
+        'lat|118-120.7': 120,
+        'state|1-5': 3,
+        'failureNum|0-200': 100,
+        address: '@county(true)',
+        name: '@word',
+        admin: '@cname',
+        email: '@email',
+      },
+    ],
+  }).robotList
+  // .robotList.map((item) => ({
+  //   ...item,
+  //   state: randNum(0, 5) + 1,
+  //   failureNum: randNum(0, 200),
+  // }))
+}
+
+export { mockCountryList, mockRobotList, mockMapList }

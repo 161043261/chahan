@@ -10,6 +10,15 @@ export type IRobotList = {
   }
 } & IResData
 
+export type IMapList = {
+  data: {
+    list: (IRobotData & {
+      lat: number
+      lng: number
+    })[]
+  }
+} & IResData
+
 interface IRobotData {
   id: number
   name: string
