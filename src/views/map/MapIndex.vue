@@ -2,7 +2,7 @@
 import MapContainer from '@/components/map/MapContainer.vue'
 import { ElRow, ElCol, ElCard, type CascaderOption } from 'element-plus'
 import { reactive, ref } from 'vue'
-import { robot_states, state_id2text_type } from '@/constants'
+import { robot_states, robot_state2text_and_type } from '@/constants'
 import { pcTextArr } from 'element-china-area-data'
 import { fetchLocation } from '@/utils/fetch_location'
 import { AddOne, CloseOne, CheckOne } from '@icon-park/vue-next'
@@ -187,7 +187,7 @@ const handleSubmit = async () => {
                       :value="idx + 1"
                       :label="state"
                     >
-                      <ElTag size="large" :type="state_id2text_type.get(idx + 1)?.type">
+                      <ElTag size="large" :type="robot_state2text_and_type.get(idx + 1)?.type">
                         {{ state }}
                       </ElTag>
                     </ElOption>

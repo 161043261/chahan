@@ -1,28 +1,24 @@
 <script setup lang="ts">
-import { ElCard, ElInput, ElSelect, ElInputNumber } from 'element-plus'
-import { onMounted, reactive, ref } from 'vue'
+import { ElCard, ElInput, ElSelect, ElInputNumber, ElMessage } from 'element-plus'
+import { reactive, ref } from 'vue'
 import { name2icon } from '@/utils/icons'
-import { orderQueryApi } from '@/apis/order'
+import { orderQueryApi, orderDeleteApi } from '@/apis/order'
+import type { IOrderData } from '@/types/order'
+import { usePagination } from '@/hooks/usePagination'
+import { order_states, order_state2text_and_type } from '@/constants'
 
 const formData = reactive<{
-  startDate: string
-  endDate: string
+  startDate?: string
+  endDate?: string
   // 订单号
-  id: string
+  id?: number
   // 订单状态
-  state: 0 | 1 | 2 | 3
+  state?: 0 | 1 | 2 | 3
   // 机器人 ID
-  robotId: number
+  robotId?: number
   // 机器人名字
-  robotName: string
-}>({
-  id: '',
-  state: 0,
-  robotId: 0,
-  robotName: '',
-  startDate: '',
-  endDate: '',
-})
+  robotName?: string
+}>({})
 
 const date = ref<[startDate: string, endDate: string]>(['', ''])
 const handleChange = (newDate: typeof date.value) => {
@@ -30,12 +26,39 @@ const handleChange = (newDate: typeof date.value) => {
   formData.endDate = newDate /* date.value */[1]
 }
 
-onMounted(() =>
-  orderQueryApi({
-    pageNum: 1,
-    pageSize: 0,
-  }),
+const orderList = ref<IOrderData[]>()
+const loading /** v-loading */ = ref(false)
+const loadOrderList = async () => {
+  loading.value = true
+  const { list, total } = (
+    await orderQueryApi({
+      ...formData,
+      ...pageInfo,
+    })
+  ).data
+  orderList.value = list
+  pageInfo.total = total!
+  loading.value = false
+}
+
+const { handleCurrentChange, handleSizeChange, pageInfo } = usePagination(
+  loadOrderList,
+  10 /** initialPageSize */,
 )
+
+// const idArr: number[] = []
+const handleDelete = async (id: number) => {
+  const { code, message } = await orderDeleteApi({
+    idArr: [id],
+  })
+  if (code === 200) {
+    ElMessage.success({
+      message,
+      grouping: true,
+    })
+    loadOrderList()
+  }
+}
 </script>
 
 <template>
@@ -53,10 +76,11 @@ onMounted(() =>
           placeholder="请选择订单状态"
           v-model="formData.state"
         >
-          <ElOption label="全部" :value="0"></ElOption>
-          <ElOption label="进行中" :value="1"></ElOption>
-          <ElOption label="已完成" :value="2"></ElOption>
-          <ElOption label="已取消" :value="3"></ElOption>
+          <ElOption v-for="(state, idx) of order_states" :label="state" :value="idx" :key="state">
+            <ElTag size="large" :type="order_state2text_and_type.get(idx)?.type">
+              {{ state }}
+            </ElTag>
+          </ElOption>
         </ElSelect>
 
         <ElInputNumber
@@ -97,15 +121,21 @@ onMounted(() =>
       </ElRow>
 
       <ElRow class="mt-[20px]">
-        <ElTable>
+        <ElTable :data="orderList" class="w-[100%]" stripe v-loading="loading" table-layout="auto">
           <ElTableColumn label="订单号" prop="id"> </ElTableColumn>
-          <ElTableColumn label="订单状态" prop="state"> </ElTableColumn>
+          <ElTableColumn label="订单状态" prop="state">
+            <template #default="tableData">
+              <ElTag size="large" :type="order_state2text_and_type.get(tableData.row.state)?.type">
+                {{ order_state2text_and_type.get(tableData.row.state)?.text }}
+              </ElTag>
+            </template>
+          </ElTableColumn>
           <ElTableColumn label="机器人 ID" prop="robotId"> </ElTableColumn>
           <ElTableColumn label="机器人名字" prop="robotName"> </ElTableColumn>
           <ElTableColumn label="操作">
             <template #default="tableData">
               <ElButton type="success" @click="() => console.log(tableData.row)"> 详情 </ElButton>
-              <ElPopconfirm title="确定删除吗" @confirm="() => console.log(tableData.row.id)">
+              <ElPopconfirm title="确定删除吗" @confirm="handleDelete(tableData.row.id)">
                 <template #reference>
                   <ElButton type="danger"> 删除 </ElButton>
                 </template>
@@ -113,6 +143,19 @@ onMounted(() =>
             </template>
           </ElTableColumn>
         </ElTable>
+
+        <ElPagination
+          v-model:current-page="pageInfo.pageNum"
+          v-model:page-size="pageInfo.pageSize"
+          :page-sizes="[10, 20, 30, 40]"
+          size="default"
+          background
+          layout="total, sizes, prev, pager, next, jumper"
+          :total="pageInfo.total"
+          class="mt-[20px]"
+          @size-change="handleSizeChange /** (pageSize: number) => void */"
+          @current-change="handleCurrentChange /** (pageNum: number) => void */"
+        />
       </ElRow>
     </ElCard>
   </main>

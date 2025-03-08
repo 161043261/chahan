@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { robotDeleteApi, robotQueryApi } from '@/apis/chahan'
-import { robot_states, state_id2text_type } from '@/constants'
-import type { IRobotData, IRobotList } from '@/types/robot'
+import { robot_states, robot_state2text_and_type } from '@/constants'
+import type { IRobotData } from '@/types/robot'
 import { AddOne } from '@icon-park/vue-next'
 import RobotDialog from './components/RobotDialog.vue'
 import {
@@ -17,7 +17,7 @@ import {
   ElPopconfirm,
   ElMessage,
 } from 'element-plus'
-import { onMounted, reactive, ref } from 'vue'
+import { reactive, ref } from 'vue'
 import { useRobotStore } from '@/stores/robot'
 import { usePagination } from '@/hooks/usePagination'
 
@@ -35,7 +35,7 @@ const formData = reactive({
 //   total: 0,
 // })
 
-const robotList = ref<IRobotList['data']['list']>([])
+const robotList = ref<IRobotData[]>([])
 const loading /** v-loading */ = ref(false)
 
 const loadRobotList = async () => {
@@ -53,7 +53,7 @@ const loadRobotList = async () => {
   pageInfo.total = total!
   loading.value = false
 }
-onMounted(loadRobotList /** () => getRobotList() */)
+// onMounted(loadRobotList /** () => getRobotList() */)
 
 const { handleCurrentChange, handleSizeChange, pageInfo } = usePagination(
   loadRobotList,
@@ -126,14 +126,8 @@ const handleClose = () => {
 
         <ElCol :span="5">
           <ElSelect placeholder="请选择炒饭机器人状态" v-model="formData.state">
-            <ElOption label="全部" :value="0"></ElOption>
-            <ElOption
-              v-for="(state, idx) of robot_states"
-              :label="state"
-              :value="idx + 1"
-              :key="state"
-            >
-              <ElTag size="large" :type="state_id2text_type.get(idx + 1)?.type">
+            <ElOption v-for="(state, idx) of robot_states" :label="state" :value="idx" :key="state">
+              <ElTag size="large" :type="robot_state2text_and_type.get(idx)?.type">
                 {{ state }}
               </ElTag>
             </ElOption>
@@ -175,8 +169,8 @@ const handleClose = () => {
         <!-- state: stateId -->
         <ElTableColumn width="150" prop="state" label="机器人状态">
           <template #default="tableData">
-            <ElTag size="large" :type="state_id2text_type.get(tableData.row.state)?.type">{{
-              state_id2text_type.get(tableData.row.state)?.text
+            <ElTag size="large" :type="robot_state2text_and_type.get(tableData.row.state)?.type">{{
+              robot_state2text_and_type.get(tableData.row.state)?.text
             }}</ElTag>
           </template>
         </ElTableColumn>

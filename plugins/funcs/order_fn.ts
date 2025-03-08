@@ -48,7 +48,36 @@ export const orderQueryFn: Connect.NextHandleFunction = (req, res) => {
   }
 
   if (startDate && endDate) {
-    // todo
+    const [startYear_, startMonth_, startDay_] = (startDate as string).split('-')
+    const [startYear, startMonth, startDay] = [
+      Number.parseInt(startYear_),
+      Number.parseInt(startMonth_),
+      Number.parseInt(startDay_),
+    ]
+    const [endYear_, endMonth_, endDay_] = (endDate as string).split('-')
+    const [endYear, endMonth, endDay] = [
+      Number.parseInt(endYear_),
+      Number.parseInt(endMonth_),
+      Number.parseInt(endDay_),
+    ]
+    resData = resData.filter((item) => {
+      const [year_, month_, day_] = item.date.split('-')
+      const [year, month, day] = [
+        Number.parseInt(year_),
+        Number.parseInt(month_),
+        Number.parseInt(day_),
+      ]
+      if (
+        (year > startYear && year < endYear) ||
+        (year === startYear && month > startMonth) ||
+        (year === startYear && month === startMonth && day >= startDay) ||
+        (year === endYear && month < endMonth) ||
+        (year === endYear && month === endMonth && day <= endDay)
+      ) {
+        return true
+      }
+      return false
+    })
   }
 
   const total = resData.length
@@ -58,7 +87,6 @@ export const orderQueryFn: Connect.NextHandleFunction = (req, res) => {
     resData = resData.slice(start, end)
   }
 
-  console.log(resData)
   res.end(
     JSON.stringify({
       code: 200,

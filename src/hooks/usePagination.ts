@@ -1,7 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { reactive } from 'vue'
+import { onMounted, reactive } from 'vue'
 
 export function usePagination(loadData: () => Promise<void>, initialPageSize: number = 10) {
+  // loadData();
+  onMounted(loadData)
+
   const pageInfo = reactive({
     pageNum: 1,
     pageSize: initialPageSize,

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { state_id2text_type } from '@/constants'
+import { robot_state2text_and_type } from '@/constants'
 import { toRefs } from 'vue'
 
 const props = defineProps<{
@@ -14,8 +14,8 @@ const { stateId, failureNum } = toRefs(props)
     class="bg-green-light grid-layout h-[250px] w-[350px] items-center justify-center !rounded-3xl duration-1000 hover:scale-110"
   >
     <div class="flex flex-col items-center justify-between">
-      <ElTag size="large" :type="state_id2text_type.get(stateId)?.type" class="!text-[20px]">
-        {{ state_id2text_type.get(stateId)?.text }}
+      <ElTag size="large" :type="robot_state2text_and_type.get(stateId)?.type" class="!text-[20px]">
+        {{ robot_state2text_and_type.get(stateId)?.text }}
       </ElTag>
       <img src="@/assets/robot.svg" alt="eva" width="100px" />
       <p>零件故障数</p>

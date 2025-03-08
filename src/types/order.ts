@@ -3,9 +3,10 @@ export type { IResData }
 
 export interface IOrderData {
   id: number
-  state: 1 | 2 | 3
+  state: 0 | 1 | 2 | 3
   robotId: number
   robotName: string
+  date: string
 }
 
 export type IOrderList = {

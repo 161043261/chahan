@@ -11,7 +11,7 @@ import {
   ElInputNumber,
 } from 'element-plus'
 import { reactive, toRef, computed, useTemplateRef } from 'vue'
-import { robot_states, state_id2text_type } from '@/constants'
+import { robot_states, robot_state2text_and_type } from '@/constants'
 import type { IRobotData } from '@/types/robot'
 import { useRobotStore } from '@/stores/robot'
 import { storeToRefs } from 'pinia'
@@ -19,8 +19,8 @@ import { robotAddApi, robotUpdateApi } from '@/apis/chahan'
 
 const robotStore = useRobotStore()
 //! useAttrs: 不是响应式的, 不支持 camelCase 转 dashed, 不支持类型检查
-// const { state_id2text_type } = useAttrs() as {
-//   state_id2text_type: Map<
+// const { robot_state2text_and_type } = useAttrs() as {
+//   robot_state2text_and_type: Map<
 //     number,
 //     { text: RobotState; type: 'primary' | 'success' | 'info' | 'warning' | 'danger' }
 //   >
@@ -158,7 +158,7 @@ const handelConfirm = () => {
                   :value="idx + 1"
                   :label="state"
                 >
-                  <ElTag size="large" :type="state_id2text_type.get(idx + 1)?.type">
+                  <ElTag size="large" :type="robot_state2text_and_type.get(idx + 1)?.type">
                     {{ state }}
                   </ElTag>
                 </ElOption>

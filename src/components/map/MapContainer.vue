@@ -18,7 +18,7 @@ const imgList: Record<string, { default: string }> = import.meta.glob(
   },
 )
 // import robotSvg /** string */ from '@/assets/robot.svg'
-import { amap_js_key, state_id2text_type } from '@/constants'
+import { amap_js_key, robot_state2text_and_type } from '@/constants'
 
 let map: any = null
 
@@ -102,7 +102,7 @@ onMounted(() => {
                 </div>
                 <ul class="w-[250px]">
                   <li class="truncate">机器人名字: ${name}</li>
-                  <li class="truncate">机器人状态: ${state_id2text_type.get(state)!.text}</li>
+                  <li class="truncate">机器人状态: ${robot_state2text_and_type.get(state)!.text}</li>
                   <li class="truncate">零件故障数: ${failureNum}</li>
                   <li class="truncate">管理员名字: ${admin}</li>
                   <li class="truncate">管理员邮箱: ${email}</li>
