@@ -14,6 +14,8 @@ import {
   CooperativeHandshake,
   System,
   People,
+  ExcelOne,
+  DeleteFive,
 } from '@icon-park/vue-next'
 import type { Component } from 'vue'
 
@@ -33,4 +35,6 @@ export const name2icon = new Map<string, Component>([
   ['CooperativeHandshake', CooperativeHandshake],
   ['System', System],
   ['People', People],
+  ['ExcelOne', ExcelOne],
+  ['DeleteFive', DeleteFive]
 ])

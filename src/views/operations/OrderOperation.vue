@@ -1,14 +1,50 @@
 <script setup lang="ts">
 import { ElCard, ElInput, ElSelect, ElInputNumber } from 'element-plus'
+import { reactive, ref } from 'vue'
+import { name2icon } from '@/utils/icons'
+
+const formData = reactive<{
+  startDate: string
+  endDate: string
+  // 订单号
+  orderNo: string
+  // 订单状态
+  orderState: 0 | 1 | 2 | 3
+  // 机器人 ID
+  robotId: number
+  // 机器人名字
+  robotName: string
+}>({
+  startDate: '',
+  endDate: '',
+  orderNo: '',
+  orderState: 0,
+  robotId: 0,
+  robotName: '',
+})
+
+const date = ref<[startDate: string, endDate: string]>(['', ''])
+const handleChange = (newDate: typeof date.value) => {
+  formData.startDate = newDate /* date.value */[0]
+  formData.endDate = newDate /* date.value */[1]
+}
 </script>
 
 <template>
   <main>
     <ElCard class="!rounded-3xl">
       <div class="grid-container">
-        <ElInput class="grid-input !w-[300px]" placeholder="请输入订单号"></ElInput>
+        <ElInput
+          class="grid-input !w-[300px]"
+          placeholder="请输入订单号"
+          v-model="formData.orderNo"
+        ></ElInput>
 
-        <ElSelect class="grid-select !w-[300px]" placeholder="请选择订单状态">
+        <ElSelect
+          class="grid-select !w-[300px]"
+          placeholder="请选择订单状态"
+          v-model="formData.orderState"
+        >
           <ElOption label="全部" :value="0"></ElOption>
           <ElOption label="进行中" :value="1"></ElOption>
           <ElOption label="已完成" :value="2"></ElOption>
@@ -19,24 +55,47 @@ import { ElCard, ElInput, ElSelect, ElInputNumber } from 'element-plus'
           class="grid-input-number !w-[300px]"
           placeholder="请输入机器人序号"
           controls-position="right"
+          v-model="formData.robotId"
         />
 
-        <ElInput class="grid-input2 !w-[300px]" placeholder="请输入机器人名字"></ElInput>
+        <ElInput
+          class="grid-input2 !w-[300px]"
+          placeholder="请输入机器人名字"
+          v-model="formData.robotName"
+        ></ElInput>
 
         <ElDatePicker
+          v-model="date"
           class="grid-date-picker !w-[300px]"
           type="daterange"
           range-separator="/"
           start-placeholder="开始时间"
           end-placeholder="结束时间"
+          @change="handleChange"
+          value-format="YYYY-MM-DD"
         ></ElDatePicker>
 
         <div class="grid-buttons">
           <ElButton type="success">查询</ElButton>
-
           <ElButton type="default">重置</ElButton>
         </div>
       </div>
+    </ElCard>
+
+    <ElCard class="mt-[20px] !rounded-3xl">
+      <ElRow>
+        <ElButton type="success" :icon="name2icon.get('ExcelOne')">导出订单数据到 Excel</ElButton>
+        <ElButton type="danger" :icon="name2icon.get('DeleteFive')">批量删除</ElButton>
+      </ElRow>
+
+      <ElRow class="mt-[20px]">
+        <ElTable>
+          <ElTableColumn label="订单号" prop="orderNo"> </ElTableColumn>
+          <ElTableColumn label="订单状态" prop="orderState"> </ElTableColumn>
+          <ElTableColumn label="机器人 ID" prop="robotId"> </ElTableColumn>
+          <ElTableColumn label="机器人名字" prop="robotName"> </ElTableColumn>
+        </ElTable>
+      </ElRow>
     </ElCard>
   </main>
 </template>

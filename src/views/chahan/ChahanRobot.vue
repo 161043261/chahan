@@ -13,10 +13,10 @@ import bus from '@/utils/bus'
 //     const originalMethod: any = propertyDescriptor.value
 //     propertyDescriptor.value = function (stateId: number) {
 //       if (stateId2cnt.has(stateId)) {
-//         console.log('Cache hit') // 缓存命中
+//         // 缓存命中
 //         return stateId2cnt.get(stateId)
 //       }
-//       console.log('Cache miss') // 缓存未命中
+//       // 缓存未命中
 //       const cnt = originalMethod.apply(this, stateId)
 //       stateId2cnt.set(stateId, cnt)
 //       return cnt

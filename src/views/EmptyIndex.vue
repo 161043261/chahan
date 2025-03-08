@@ -111,7 +111,6 @@ function setAdjacentMines() {
       //     ceil.adjacentMines++
       //   }
       // })
-      // console.log(getSiblings(ceil))
       ceil.adjacentMines += getSiblings(ceil).filter((item) => item.mine).length
     })
   })

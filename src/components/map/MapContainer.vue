@@ -86,7 +86,6 @@ onMounted(() => {
           admin: string
           email: string
         }) => {
-          console.log(item)
           const { lng, lat, name, state, failureNum, admin, email } = item
           const marker = new AMap.Marker({
             position: [lat, lng],
