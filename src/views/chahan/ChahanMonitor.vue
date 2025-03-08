@@ -37,9 +37,10 @@ const formData = reactive({
 
 const robotList = ref<IRobotList['data']['list']>([])
 const loading /** v-loading */ = ref(false)
+
 const loadRobotList = async () => {
   loading.value = true
-  ;({ list: robotList.value, total: pageInfo.total } = (
+  const { list, total } = (
     await robotQueryApi({
       [nameOrAddress.value]: formData.nameOrAddress,
       state: formData.state,
@@ -47,7 +48,9 @@ const loadRobotList = async () => {
       // pageSize: pageInfo.pageSize,
       ...pageInfo,
     })
-  ).data)
+  ).data
+  robotList.value = list
+  pageInfo.total = total!
   loading.value = false
 }
 onMounted(loadRobotList /** () => getRobotList() */)

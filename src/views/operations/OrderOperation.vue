@@ -1,26 +1,27 @@
 <script setup lang="ts">
 import { ElCard, ElInput, ElSelect, ElInputNumber } from 'element-plus'
-import { reactive, ref } from 'vue'
+import { onMounted, reactive, ref } from 'vue'
 import { name2icon } from '@/utils/icons'
+import { orderQueryApi } from '@/apis/order'
 
 const formData = reactive<{
   startDate: string
   endDate: string
   // 订单号
-  orderNo: string
+  id: string
   // 订单状态
-  orderState: 0 | 1 | 2 | 3
+  state: 0 | 1 | 2 | 3
   // 机器人 ID
   robotId: number
   // 机器人名字
   robotName: string
 }>({
-  startDate: '',
-  endDate: '',
-  orderNo: '',
-  orderState: 0,
+  id: '',
+  state: 0,
   robotId: 0,
   robotName: '',
+  startDate: '',
+  endDate: '',
 })
 
 const date = ref<[startDate: string, endDate: string]>(['', ''])
@@ -28,6 +29,13 @@ const handleChange = (newDate: typeof date.value) => {
   formData.startDate = newDate /* date.value */[0]
   formData.endDate = newDate /* date.value */[1]
 }
+
+onMounted(() =>
+  orderQueryApi({
+    pageNum: 1,
+    pageSize: 0,
+  }),
+)
 </script>
 
 <template>
@@ -37,13 +45,13 @@ const handleChange = (newDate: typeof date.value) => {
         <ElInput
           class="grid-input !w-[300px]"
           placeholder="请输入订单号"
-          v-model="formData.orderNo"
+          v-model="formData.id"
         ></ElInput>
 
         <ElSelect
           class="grid-select !w-[300px]"
           placeholder="请选择订单状态"
-          v-model="formData.orderState"
+          v-model="formData.state"
         >
           <ElOption label="全部" :value="0"></ElOption>
           <ElOption label="进行中" :value="1"></ElOption>
@@ -53,7 +61,7 @@ const handleChange = (newDate: typeof date.value) => {
 
         <ElInputNumber
           class="grid-input-number !w-[300px]"
-          placeholder="请输入机器人序号"
+          placeholder="请输入机器人 ID"
           controls-position="right"
           v-model="formData.robotId"
         />
@@ -69,8 +77,8 @@ const handleChange = (newDate: typeof date.value) => {
           class="grid-date-picker !w-[300px]"
           type="daterange"
           range-separator="/"
-          start-placeholder="开始时间"
-          end-placeholder="结束时间"
+          start-placeholder="开始日期"
+          end-placeholder="结束日期"
           @change="handleChange"
           value-format="YYYY-MM-DD"
         ></ElDatePicker>
@@ -90,10 +98,20 @@ const handleChange = (newDate: typeof date.value) => {
 
       <ElRow class="mt-[20px]">
         <ElTable>
-          <ElTableColumn label="订单号" prop="orderNo"> </ElTableColumn>
-          <ElTableColumn label="订单状态" prop="orderState"> </ElTableColumn>
+          <ElTableColumn label="订单号" prop="id"> </ElTableColumn>
+          <ElTableColumn label="订单状态" prop="state"> </ElTableColumn>
           <ElTableColumn label="机器人 ID" prop="robotId"> </ElTableColumn>
           <ElTableColumn label="机器人名字" prop="robotName"> </ElTableColumn>
+          <ElTableColumn label="操作">
+            <template #default="tableData">
+              <ElButton type="success" @click="() => console.log(tableData.row)"> 详情 </ElButton>
+              <ElPopconfirm title="确定删除吗" @confirm="() => console.log(tableData.row.id)">
+                <template #reference>
+                  <ElButton type="danger"> 删除 </ElButton>
+                </template>
+              </ElPopconfirm>
+            </template>
+          </ElTableColumn>
         </ElTable>
       </ElRow>
     </ElCard>

@@ -36,5 +36,5 @@ export const name2icon = new Map<string, Component>([
   ['System', System],
   ['People', People],
   ['ExcelOne', ExcelOne],
-  ['DeleteFive', DeleteFive]
+  ['DeleteFive', DeleteFive],
 ])

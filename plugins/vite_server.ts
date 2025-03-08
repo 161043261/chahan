@@ -12,6 +12,8 @@ import {
   robotQueryFn,
   mapListFn,
   robotUpdateFn,
+  orderQueryFn,
+  orderDeleteFn,
 } from './funcs'
 
 export default function viteServer(): Plugin {
@@ -29,6 +31,8 @@ export default function viteServer(): Plugin {
       server.middlewares.use(Api.RobotUpdate, robotUpdateFn)
       server.middlewares.use(Api.RobotDelete, robotDeleteFn)
       server.middlewares.use(Api.MapList, mapListFn)
+      server.middlewares.use(Api.OrderQuery, orderQueryFn)
+      server.middlewares.use(Api.OrderDelete, orderDeleteFn)
     },
   }
 }

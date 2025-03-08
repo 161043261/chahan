@@ -10,4 +10,6 @@ export enum Api {
   CountryList = '/countryList',
   MapList = '/mapList',
   Login = '/api/login',
+  OrderQuery = '/orderQuery',
+  OrderDelete = '/orderDelete',
 }

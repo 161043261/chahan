@@ -1,7 +1,8 @@
 import mockjs from 'mockjs'
-import type { ICountryList, IRobotList } from '../types'
-type ICountryListData = ICountryList['data']
+import type { ICountryList, IOrderList, IRobotList } from '../types'
+import { randArr } from '../utils'
 
+type ICountryListData = ICountryList['data']
 const mockCountryList = (
   amount: number,
 ): {
@@ -32,10 +33,10 @@ const mockRobotList = (amount: number): IRobotList['data'] => {
     [`robotList|${amount}`]: [
       {
         'id|+1': 1, // id: '@id()'
-        'lng|28-30.6': 30,
-        'lat|118-120.6': 120,
-        'state|1-5': 3,
-        'failureNum|0-200': 100,
+        'lng|28-30.6': 28,
+        'lat|118-120.6': 118,
+        'state|1-5': 1,
+        'failureNum|0-200': 0,
         address: '@county(true)',
         name: '@word',
         admin: '@cname',
@@ -45,4 +46,25 @@ const mockRobotList = (amount: number): IRobotList['data'] => {
   }).robotList
 }
 
-export { mockCountryList, mockRobotList }
+const mockOrderList = (amount: number, robotList: IRobotList['data']): IOrderList['data'] => {
+  const robotIdArr = randArr(0, robotList.length, amount)
+  const year = new Date().getFullYear()
+  return mockjs
+    .mock({
+      [`orderList|${amount}`]: [
+        {
+          //! 一些 mockjs 语法
+          id: "@string('number', 7)", // 7 位数字
+          'state|1': [1, 2, 3], // 'state|1-3': 1,
+          date: `@date('${year}-MM-dd')`,
+          'robotId|1': robotIdArr,
+        },
+      ],
+    })
+    .orderList.map((item: IOrderList['data'][number]) => {
+      item.robotName = robotList[item.robotId].name
+      return item
+    })
+}
+
+export { mockCountryList, mockRobotList, mockOrderList }

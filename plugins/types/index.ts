@@ -62,3 +62,13 @@ export type IRobotList = {
     lng: number
   }[]
 }
+
+export type IOrderList = {
+  data: {
+    id: number
+    state: /* 0 | 1 | 2 | 3 */ number
+    robotId: number
+    robotName: string
+    date: string
+  }[]
+}

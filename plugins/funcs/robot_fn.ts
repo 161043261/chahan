@@ -55,7 +55,7 @@ export const robotQueryFn: Connect.NextHandleFunction = (req, res) => {
   res.end(
     JSON.stringify({
       code: 200,
-      message: '查询机器人列表成功',
+      message: '获取机器人列表成功',
       data: { list: resData, total },
     }),
   )
@@ -92,26 +92,16 @@ export const robotDeleteFn: Connect.NextHandleFunction = (req, res) => {
   res.setHeader('Content-Type', 'application/json')
   const parseUrl = url.parse(req.originalUrl!, true /* parseQueryString */).query
   const { id } = parseUrl
-  const robotList = readRobotList()
-  for (let i = 0; i < robotList.length; i++) {
-    if (robotList[i].id === Number.parseInt(id as string)) {
-      robotList.splice(i, 1)
-      writeRobotList(robotList)
-      res.end(
-        JSON.stringify({
-          code: 200,
-          message: '删除机器人成功',
-        }),
-      )
-      return
-    }
-  }
+  let robotList = readRobotList()
+  robotList = robotList.filter((item) => item.id !== Number.parseInt(id as string))
+  writeRobotList(robotList)
   res.end(
     JSON.stringify({
-      code: 400,
-      message: '删除机器人失败',
+      code: 200,
+      message: '删除机器人成功',
     }),
   )
+  return
 }
 
 export const robotUpdateFn: Connect.NextHandleFunction = (req, res) => {

@@ -11,7 +11,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 import viteServer from './plugins/vite_server'
 import { visualizer } from 'rollup-plugin-visualizer'
-import createRobotList from './plugins/create_robot_list'
+import createJsonFiles from './plugins/create_json_files'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -27,7 +27,9 @@ export default defineConfig({
       resolvers: [ElementPlusResolver()],
     }),
     tailwindcss(),
-    createRobotList(),
+    // ./plugins/assets/robot_list.json
+    // ./plugins/assets/order_list.json
+    createJsonFiles(),
     visualizer({ open: true }),
   ],
   resolve: {

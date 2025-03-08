@@ -57,7 +57,7 @@ const handleLogin = () => {
         <!-- <img src="@/assets/logo.svg" alt="logo" class="w-[70px] h-[70px]" />
           -->
         <Rice theme="filled" size="48" fill="#b8e986" :strokeWidth="3" />
-        <h1 class="text-3xl text-slate-100">炒饭机器人管理平台</h1>
+        <h1 class="text-3xl text-slate-500">炒饭机器人管理平台</h1>
       </div>
 
       <ElForm
@@ -100,14 +100,14 @@ const handleLogin = () => {
 }
 
 .bg {
-  background-image: url(../assets/bg.png);
+  background-image: url(../assets/bg.jpg);
 }
 
 .glass-container {
   @include global.glass-container;
 }
 
-:deep(.el-form-item__label) {
-  color: #f1f5f9;
-}
+// :deep(.el-form-item__label) {
+//   color: #62748e;
+// }
 </style>

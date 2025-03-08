@@ -1,16 +1,8 @@
-export interface IResData {
-  code: number
-  message: string
-}
+import type { IResData } from './dashboard'
 
-export type IRobotList = {
-  data: {
-    list: IRobotData[]
-    total?: number
-  }
-} & IResData
+export type { IResData }
 
-interface IRobotData {
+export interface IRobotData {
   id: number
   name: string
   address: string
@@ -27,7 +19,12 @@ interface IRobotData {
   lng?: number
 }
 
-export type { IRobotData }
+export type IRobotList = {
+  data: {
+    list: IRobotData[]
+    total?: number
+  }
+} & IResData
 
 export type IChartData4 = {
   data: {
