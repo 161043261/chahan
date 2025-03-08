@@ -1,0 +1,13 @@
+export enum Api {
+  RobotQuery = '/robotQuery',
+  RobotAdd = '/robotAdd',
+  RobotDelete = '/robotDelete',
+  RobotUpdate = '/robotUpdate',
+  ChartData4 = '/chartData4',
+  ChartData = '/chartData',
+  ChartData2 = '/chartData2',
+  ChartData3 = '/chartData3',
+  CountryList = '/countryList',
+  MapList = '/mapList',
+  Login = '/api/login',
+}
