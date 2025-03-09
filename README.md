@@ -39,6 +39,7 @@ cat Chahan.ttf | ttf2woff2 > Chahan.woff2
 7. 网格布局
 8. web_worker
 9. 缓存滚动位置
+10. 全局 toast
 
 ## provide/inject
 
@@ -79,3 +80,12 @@ husky 是一个 git hook 工具
 pnpm add husky -D
 pnpm exec husky init
 ```
+
+## 全局 toast
+
+两种方式: `app.config.globalProperties` 和 `app.provide/inject` 实现全局 toast, 参考
+
+- [toast.ts](./src/components/toast/toast.ts)
+- [ToastIndex.ts](./src/components/toast/ToastIndex.vue)
+- [main.ts](./src/main.ts)
+- [使用示例](./src/view/dashboard/DashboardIndex.vue)

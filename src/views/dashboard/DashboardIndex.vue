@@ -6,7 +6,7 @@ import {
   reactive,
   ref,
   onBeforeUnmount /** useTemplateRef */,
-  getCurrentInstance,
+  // getCurrentInstance,
 } from 'vue'
 import { ElCol, ElRow, ElCard, ElTimeline, ElTimelineItem } from 'element-plus'
 import { useUserStore } from '@/stores/user'
@@ -22,10 +22,36 @@ import VirtualList from '@/utils/VirtualList.vue'
 import bus from '@/utils/bus'
 import { Refresh } from '@icon-park/vue-next'
 import { commaSep } from '@/utils/comma_sep.ts'
+import { useToast } from '@/components/toast/toast.ts'
+
+//============================================
+//                                           *
+// > main.ts                                 *
+// app.use(toastPlugin)                      *
+//                                           *
+// > DashboardIndex.vue                      *
+// const appInstance = getCurrentInstance()  *
+// const proxy = appInstance?.proxy          *
+// proxy?.$toast.default('请等待')           *
+//                                           *
+//============================================
+//                                           *
+// > main.ts                                 *
+// const toast = createToast()               *
+// app.provide('toast', readonly(toast))     *
+//                                           *
+// > DashboardIndex.vue                      *
+// const toast = inject('toast')             *
+// const toast = useToast('toast')           *
+// toast.default('请等待')                   *
+//                                           *
+//============================================
 
 // ! 必须写在 setup 函数的最外层, 否则 appInstance 为 null
-const appInstance = getCurrentInstance()
-const proxy = appInstance?.proxy
+// const appInstance = getCurrentInstance()
+// const proxy = appInstance?.proxy
+// const toast = inject('toast') as IToast
+const toast = useToast()
 
 const userStore = useUserStore()
 const { menuList } = storeToRefs(userStore)
@@ -121,7 +147,8 @@ const handleClick = (idx: 0 | 1 | 2, callbacks: (() => void)[]) => {
     return
   }
 
-  proxy?.$toast.default('请等待')
+  // proxy?.$toast.default('请等待')
+  toast.default('请等待')
 
   animated.value = true
   animatedIdx.value = idx

@@ -149,4 +149,4 @@ function drawFlower(ctx: CanvasRenderingContext2D, x: number, y: number) {
   </div>
 </template>
 
-<style scoped lang="css"></style>
+<style scoped lang="scss"></style>

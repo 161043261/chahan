@@ -10,8 +10,8 @@ import { Attention, CheckOne, CloseOne, Caution } from '@icon-park/vue-next'
 
 const props = defineProps<{
   message: string
-  type?: 'success' | 'error' | 'warning' | 'default'
-  duration?: number //! duration >= 500 && duration <= 2500, default 1500
+  type: 'success' | 'error' | 'warning' | 'default'
+  duration: number //! duration >= 500 && duration <= 2500, default 1500
 }>()
 
 const isAlive = ref(false)
@@ -26,20 +26,17 @@ onBeforeUnmount(() => {
 })
 
 /**
- * @description 防抖 debounce (只触发最后一次)
+ * @description 节流 throttle (只触发第一次)
  */
 const mount = () => {
   if (timer) {
-    clearTimeout(timer)
-    timer = null
+    return
   }
   isAlive.value = true
-  //! duration >= 500 && duration <= 2500
-  const duration = Math.min(2500, Math.max(500, props.duration ?? 1500 /** defaultDuration */))
   timer = setTimeout(() => {
     isAlive.value = false
     timer = null
-  }, duration)
+  }, props.duration)
 }
 
 defineExpose({ mount, isAlive })
@@ -57,6 +54,7 @@ defineExpose({ mount, isAlive })
         <CheckOne theme="filled" size="24" fill="#7ed321" v-if="type === 'success'" />
         <CloseOne theme="filled" size="24" fill="#d0021b" v-else-if="type === 'error'" />
         <Caution theme="filled" size="24" fill="#4a90e2" v-else-if="type === 'warning'" />
+        <!-- type === 'default' -->
         <Attention theme="filled" size="24" fill="#f5a623" v-else />
         <span>{{ message }}</span>
       </div>
