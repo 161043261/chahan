@@ -81,6 +81,10 @@ const routes: RouteRecordRaw[] = [
         path: '/operations/detail',
         name: 'Detail',
         component: () => import('@/views/operations/OrderDetail.vue'),
+        meta: {
+          tagName: '订单详情',
+          icon: 'Find',
+        },
       },
       {
         path: '/operations/bill',

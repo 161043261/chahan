@@ -5,7 +5,7 @@ import { ElTabs, ElTabPane, type TabsPaneContext, type TabPaneName } from 'eleme
 
 import { name2icon } from '@/utils/icons'
 import { useRoute, useRouter } from 'vue-router'
-import { ref, watch } from 'vue'
+import { onBeforeMount, ref, watch } from 'vue'
 
 const tabStore = useTabStore()
 // actions 可以直接解构, 不需要 storeToRefs
@@ -46,6 +46,7 @@ watch(
     }
   },
 )
+onBeforeMount(() => window.removeEventListener('click', handleWindowClick))
 
 const ctxMenuX = ref<string>('0px')
 const ctxMenuY = ref<string>('0px')

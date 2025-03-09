@@ -1,13 +1,16 @@
 <script setup lang="ts">
 import { ElCard, ElInput, ElSelect, ElInputNumber, ElMessage, ElMessageBox } from 'element-plus'
-import { reactive, ref, useTemplateRef, watch } from 'vue'
+import { onBeforeMount, reactive, ref, useTemplateRef, watchEffect } from 'vue'
 import { name2icon } from '@/utils/icons'
 import { orderQueryApi, orderDeleteApi } from '@/apis/order'
 import type { IOrderData } from '@/types/order'
 import { usePagination } from '@/hooks/usePagination'
 import { order_states, order_state2text_and_type } from '@/constants'
 import { useToast2 } from '@/components/toast/toast'
+import { useRouter } from 'vue-router'
+import DraggableWindow from './components/DraggableWindow'
 
+const router = useRouter()
 const toast = useToast2()
 
 const formData = reactive<{
@@ -88,7 +91,7 @@ const handleBatchDelete = () => {
     })
     .finally(() => {
       orderTable?.value?.clearSelection()
-      // idArr.value = []
+      idArr.value = []
     })
 }
 
@@ -109,27 +112,43 @@ const handleReset = () => {
   loadOrderList()
 }
 
-const isAlive = ref(false)
+const ctxMenuIsAlive = ref(false)
 const ctxMenuX = ref<string>('0px')
 const ctxMenuY = ref<string>('0px')
-const handleCtxMenu = (ev: MouseEvent) => {
+
+let orderId = ''
+const draggableWindowIsAlive = ref(false)
+const handleCtxMenu = (ev: MouseEvent, id: string) => {
   ctxMenuX.value = `${ev.pageX}px`
   ctxMenuY.value = `${ev.pageY}px`
-  isAlive.value = true
+  orderId = id
+  ctxMenuIsAlive.value = true
 }
 
-const handleWindowClick = () => (isAlive.value = false)
-watch(
-  () => isAlive.value,
-  () => {
-    console.log(isAlive.value)
-    if (isAlive.value) {
-      window.addEventListener('click', handleWindowClick)
-    } else {
-      window.removeEventListener('click', handleWindowClick)
-    }
-  },
-)
+const handleWindowClick = () => (ctxMenuIsAlive.value = false)
+watchEffect(() => {
+  if (ctxMenuIsAlive.value) {
+    window.addEventListener('click', handleWindowClick)
+  } else {
+    window.removeEventListener('click', handleWindowClick)
+  }
+})
+onBeforeMount(() => window.removeEventListener('click', handleWindowClick))
+
+// 左键, 在悬浮窗中打开
+const handleDetail = (orderData: IOrderData) => {
+  orderId = orderData.id
+  // route.path === '/operations/detail'
+  router.push(`/operations/detail?orderId=${orderId}`)
+}
+
+// 右键, 在悬浮窗中打开
+const handleDetail2 = () => {
+  draggableWindowIsAlive.value = true
+}
+
+// 右键, 在新标签页中打开
+const handleDetail3 = () => {}
 </script>
 
 <template>
@@ -226,8 +245,10 @@ watch(
             <template #default="tableData">
               <ElButton
                 type="success"
-                @click="() => console.log(tableData.row)"
-                @contextmenu.prevent="handleCtxMenu"
+                @click="handleDetail(tableData.row /** orderData */)"
+                @contextmenu.prevent="
+                  (ev: MouseEvent) => handleCtxMenu(ev, tableData.row.id /** orderId */)
+                "
               >
                 详情
               </ElButton>
@@ -262,15 +283,25 @@ watch(
     >
       <ul
         class="ctx-menu fixed z-10 rounded-lg bg-slate-100 text-slate-500 shadow-lg"
-        v-if="isAlive"
+        v-if="ctxMenuIsAlive"
       >
         <li>选择打开方式</li>
         <li><hr /></li>
-        <li @click="() => {}">在悬浮窗中打开</li>
-        <li @click="() => {}">在新标签页中打开</li>
+        <li @click="handleDetail2">在悬浮窗中打开</li>
+        <li @click="handleDetail3">在新标签页中打开</li>
       </ul>
     </Transition>
     <!-- </Teleport> -->
+
+    <Transition
+      enter-active-class="animate__animated animated__zoomIn"
+      leave-active-class="animate__animated animated__zoomOut"
+    >
+      <DraggableWindow v-if="draggableWindowIsAlive" @close-window="draggableWindowIsAlive = false">
+        <template #header>Header</template>
+        <template #footer>Footer</template>
+      </DraggableWindow>
+    </Transition>
   </main>
 </template>
 
