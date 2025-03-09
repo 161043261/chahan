@@ -89,3 +89,5 @@ pnpm exec husky init
 - [ToastIndex.ts](./src/components/toast/ToastIndex.vue)
 - [main.ts](./src/main.ts)
 - [使用示例](./src/view/dashboard/DashboardIndex.vue)
+
+## 自定义指令: 可拖拽窗口
