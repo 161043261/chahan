@@ -29,8 +29,6 @@ coverage
 
 *.tsbuildinfo
 
-src/assets/*.svg
-!src/assets/pinia.svg
 stats.html
 plugins/assets/robot_list.json
 plugins/assets/order_list.json
