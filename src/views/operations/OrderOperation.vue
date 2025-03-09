@@ -57,23 +57,25 @@ const handleDelete = async (id: string) => {
     loadOrderList()
   }
 }
-let idArr: string[] = []
+const idArr = ref<string[]>([])
 const handleBatchDelete = async () => {
-  const { code, message } = await orderDeleteApi({ idArr })
+  const { code, message } = await orderDeleteApi({ idArr: idArr.value })
   if (code === 200) {
     ElMessage.success({
       message,
       grouping: true,
     })
     loadOrderList()
+    idArr.value = []
   }
 }
 
 const handleSelectionChange = (selectedRows: IOrderData[]) => {
   console.log(selectedRows)
-  idArr = selectedRows.map((item) => item.id)
+  idArr.value = selectedRows.map((item) => item.id)
   // orderDeleteApi({ idArr })
 }
+
 const handleReset = () => {
   formData.startDate = undefined
   formData.endDate = undefined
@@ -81,6 +83,11 @@ const handleReset = () => {
   formData.state = undefined
   formData.robotId = undefined
   formData.robotName = undefined
+  for (const key in formData) {
+    console.log(key)
+  }
+  console.log(Object.keys(formData))
+  console.log(Reflect.ownKeys(formData))
   loadOrderList()
 }
 </script>
