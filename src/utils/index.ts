@@ -1,18 +1,31 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-export const debounced = (fn: (...args: any[]) => void, delay: number): typeof fn => {
+
+// 防抖 debounce
+export const debounced = (fn: (...args: any) => void, delay: number): typeof fn => {
   let timer: number | null = null
   const debouncedFn: typeof fn = (...args) => {
     if (timer) {
       clearTimeout(timer)
+      timer = null
     }
     timer = setTimeout(() => {
       fn(...args)
+      timer = null
     }, delay)
   }
+  // 资源清理
+  // onBeforeUnmount(() => {
+  //   if (timer) {
+  //     clearTimeout(timer)
+  //     timer = null
+  //   }
+  // })
+
   return debouncedFn
 }
 
-export const throttled = (fn: (...args: any[]) => void, delay: number): typeof fn => {
+// 节流 throttle
+export const throttled = (fn: (...args: any) => void, delay: number): typeof fn => {
   let timer: number | null = null
   const throttledFn: typeof fn = (...args) => {
     if (timer) {
@@ -23,5 +36,12 @@ export const throttled = (fn: (...args: any[]) => void, delay: number): typeof f
       timer = null
     }, delay)
   }
+  // 资源清理
+  // onBeforeUnmount(() => {
+  //   if (timer) {
+  //     clearTimeout(timer)
+  //     timer = null
+  //   }
+  // })
   return throttledFn
 }

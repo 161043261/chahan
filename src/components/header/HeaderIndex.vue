@@ -4,7 +4,7 @@ import { ElBadge, ElDropdown, ElDropdownMenu, ElDropdownItem } from 'element-plu
 import { useUserStore } from '@/stores/user'
 import { storeToRefs } from 'pinia'
 import { useRouter } from 'vue-router'
-import { ref } from 'vue'
+import { onBeforeUnmount, ref } from 'vue'
 import HeaderTabs from './HeaderTabs.vue'
 
 const userStore = useUserStore()
@@ -20,9 +20,20 @@ const emit = defineEmits<{
 //   switchWatermark: [isAlive: boolean]
 // }>()
 
-// 节流 throttle
 const animated = ref<boolean>(false)
 let timer: number | null = null
+
+// 资源清理
+onBeforeUnmount(() => {
+  if (timer) {
+    clearTimeout(timer)
+    timer = null
+  }
+})
+
+/**
+ * @description 节流 throttle
+ */
 const handleClick = () => {
   if (timer) {
     return

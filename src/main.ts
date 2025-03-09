@@ -11,12 +11,10 @@ import App from '@/App.vue'
 import router from '@/router'
 import ElementPlus from 'element-plus'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
+import { toastPlugin } from './components/toast/toast'
 
 // 副作用导入路由守卫文件
 import '@/router/guard'
-
-// todo: 使用 vite 插件
-// import '@/mock'
 
 const app = createApp(App)
 const pinia = createPinia()
@@ -27,4 +25,6 @@ app.use(ElementPlus, {
   locale: zhCn,
 })
 
+// 自定义 toast Vue 插件
+app.use(toastPlugin)
 app.mount('#app')

@@ -1,6 +1,13 @@
 <!-- eslint-disable @typescript-eslint/ban-ts-comment -->
 <script setup lang="ts">
-import { h, provide, reactive, ref /** useTemplateRef */ } from 'vue'
+import {
+  h,
+  provide,
+  reactive,
+  ref,
+  onBeforeUnmount /** useTemplateRef */,
+  getCurrentInstance,
+} from 'vue'
 import { ElCol, ElRow, ElCard, ElTimeline, ElTimelineItem } from 'element-plus'
 import { useUserStore } from '@/stores/user'
 import { storeToRefs } from 'pinia'
@@ -15,6 +22,10 @@ import VirtualList from '@/utils/VirtualList.vue'
 import bus from '@/utils/bus'
 import { Refresh } from '@icon-park/vue-next'
 import { commaSep } from '@/utils/comma_sep.ts'
+
+// ! 必须写在 setup 函数的最外层, 否则 appInstance 为 null
+const appInstance = getCurrentInstance()
+const proxy = appInstance?.proxy
 
 const userStore = useUserStore()
 const { menuList } = storeToRefs(userStore)
@@ -87,12 +98,31 @@ const formatter = (timestamp: number) => {
 bus.subscribe('http-response', (item: ITimeLineItem) => timelineList.unshift(item))
 
 let timer: number | null = null
+
+// 资源清理
+onBeforeUnmount(() => {
+  if (timer) {
+    clearTimeout(timer)
+    timer = null
+  }
+})
+
 const animated = ref<boolean>(false)
 const animatedIdx = ref(0)
+
+/**
+ *
+ * @param idx 索引
+ * @param callbacks (多个) 回调函数
+ * @description 节流 throttle
+ */
 const handleClick = (idx: 0 | 1 | 2, callbacks: (() => void)[]) => {
   if (timer) {
     return
   }
+
+  proxy?.$toast.default('请等待')
+
   animated.value = true
   animatedIdx.value = idx
   timer = setTimeout(() => {

@@ -4,6 +4,9 @@ import { h } from 'vue'
 import bus from './bus'
 import type { ITimeLineItem } from '@/types/dashboard'
 
+// const appInstance = getCurrentInstance()
+// const proxy = appInstance?.proxy
+
 // axios 实例
 const httpClient: AxiosInstance = axios.create({
   // todo: 将硬编码替换为环境变量
@@ -46,6 +49,7 @@ httpClient.interceptors.response.use(
       })
       throw msg
     }
+    // proxy?.$toast.success(msg)
     return res.data
   },
   (resErr) => {

@@ -36,6 +36,7 @@ declare module 'vue' {
     RecursiveChild: typeof import('./src/components/aside/RecursiveChild.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    ToastIndex: typeof import('./src/components/toast/ToastIndex.vue')['default']
   }
   export interface ComponentCustomProperties {
     vLoading: typeof import('element-plus/es')['ElLoadingDirective']
