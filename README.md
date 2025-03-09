@@ -83,7 +83,7 @@ pnpm exec husky init
 
 ## 全局 toast
 
-两种方式: `app.config.globalProperties` 和 `app.provide/inject` 实现全局 toast, 参考
+两种方式: `app.config.globalProperties/vuePlugin` 和 `app.provide/inject` 实现全局 toast, 参考
 
 - [toast.ts](./src/components/toast/toast.ts)
 - [ToastIndex.ts](./src/components/toast/ToastIndex.vue)

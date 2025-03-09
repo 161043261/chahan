@@ -42,7 +42,7 @@ import { useToast } from '@/components/toast/toast.ts'
 //                                           *
 // > DashboardIndex.vue                      *
 // const toast = inject('toast')             *
-// const toast = useToast('toast')           *
+// const toast = useToast2('toast')          *
 // toast.default('请等待')                   *
 //                                           *
 //============================================

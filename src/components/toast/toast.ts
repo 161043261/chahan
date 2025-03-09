@@ -1,4 +1,4 @@
-import { createVNode, inject, render } from 'vue'
+import { createVNode, getCurrentInstance, inject, render } from 'vue'
 import ToastIndex from './ToastIndex.vue'
 import type { App, Plugin, VNode } from 'vue'
 
@@ -118,6 +118,12 @@ export function createToast(): {
 }
 
 export const useToast = (): IToast => {
+  const appInstance = getCurrentInstance()
+  const proxy = appInstance?.proxy
+  return proxy?.$toast as IToast
+}
+
+export const useToast2 = (): IToast => {
   return inject('toast')!
 }
 
