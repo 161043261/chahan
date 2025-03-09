@@ -3,7 +3,7 @@ import type { IOrderList, IResData } from '@/types/order'
 import { get } from '@/utils/http'
 
 export function orderQueryApi(params: {
-  id?: number
+  id?: string
   state?: 0 | 1 | 2 | 3
   robotId?: number
   robotName?: string
@@ -15,6 +15,6 @@ export function orderQueryApi(params: {
   return get(Api.OrderQuery, params)
 }
 
-export async function orderDeleteApi(params: { idArr: number[] }): Promise<IResData> {
-  return get(Api.OrderDelete, params)
+export async function orderDeleteApi(params: { idArr: string[] }): Promise<IResData> {
+  return get(Api.OrderDelete, { idArr: JSON.stringify(params.idArr) })
 }

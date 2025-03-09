@@ -162,7 +162,7 @@ const handleClose = () => {
         <!-- 两个字: 60px
         五个字: 150px -->
         <!-- <ElTableColumn width="60" type="index" label="序号" /> -->
-        <ElTableColumn width="60" prop="id" label="序号" />
+        <ElTableColumn fixed="left" width="60" prop="id" label="序号" />
         <ElTableColumn width="150" prop="name" label="机器人名字" />
         <ElTableColumn show-overflow-tooltip prop="address" label="机器人地址" />
 

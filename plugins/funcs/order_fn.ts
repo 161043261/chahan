@@ -32,7 +32,7 @@ export const orderQueryFn: Connect.NextHandleFunction = (req, res) => {
   let resData = readOrderList() // 不需要深拷贝
 
   if (id) {
-    resData = resData.filter((item) => item.id.toString().includes(id as string))
+    resData = resData.filter((item) => item.id.includes(id as string))
   }
 
   if (state && Number.parseInt(state as string) > 0) {
@@ -101,9 +101,8 @@ export const orderDeleteFn: Connect.NextHandleFunction = (req, res) => {
   const parseUrl = url.parse(req.originalUrl!, true /* parseQueryString */).query
   const { idArr } = parseUrl
   console.log(idArr)
-  const numArr = (idArr as string[]).map((item) => Number.parseInt(item as string))
   let orderList = readOrderList()
-  orderList = orderList.filter((item) => numArr.includes(item.id))
+  orderList = orderList.filter((item) => (idArr as string[]).includes(item.id))
   writeOrderList(orderList)
   res.end(
     JSON.stringify({

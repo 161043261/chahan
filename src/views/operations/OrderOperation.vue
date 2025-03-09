@@ -11,7 +11,7 @@ const formData = reactive<{
   startDate?: string
   endDate?: string
   // 订单号
-  id?: number
+  id?: string
   // 订单状态
   state?: 0 | 1 | 2 | 3
   // 机器人 ID
@@ -47,10 +47,8 @@ const { handleCurrentChange, handleSizeChange, pageInfo } = usePagination(
 )
 
 // const idArr: number[] = []
-const handleDelete = async (id: number) => {
-  const { code, message } = await orderDeleteApi({
-    idArr: [id],
-  })
+const handleDelete = async (id: string) => {
+  const { code, message } = await orderDeleteApi({ idArr: [id] })
   if (code === 200) {
     ElMessage.success({
       message,
@@ -58,6 +56,32 @@ const handleDelete = async (id: number) => {
     })
     loadOrderList()
   }
+}
+let idArr: string[] = []
+const handleBatchDelete = async () => {
+  const { code, message } = await orderDeleteApi({ idArr })
+  if (code === 200) {
+    ElMessage.success({
+      message,
+      grouping: true,
+    })
+    loadOrderList()
+  }
+}
+
+const handleSelectionChange = (selectedRows: IOrderData[]) => {
+  console.log(selectedRows)
+  idArr = selectedRows.map((item) => item.id)
+  // orderDeleteApi({ idArr })
+}
+const handleReset = () => {
+  formData.startDate = undefined
+  formData.endDate = undefined
+  formData.id = undefined
+  formData.state = undefined
+  formData.robotId = undefined
+  formData.robotName = undefined
+  loadOrderList()
 }
 </script>
 
@@ -108,20 +132,37 @@ const handleDelete = async (id: number) => {
         ></ElDatePicker>
 
         <div class="grid-buttons">
-          <ElButton type="success">查询</ElButton>
-          <ElButton type="default">重置</ElButton>
+          <ElButton type="success" @click="loadOrderList">查询</ElButton>
+          <ElButton type="default" @click="handleReset">重置</ElButton>
         </div>
       </div>
     </ElCard>
 
     <ElCard class="mt-[20px] !rounded-3xl">
       <ElRow>
-        <ElButton type="success" :icon="name2icon.get('ExcelOne')">导出订单数据到 Excel</ElButton>
-        <ElButton type="danger" :icon="name2icon.get('DeleteFive')">批量删除</ElButton>
+        <ElButton type="success" :icon="name2icon.get('ExcelOne')" :disabled="!idArr.length"
+          >导出订单数据到 Excel</ElButton
+        >
+        <ElButton
+          type="danger"
+          :icon="name2icon.get('DeleteFive')"
+          @click="handleBatchDelete"
+          :disabled="!idArr.length"
+          >批量删除</ElButton
+        >
       </ElRow>
 
       <ElRow class="mt-[20px]">
-        <ElTable :data="orderList" class="w-[100%]" stripe v-loading="loading" table-layout="auto">
+        <ElTable
+          :data="orderList"
+          class="w-[100%]"
+          stripe
+          v-loading="loading"
+          table-layout="fixed"
+          @selection-change="handleSelectionChange"
+        >
+          <!-- <ElTableColumn fixed="left" type="index" label="序号"></ElTableColumn> -->
+          <ElTableColumn fixed="left" type="selection" label="序号"></ElTableColumn>
           <ElTableColumn label="订单号" prop="id"> </ElTableColumn>
           <ElTableColumn label="订单状态" prop="state">
             <template #default="tableData">
@@ -132,7 +173,7 @@ const handleDelete = async (id: number) => {
           </ElTableColumn>
           <ElTableColumn label="机器人 ID" prop="robotId"> </ElTableColumn>
           <ElTableColumn label="机器人名字" prop="robotName"> </ElTableColumn>
-          <ElTableColumn label="操作">
+          <ElTableColumn fixed="right" label="操作">
             <template #default="tableData">
               <ElButton type="success" @click="() => console.log(tableData.row)"> 详情 </ElButton>
               <ElPopconfirm title="确定删除吗" @confirm="handleDelete(tableData.row.id)">

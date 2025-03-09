@@ -65,7 +65,7 @@ export type IRobotList = {
 
 export type IOrderList = {
   data: {
-    id: number
+    id: string
     state: /* 0 | 1 | 2 | 3 */ number
     robotId: number
     robotName: string
