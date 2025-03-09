@@ -65,7 +65,7 @@ defineExpose({ mount, isAlive })
 <style scoped lang="scss">
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.5s ease;
+  transition: opacity 1s ease;
 }
 
 .fade-enter-from,

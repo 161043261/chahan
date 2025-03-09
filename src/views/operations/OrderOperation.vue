@@ -9,6 +9,7 @@ import { order_states, order_state2text_and_type } from '@/constants'
 import { useToast2 } from '@/components/toast/toast'
 import { useRouter } from 'vue-router'
 import DraggableWindow from './components/DraggableWindow'
+import { getDate, getTime } from '@/utils'
 
 const router = useRouter()
 const toast = useToast2()
@@ -54,8 +55,8 @@ const { handleCurrentChange, handleSizeChange, pageInfo } = usePagination(
 )
 
 // const idArr: number[] = []
-const handleDelete = async (id: string) => {
-  const { code, message } = await orderDeleteApi({ idArr: [id] })
+const handleDelete = async (orderId: string) => {
+  const { code, message } = await orderDeleteApi({ idArr: [orderId] })
   if (code === 200) {
     ElMessage.success({
       message,
@@ -116,12 +117,12 @@ const ctxMenuIsAlive = ref(false)
 const ctxMenuX = ref<string>('0px')
 const ctxMenuY = ref<string>('0px')
 
-let orderId = ''
+const orderData = ref<IOrderData>()
 const draggableWindowIsAlive = ref(false)
-const handleCtxMenu = (ev: MouseEvent, id: string) => {
+const handleCtxMenu = (ev: MouseEvent, rowData: IOrderData) => {
   ctxMenuX.value = `${ev.pageX}px`
   ctxMenuY.value = `${ev.pageY}px`
-  orderId = id
+  orderData.value = rowData
   ctxMenuIsAlive.value = true
 }
 
@@ -136,10 +137,9 @@ watchEffect(() => {
 onBeforeMount(() => window.removeEventListener('click', handleWindowClick))
 
 // 左键, 在悬浮窗中打开
-const handleDetail = (orderData: IOrderData) => {
-  orderId = orderData.id
-  // route.path === '/operations/detail'
-  router.push(`/operations/detail?orderId=${orderId}`)
+const handleDetail = (rowData: IOrderData) => {
+  orderData.value = rowData
+  draggableWindowIsAlive.value = true
 }
 
 // 右键, 在悬浮窗中打开
@@ -148,7 +148,17 @@ const handleDetail2 = () => {
 }
 
 // 右键, 在新标签页中打开
-const handleDetail3 = () => {}
+const handleDetail3 = () => {
+  if (!orderData.value) {
+    return
+  }
+  // route.path === '/operations/detail'
+  router.push(
+    {
+      path: `/operations/detail?orderId=${orderData.value.id}`,
+    } /** `/operations/detail?orderId=${orderData.value.id}` */,
+  )
+}
 </script>
 
 <template>
@@ -245,14 +255,17 @@ const handleDetail3 = () => {}
             <template #default="tableData">
               <ElButton
                 type="success"
-                @click="handleDetail(tableData.row /** orderData */)"
+                @click="handleDetail(tableData.row /** rowData */)"
                 @contextmenu.prevent="
-                  (ev: MouseEvent) => handleCtxMenu(ev, tableData.row.id /** orderId */)
+                  (ev: MouseEvent) => handleCtxMenu(ev, tableData.row /** rowData */)
                 "
               >
                 详情
               </ElButton>
-              <ElPopconfirm title="确定删除吗" @confirm="handleDelete(tableData.row.id)">
+              <ElPopconfirm
+                title="确定删除吗"
+                @confirm="handleDelete(tableData.row.id /** orderId */)"
+              >
                 <template #reference>
                   <ElButton type="danger"> 删除 </ElButton>
                 </template>
@@ -293,15 +306,17 @@ const handleDetail3 = () => {}
     </Transition>
     <!-- </Teleport> -->
 
-    <Transition
-      enter-active-class="animate__animated animated__zoomIn"
-      leave-active-class="animate__animated animated__zoomOut"
+    <DraggableWindow
+      v-if="draggableWindowIsAlive"
+      @close-window="draggableWindowIsAlive = false"
+      :width="700"
+      :order-data="orderData"
     >
-      <DraggableWindow v-if="draggableWindowIsAlive" @close-window="draggableWindowIsAlive = false">
-        <template #header>Header</template>
-        <template #footer>Footer</template>
-      </DraggableWindow>
-    </Transition>
+      <template #header> 订单号 {{ orderData?.id }} 详情 </template>
+      <template #footer>
+        <div>查询时间: {{ `${getDate()} ${getTime()}` }}</div>
+      </template>
+    </DraggableWindow>
   </main>
 </template>
 

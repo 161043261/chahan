@@ -13,14 +13,6 @@ export const debounced = (fn: (...args: any) => void, delay: number): typeof fn 
       timer = null
     }, delay)
   }
-  // 资源清理
-  // onBeforeUnmount(() => {
-  //   if (timer) {
-  //     clearTimeout(timer)
-  //     timer = null
-  //   }
-  // })
-
   return debouncedFn
 }
 
@@ -36,12 +28,17 @@ export const throttled = (fn: (...args: any) => void, delay: number): typeof fn 
       timer = null
     }, delay)
   }
-  // 资源清理
-  // onBeforeUnmount(() => {
-  //   if (timer) {
-  //     clearTimeout(timer)
-  //     timer = null
-  //   }
-  // })
   return throttledFn
+}
+
+export function getDate() {
+  const pad0 = (num: number) => num.toString().padStart(2, '0')
+  const time = new Date()
+  return `${time.getFullYear()}-${pad0(time.getMonth() + 1)}-${pad0(time.getDay())}`
+}
+
+export function getTime() {
+  const pad0 = (num: number) => num.toString().padStart(2, '0')
+  const time = new Date()
+  return `${pad0(time.getHours())}:${pad0(time.getMinutes())}:${pad0(time.getSeconds())}`
 }
