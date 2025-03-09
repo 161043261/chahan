@@ -33,6 +33,9 @@ import { useToast } from '@/components/toast/toast.ts'
 // const appInstance = getCurrentInstance()  *
 // const proxy = appInstance?.proxy          *
 // proxy?.$toast.default('请等待')           *
+// ----------------------------------------- *
+// const toast = useToast('toast')           *
+// toast.default('请等待')                   *
 //                                           *
 //============================================
 //                                           *
@@ -42,12 +45,14 @@ import { useToast } from '@/components/toast/toast.ts'
 //                                           *
 // > DashboardIndex.vue                      *
 // const toast = inject('toast')             *
+// toast.default('请等待')                   *
+// ----------------------------------------- *
 // const toast = useToast2('toast')          *
 // toast.default('请等待')                   *
 //                                           *
 //============================================
 
-// ! 必须写在 setup 函数的最外层, 否则 appInstance 为 null
+// ! getCurrentInstance 必须写在 setup 函数的最外层, 否则 appInstance 为 null
 // const appInstance = getCurrentInstance()
 // const proxy = appInstance?.proxy
 // const toast = inject('toast') as IToast

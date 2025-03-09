@@ -11,7 +11,7 @@ import type { ITimeLineItem } from '@/types/dashboard'
 const httpClient: AxiosInstance = axios.create({
   // todo: 将硬编码替换为环境变量
   baseURL: 'http://localhost:5173', // 路由前缀
-  timeout: 5000, // 请求超时时间
+  timeout: 10000, // 请求超时时间
 })
 
 // axios 请求拦截器

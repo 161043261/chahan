@@ -1,11 +1,14 @@
 <script setup lang="ts">
-import { ElCard, ElInput, ElSelect, ElInputNumber, ElMessage } from 'element-plus'
-import { reactive, ref } from 'vue'
+import { ElCard, ElInput, ElSelect, ElInputNumber, ElMessage, ElMessageBox } from 'element-plus'
+import { reactive, ref, useTemplateRef, watch } from 'vue'
 import { name2icon } from '@/utils/icons'
 import { orderQueryApi, orderDeleteApi } from '@/apis/order'
 import type { IOrderData } from '@/types/order'
 import { usePagination } from '@/hooks/usePagination'
 import { order_states, order_state2text_and_type } from '@/constants'
+import { useToast2 } from '@/components/toast/toast'
+
+const toast = useToast2()
 
 const formData = reactive<{
   startDate?: string
@@ -27,6 +30,7 @@ const handleChange = (newDate: typeof date.value) => {
 }
 
 const orderList = ref<IOrderData[]>()
+const orderTable = useTemplateRef('orderTable')
 const loading /** v-loading */ = ref(false)
 const loadOrderList = async () => {
   loading.value = true
@@ -57,23 +61,39 @@ const handleDelete = async (id: string) => {
     loadOrderList()
   }
 }
+
 const idArr = ref<string[]>([])
-const handleBatchDelete = async () => {
-  const { code, message } = await orderDeleteApi({ idArr: idArr.value })
-  if (code === 200) {
-    ElMessage.success({
-      message,
-      grouping: true,
-    })
-    loadOrderList()
-    idArr.value = []
+
+const handleBatchDelete = () => {
+  const doBatchDelete = async () => {
+    const { code, message } = await orderDeleteApi({ idArr: idArr.value })
+    if (code === 200) {
+      // ElMessage.success({
+      //   message,
+      //   grouping: true,
+      // })
+      toast.success(message)
+      loadOrderList()
+    }
   }
+
+  ElMessageBox.confirm('确定批量删除订单吗?', 'Warning', {
+    confirmButtonText: '确定',
+    cancelButtonText: '取消',
+    type: 'warning',
+  })
+    .then(doBatchDelete)
+    .catch(() => {
+      toast.warning('批量删除订单取消')
+    })
+    .finally(() => {
+      orderTable?.value?.clearSelection()
+      // idArr.value = []
+    })
 }
 
 const handleSelectionChange = (selectedRows: IOrderData[]) => {
-  console.log(selectedRows)
   idArr.value = selectedRows.map((item) => item.id)
-  // orderDeleteApi({ idArr })
 }
 
 const handleReset = () => {
@@ -83,13 +103,33 @@ const handleReset = () => {
   formData.state = undefined
   formData.robotId = undefined
   formData.robotName = undefined
-  for (const key in formData) {
-    console.log(key)
-  }
-  console.log(Object.keys(formData))
-  console.log(Reflect.ownKeys(formData))
+  //! for (const key in formData) {}
+  //! Object.keys(formData)
+  //! Reflect.ownKeys(formData)
   loadOrderList()
 }
+
+const isAlive = ref(false)
+const ctxMenuX = ref<string>('0px')
+const ctxMenuY = ref<string>('0px')
+const handleCtxMenu = (ev: MouseEvent) => {
+  ctxMenuX.value = `${ev.pageX}px`
+  ctxMenuY.value = `${ev.pageY}px`
+  isAlive.value = true
+}
+
+const handleWindowClick = () => (isAlive.value = false)
+watch(
+  () => isAlive.value,
+  () => {
+    console.log(isAlive.value)
+    if (isAlive.value) {
+      window.addEventListener('click', handleWindowClick)
+    } else {
+      window.removeEventListener('click', handleWindowClick)
+    }
+  },
+)
 </script>
 
 <template>
@@ -159,14 +199,16 @@ const handleReset = () => {
         >
       </ElRow>
 
-      <ElRow class="mt-[20px]">
+      <ElRow class="mt-[20px]" id="#order-table">
         <ElTable
           :data="orderList"
           class="w-[100%]"
+          highlight-current-row
           stripe
           v-loading="loading"
           table-layout="fixed"
           @selection-change="handleSelectionChange"
+          ref="orderTable"
         >
           <!-- <ElTableColumn fixed="left" type="index" label="序号"></ElTableColumn> -->
           <ElTableColumn fixed="left" type="selection" label="序号"></ElTableColumn>
@@ -182,7 +224,13 @@ const handleReset = () => {
           <ElTableColumn label="机器人名字" prop="robotName"> </ElTableColumn>
           <ElTableColumn fixed="right" label="操作">
             <template #default="tableData">
-              <ElButton type="success" @click="() => console.log(tableData.row)"> 详情 </ElButton>
+              <ElButton
+                type="success"
+                @click="() => console.log(tableData.row)"
+                @contextmenu.prevent="handleCtxMenu"
+              >
+                详情
+              </ElButton>
               <ElPopconfirm title="确定删除吗" @confirm="handleDelete(tableData.row.id)">
                 <template #reference>
                   <ElButton type="danger"> 删除 </ElButton>
@@ -206,6 +254,23 @@ const handleReset = () => {
         />
       </ElRow>
     </ElCard>
+
+    <!-- <Teleport to="body"> -->
+    <Transition
+      enter-active-class="animate__animated animate__flipInX"
+      leave-active-class="animate__animated animate__flipOutX"
+    >
+      <ul
+        class="ctx-menu fixed z-10 rounded-lg bg-slate-100 text-slate-500 shadow-lg"
+        v-if="isAlive"
+      >
+        <li>选择打开方式</li>
+        <li><hr /></li>
+        <li @click="() => {}">在悬浮窗中打开</li>
+        <li @click="() => {}">在新标签页中打开</li>
+      </ul>
+    </Transition>
+    <!-- </Teleport> -->
   </main>
 </template>
 
@@ -254,5 +319,18 @@ const handleReset = () => {
     grid-area: buttons;
   }
   // #endregion
+}
+
+.ctx-menu {
+  left: v-bind(ctxMenuX);
+  top: v-bind(ctxMenuY);
+  li {
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 5px 8px;
+    &:hover {
+      background-color: var(--color-green-light);
+    }
+  }
 }
 </style>

@@ -47,8 +47,8 @@ watch(
   },
 )
 
-const ctxMenuX = ref<string>('0')
-const ctxMenuY = ref<string>('0')
+const ctxMenuX = ref<string>('0px')
+const ctxMenuY = ref<string>('0px')
 const handleCtxMenu = (ev: MouseEvent) => {
   if (tabList.value.length === 0) {
     return
@@ -61,20 +61,6 @@ const handleCtxMenu = (ev: MouseEvent) => {
 const removeAll = () => {
   tabList.value = []
   router.push({ name: 'Home' })
-}
-
-const removeFirst = () => {
-  tabStore.removeTab(0)
-  if (tabList.value.length === 0) {
-    router.push({ name: 'Home' })
-  }
-}
-
-const removeLast = () => {
-  tabStore.removeTab(tabList.value.length - 1)
-  if (tabList.value.length === 0) {
-    router.push({ name: 'Home' })
-  }
 }
 </script>
 
@@ -116,13 +102,10 @@ const removeLast = () => {
     enter-active-class="animate__animated animate__flipInX"
     leave-active-class="animate__animated animate__flipOutX"
   >
-    <ul
-      class="ctx-menu fixed z-10 inline-block rounded-lg bg-slate-100 text-sm text-slate-500 shadow-lg"
-      v-if="isAlive"
-    >
-      <li @click="removeAll">关闭全部标签页</li>
-      <li @click="removeFirst">关闭第一个标签页</li>
-      <li @click="removeLast">关闭最后一个标签页</li>
+    <ul class="ctx-menu fixed z-10 rounded-lg bg-slate-100 text-slate-500 shadow-lg" v-if="isAlive">
+      <li>选择关闭方式</li>
+      <li><hr /></li>
+      <li @click="removeAll">关闭所有标签页</li>
     </ul>
   </Transition>
 </template>
@@ -149,7 +132,7 @@ const removeLast = () => {
     cursor: pointer;
     padding: 5px 8px;
     &:hover {
-      background-color: var(--color-7th);
+      background-color: var(--color-green-light);
     }
   }
 }

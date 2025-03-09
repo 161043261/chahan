@@ -53,9 +53,9 @@ defineExpose({ mount, isAlive })
       <div class="flex items-center gap-[5px]">
         <CheckOne theme="filled" size="24" fill="#7ed321" v-if="type === 'success'" />
         <CloseOne theme="filled" size="24" fill="#d0021b" v-else-if="type === 'error'" />
-        <Caution theme="filled" size="24" fill="#4a90e2" v-else-if="type === 'warning'" />
+        <Caution theme="filled" size="24" fill="#f5a623" v-else-if="type === 'warning'" />
         <!-- type === 'default' -->
-        <Attention theme="filled" size="24" fill="#f5a623" v-else />
+        <Attention theme="filled" size="24" fill="#4a90e2" v-else />
         <span>{{ message }}</span>
       </div>
     </div>

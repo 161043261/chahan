@@ -33,13 +33,13 @@ cat Chahan.ttf | ttf2woff2 > Chahan.woff2
 1. vue3, vue-router@4, pinia, tailwindcss, animate.css, element-plus, echarts, 高德地图
 2. 手写事件总线, 发布/订阅
 3. 手写 vite 插件
-4. 虚拟滚动列表
+4. 虚拟滚动列表, h 函数
 5. 左侧菜单是后端动态渲染的
 6. 递归组件
 7. 网格布局
 8. web_worker
 9. 缓存滚动位置
-10. 全局 toast
+10. 全局 toast (两种实现)
 
 ## provide/inject
 

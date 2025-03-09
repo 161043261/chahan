@@ -158,7 +158,14 @@ const handleClose = () => {
         ref="robotFormRef"
       />
 
-      <ElTable :data="robotList" class="w-[100%]" stripe v-loading="loading" table-layout="fixed">
+      <ElTable
+        :data="robotList"
+        class="w-[100%]"
+        highlight-current-row
+        stripe
+        v-loading="loading"
+        table-layout="fixed"
+      >
         <!-- 两个字: 60px
         五个字: 150px -->
         <!-- <ElTableColumn width="60" type="index" label="序号" /> -->
