@@ -39,11 +39,11 @@ const orderData = toRef(props, 'orderData')
 <template>
   <main>
     <div
-      class="border-green fixed top-[50%] left-[50%] z-10 translate-[-50%] !rounded-3xl border-3 px-[20px] pb-[20px]"
+      class="glass-container border-green fixed top-[50%] left-[50%] z-10 w-[300px] translate-[-50%] !rounded-3xl border-3 px-[20px] pb-[20px]"
       v-drag
     >
       <!-- const dragEl = el.firstElementChild as HTMLDivElement -->
-      <div class="flex cursor-pointer items-center justify-between py-[20px]">
+      <div class="flex cursor-pointer items-center justify-between pt-[20px]">
         <slot name="header"></slot>
         <CloseOne
           @click="handleClose"
@@ -55,12 +55,14 @@ const orderData = toRef(props, 'orderData')
         ></CloseOne>
       </div>
       <!-- const dragEl = el.firstElementChild as HTMLDivElement -->
+      <ElDivider></ElDivider>
+
       <ul>
         <li>
-          订单状态
+          订单状态:
           <ElTag
             :type="order_state2text_and_type.get(orderData.state)?.type"
-            class="ml-[20px] !text-[14px]"
+            class="ml-[10px] !text-[14px]"
             size="large"
           >
             {{ order_state2text_and_type.get(orderData.state)?.text }}
@@ -69,11 +71,18 @@ const orderData = toRef(props, 'orderData')
         <li>机器人 ID: {{ orderData.robotId }}</li>
         <li>机器人名字: {{ orderData.robotName }}</li>
       </ul>
-      <div class="flex justify-center text-slate-500">
+      <ElDivider></ElDivider>
+      <div class="flex justify-center text-slate-700">
         <slot name="footer"></slot>
       </div>
     </div>
   </main>
 </template>
 
-<style scoped lang="css"></style>
+<style scoped lang="scss">
+@use '../../../assets/global.scss';
+
+.glass-container {
+  @include global.glass-container(1px /** blurVal */);
+}
+</style>

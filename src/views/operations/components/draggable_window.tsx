@@ -1,12 +1,13 @@
 import type { IOrderData } from '@/types/order'
 import { CloseOne } from '@icon-park/vue-next'
-import { ElTag } from 'element-plus'
+import { ElDivider, ElTag } from 'element-plus'
 import { defineComponent, toRefs, type Directive, type DirectiveBinding } from 'vue'
 import { order_state2text_and_type } from '@/constants'
 interface IProps {
   orderData: IOrderData
 }
 
+//! 能否在 tsx 文件中使用自定义指令?
 export default defineComponent({
   props: ['orderData'],
   emits: ['closeWindow'],
@@ -39,10 +40,10 @@ export default defineComponent({
     return () => (
       <>
         <div
-          class="border-green fixed top-[50%] left-[50%] z-10 translate-[-50%] !rounded-3xl border-3 px-[20px] pb-[20px]"
+          class="border-green fixed top-[50%] left-[50%] z-10 w-[300px] translate-[-50%] !rounded-3xl border-3 px-[20px] pb-[20px]"
           v-drag={vDrag}
         >
-          <div class="flex cursor-pointer items-center justify-between py-[20px]">
+          <div class="flex cursor-pointer items-center justify-between pt-[20px]">
             <>{slots.header ? slots.header() : ''}</>
             <span onClick={handleClose}>
               <CloseOne
@@ -54,12 +55,15 @@ export default defineComponent({
               />
             </span>
           </div>
+
+          <ElDivider></ElDivider>
+
           <ul>
             <li>
-              订单状态
+              订单状态:
               <ElTag
                 type={order_state2text_and_type.get(orderData.value.state)?.type}
-                class="ml-[20px] !text-[14px]"
+                class="ml-[10px] !text-[14px]"
                 size="large"
               >
                 {order_state2text_and_type.get(orderData.value.state)?.text}
@@ -68,7 +72,9 @@ export default defineComponent({
             <li>机器人 ID: {orderData.value.robotId}</li>
             <li>机器人名字: {orderData.value.robotName}</li>
           </ul>
-          <div class="flex justify-center text-slate-500">{slots.footer ? slots.footer() : ''}</div>
+          <ElDivider></ElDivider>
+
+          <div class="flex justify-center text-slate-700">{slots.footer ? slots.footer() : ''}</div>
         </div>
       </>
     )

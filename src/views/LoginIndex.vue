@@ -104,7 +104,8 @@ const handleLogin = () => {
 }
 
 .glass-container {
-  @include global.glass-container;
+  position: absolute;
+  @include global.glass-container(5px /** blurVal */);
 }
 
 // :deep(.el-form-item__label) {

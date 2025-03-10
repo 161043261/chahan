@@ -8,8 +8,8 @@ import { usePagination } from '@/hooks/usePagination'
 import { order_states, order_state2text_and_type } from '@/constants'
 import { useToast2 } from '@/components/toast/toast'
 import { useRouter } from 'vue-router'
-// import DraggableWindow from './components/DraggableWindow.vue'
-import DraggableWindow from './components/draggable_window.tsx'
+import DraggableWindow from './components/DraggableWindow.vue'
+// import DraggableWindow from './components/draggable_window.tsx'
 import { getDate, getTime } from '@/utils'
 
 const router = useRouter()
@@ -261,7 +261,8 @@ const handleDetail3 = () => {
           </ElTableColumn>
           <ElTableColumn label="机器人 ID" prop="robotId"> </ElTableColumn>
           <ElTableColumn label="机器人名字" prop="robotName"> </ElTableColumn>
-          <ElTableColumn fixed="right" label="操作">
+          <!-- fixed="right" -->
+          <ElTableColumn label="操作">
             <template #default="tableData">
               <ElButton
                 type="success"
