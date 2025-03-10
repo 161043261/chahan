@@ -182,8 +182,13 @@ const handleDetail3 = () => {
           placeholder="请选择订单状态"
           v-model="formData.state"
         >
-          <ElOption v-for="(state, idx) of order_states" :label="state" :value="idx" :key="state">
-            <ElTag size="large" :type="order_state2text_and_type.get(idx)?.type">
+          <ElOption
+            v-for="(state, idx) of order_states.slice(1)"
+            :label="state"
+            :value="idx + 1"
+            :key="state"
+          >
+            <ElTag size="large" :type="order_state2text_and_type.get(idx + 1)?.type">
               {{ state }}
             </ElTag>
           </ElOption>

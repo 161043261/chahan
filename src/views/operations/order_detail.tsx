@@ -1,8 +1,3 @@
-//! 需求:
-// 从订单详情 (order_detail.tsx) 页面跳转到订单操作页面 (OrderOperation.vue) 时
-// 要求对订单操作页面 (OrderOperation.vue) 做 <KeepAlive> 缓存
-// 从其他页面跳转到订单操作页面 (OrderOperation.vue) 时
-// 不对订单操作页面 (OrderOperation.vue) 做 <KeepAlive> 缓存
 import type { IOrderData } from '@/types/order'
 import { ref, defineComponent, onMounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
@@ -24,7 +19,7 @@ export default defineComponent({
     const { orderId, robotId } = route.query
     const orderData = ref<IOrderData>({
       id: '0',
-      state: 0,
+      state: 1,
       robotId: 0,
       robotName: '',
       date: getDate(),
@@ -32,7 +27,7 @@ export default defineComponent({
 
     const robotData = ref<IRobotData>({
       id: 0,
-      state: 0,
+      state: 1,
       name: '',
       failureNum: 0,
       admin: '',

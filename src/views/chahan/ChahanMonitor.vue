@@ -126,8 +126,13 @@ const handleClose = () => {
 
         <ElCol :span="5">
           <ElSelect placeholder="请选择炒饭机器人状态" v-model="formData.state">
-            <ElOption v-for="(state, idx) of robot_states" :label="state" :value="idx" :key="state">
-              <ElTag size="large" :type="robot_state2text_and_type.get(idx)?.type">
+            <ElOption
+              v-for="(state, idx) of robot_states.slice(1)"
+              :label="state"
+              :value="idx + 1"
+              :key="state"
+            >
+              <ElTag size="large" :type="robot_state2text_and_type.get(idx + 1)?.type">
                 {{ state }}
               </ElTag>
             </ElOption>

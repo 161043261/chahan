@@ -144,12 +144,12 @@ const handelConfirm = () => {
             <ElFormItem label="机器人状态" prop="state">
               <ElSelect placeholder="请选择机器人状态" v-model="formData.state">
                 <ElOption
-                  v-for="(state, idx) of robot_states"
+                  v-for="(state, idx) of robot_states.slice(1)"
                   :key="state"
                   :value="idx + 1"
                   :label="state"
                 >
-                  <ElTag size="large" :type="robot_state2text_and_type.get(idx + 1)?.type">
+                  <ElTag size="large" :type="robot_state2text_and_type.get(idx)?.type">
                     {{ state }}
                   </ElTag>
                 </ElOption>

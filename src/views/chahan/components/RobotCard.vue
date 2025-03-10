@@ -11,7 +11,7 @@ const { stateId, failureNum } = toRefs(props)
 
 <template>
   <div
-    class="grid-layout h-[228px] w-[350px] items-center justify-center !rounded-3xl bg-[#e5fdd1] duration-1000 hover:scale-110"
+    class="grid-layout border-2nd h-[222px] w-[333px] items-center justify-center !rounded-3xl border-3 duration-1000 hover:scale-110"
   >
     <div class="flex flex-col items-center justify-between">
       <ElTag size="large" :type="robot_state2text_and_type.get(stateId)?.type" class="!text-[15px]">

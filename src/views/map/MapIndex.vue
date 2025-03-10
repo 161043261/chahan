@@ -3,7 +3,8 @@ import MapContainer from '@/components/map/MapContainer.vue'
 import { ElRow, ElCol, ElCard, type CascaderOption } from 'element-plus'
 import { reactive, ref } from 'vue'
 import { robot_states, robot_state2text_and_type } from '@/constants'
-import { pcTextArr } from 'element-china-area-data'
+import pcTextArr from '@/assets/pc_text_arr.json'
+
 import { fetchLocation } from '@/utils/fetch_location'
 import { AddOne, CloseOne, CheckOne } from '@icon-park/vue-next'
 import type { IRobotData } from '@/types/robot'
@@ -34,7 +35,7 @@ const handleChange = async () => {
 
 const formData = reactive<Omit<IRobotData, 'id' | 'address'>>({
   name: '',
-  state: 0,
+  state: 1,
   failureNum: 0,
   admin: '',
   email: '',
@@ -59,6 +60,14 @@ const handleClose = () => {
 const persistent = ref(false)
 
 const handleSubmit = async () => {
+  if (
+    formData.name.length === 0 ||
+    formData.state === undefined ||
+    formData.admin.length === 0 ||
+    formData.email.length === 0
+  ) {
+    return
+  }
   bus.publish('add-marker', {
     lat: addrLatLng[1],
     lng: addrLatLng[2],
@@ -111,12 +120,12 @@ const handleSubmit = async () => {
           <template #header>
             <div v-if="fixedDisabled" class="flex justify-between">
               <h1 @click="handleClick" class="cursor-pointer">放大新增地图标记窗口</h1>
-              <ElTooltip
-                class="box-item"
-                effect="light"
-                content="点击以提交表单"
-                placement="left-start"
-              >
+            </div>
+
+            <div v-else class="flex justify-between">
+              <h1 @click="handleClick" class="cursor-pointer">缩小新增地图标记窗口</h1>
+              <div class="flex justify-center gap-[10px]">
+                <!-- 点击以提交表单 -->
                 <CheckOne
                   theme="filled"
                   size="24"
@@ -125,17 +134,7 @@ const handleSubmit = async () => {
                   class="cursor-pointer duration-500 hover:scale-150"
                   @click="handleSubmit"
                 />
-              </ElTooltip>
-            </div>
-
-            <div v-else class="flex justify-between">
-              <h1 @click="handleClick" class="cursor-pointer">缩小新增地图标记窗口</h1>
-              <ElTooltip
-                class="box-item"
-                effect="light"
-                content="点击以清空表单"
-                placement="left-start"
-              >
+                <!-- 点击以清空表单 -->
                 <CloseOne
                   theme="filled"
                   size="24"
@@ -144,7 +143,7 @@ const handleSubmit = async () => {
                   class="cursor-pointer duration-500 hover:scale-150"
                   @click="handleClose"
                 />
-              </ElTooltip>
+              </div>
             </div>
           </template>
 
@@ -182,7 +181,7 @@ const handleSubmit = async () => {
                 <ElFormItem label="机器人状态" prop="state">
                   <ElSelect placeholder="请选择机器人状态" v-model="formData.state">
                     <ElOption
-                      v-for="(state, idx) of robot_states"
+                      v-for="(state, idx) of robot_states.slice(1)"
                       :key="state"
                       :value="idx + 1"
                       :label="state"

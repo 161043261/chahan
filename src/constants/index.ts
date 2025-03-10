@@ -23,7 +23,6 @@ export const robot_state2text_and_type = new Map<
     type: 'primary' | 'success' | 'info' | 'warning' | 'danger'
   }
 >([
-  [0, { text: robot_states[0], type: 'info' }],
   [1, { text: robot_states[1], type: 'primary' }],
   [2, { text: robot_states[2], type: 'success' }],
   [3, { text: robot_states[3], type: 'info' }],
@@ -38,7 +37,6 @@ export const order_state2text_and_type = new Map<
     type: 'primary' | 'success' | 'info'
   }
 >([
-  [0, { text: order_states[0], type: 'info' }],
   [1, { text: order_states[1], type: 'primary' }],
   [2, { text: order_states[2], type: 'success' }],
   [3, { text: order_states[3], type: 'info' }],
