@@ -3,7 +3,7 @@ import MapContainer from '@/components/map/MapContainer.vue'
 import { ElRow, ElCol, ElCard, type CascaderOption } from 'element-plus'
 import { reactive, ref } from 'vue'
 import { robot_states, robot_state2text_and_type } from '@/constants'
-import pcTextArr from '@/assets/pc_text_arr.json'
+import addrList from '@/assets/addr_list.json'
 
 import { fetchLocation } from '@/utils/fetch_location'
 import { AddOne, CloseOne, CheckOne } from '@icon-park/vue-next'
@@ -11,7 +11,7 @@ import type { IRobotData } from '@/types/robot'
 import bus from '@/utils/bus'
 import { robotAddApi } from '@/apis/chahan'
 
-const addressData = pcTextArr as CascaderOption[]
+const addrOptions = addrList as CascaderOption[]
 const addrArr = ref([])
 
 const stateCounts = ref<number[] & { length: 6 }>([0, 0, 0, 0, 0, 0])
@@ -166,7 +166,7 @@ const handleSubmit = async () => {
               <ElSwitch v-model="persistent" class="ml-[10px]"></ElSwitch>
 
               <ElCascaderPanel
-                :options="addressData"
+                :options="addrOptions"
                 v-model="addrArr"
                 @change="handleChange"
                 class="mt-[10px] !rounded-lg"

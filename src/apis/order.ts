@@ -15,6 +15,6 @@ export function orderQueryApi(params: {
   return get(Api.OrderQuery, params)
 }
 
-export async function orderDeleteApi(params: { idArr: string[] }): Promise<IResData> {
-  return get(Api.OrderDelete, { idArr: JSON.stringify(params.idArr) })
+export async function orderDeleteApi(params: { idList: string[] }): Promise<IResData> {
+  return get(Api.OrderDelete, { idList: JSON.stringify(params.idList) })
 }

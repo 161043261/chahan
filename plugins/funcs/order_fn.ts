@@ -107,9 +107,9 @@ export const orderQueryFn: Connect.NextHandleFunction = (req, res) => {
 export const orderDeleteFn: Connect.NextHandleFunction = (req, res) => {
   res.setHeader('Content-Type', 'application/json')
   const parseUrl = url.parse(req.originalUrl!, true /* parseQueryString */).query
-  const { idArr } = parseUrl
+  const { idList } = parseUrl
   let orderList = readOrderList()
-  orderList = orderList.filter((item) => !(idArr as string[]).includes(item.id))
+  orderList = orderList.filter((item) => !(idList as string[]).includes(item.id))
   writeOrderList(orderList)
   res.end(
     JSON.stringify({

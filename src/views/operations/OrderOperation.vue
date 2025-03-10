@@ -11,6 +11,7 @@ import { useRouter } from 'vue-router'
 import DraggableWindow from './components/DraggableWindow.vue'
 // import DraggableWindow from './components/draggable_window.tsx'
 import { getDate, getTime } from '@/utils'
+import { tableData2xlsx } from './export_excel'
 
 const router = useRouter()
 const toast = useToast2()
@@ -55,9 +56,9 @@ const { handleCurrentChange, handleSizeChange, pageInfo } = usePagination(
   10 /** initialPageSize */,
 )
 
-// const idArr: number[] = []
+// const idList: number[] = []
 const handleDelete = async (orderId: string) => {
-  const { code, message } = await orderDeleteApi({ idArr: [orderId] })
+  const { code, message } = await orderDeleteApi({ idList: [orderId] })
   if (code === 200) {
     ElMessage.success({
       message,
@@ -67,16 +68,12 @@ const handleDelete = async (orderId: string) => {
   }
 }
 
-const idArr = ref<string[]>([])
+const idList = ref<string[]>([])
 
 const handleBatchDelete = () => {
   const doBatchDelete = async () => {
-    const { code, message } = await orderDeleteApi({ idArr: idArr.value })
+    const { code, message } = await orderDeleteApi({ idList: idList.value })
     if (code === 200) {
-      // ElMessage.success({
-      //   message,
-      //   grouping: true,
-      // })
       toast.success(message)
       loadOrderList()
     }
@@ -93,12 +90,12 @@ const handleBatchDelete = () => {
     })
     .finally(() => {
       orderTable?.value?.clearSelection()
-      idArr.value = []
+      idList.value = []
     })
 }
 
 const handleSelectionChange = (selectedRows: IOrderData[]) => {
-  idArr.value = selectedRows.map((item) => item.id)
+  idList.value = selectedRows.map((item) => item.id)
 }
 
 const handleReset = () => {
@@ -165,6 +162,19 @@ const handleDetail3 = () => {
     },
   })
 }
+
+const export2xlsx = () => {
+  if (!orderList.value || !orderList.value.length) {
+    return
+  }
+  const tableData = orderList.value.filter((item) => idList.value.includes(item.id))
+  if (!tableData.length) {
+    return
+  }
+  console.log(tableData)
+  const filename = `订单数据__${getDate()}__${getTime().replaceAll(':', '-')}.xlsx`
+  tableData2xlsx(tableData, filename)
+}
 </script>
 
 <template>
@@ -227,14 +237,18 @@ const handleDetail3 = () => {
 
     <ElCard class="mt-[20px] !rounded-3xl">
       <ElRow>
-        <ElButton type="success" :icon="name2icon.get('ExcelOne')" :disabled="!idArr.length"
+        <ElButton
+          type="success"
+          :icon="name2icon.get('ExcelOne')"
+          :disabled="!idList.length"
+          @click="export2xlsx"
           >导出订单数据到 Excel</ElButton
         >
         <ElButton
           type="danger"
           :icon="name2icon.get('DeleteFive')"
           @click="handleBatchDelete"
-          :disabled="!idArr.length"
+          :disabled="!idList.length"
           >批量删除</ElButton
         >
       </ElRow>
