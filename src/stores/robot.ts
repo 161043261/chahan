@@ -7,7 +7,7 @@ export const useRobotStore = defineStore('robot', () => {
     id: 0, // id > 0
     name: '',
     address: '',
-    state: 1,
+    state: 0,
     failureNum: 0,
     admin: '',
     email: '',

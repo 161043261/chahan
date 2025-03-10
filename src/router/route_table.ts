@@ -80,7 +80,7 @@ const routes: RouteRecordRaw[] = [
       {
         path: '/operations/detail',
         name: 'Detail',
-        component: () => import('@/views/operations/OrderDetail.vue'),
+        component: () => import('@/views/operations/order_detail.tsx' /** OrderDetail.vue */),
         meta: {
           tagName: '订单详情',
           icon: 'Find',

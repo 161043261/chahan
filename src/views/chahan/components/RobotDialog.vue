@@ -59,15 +59,6 @@ defineExpose({
 })
 
 const { rowData: formData } = storeToRefs(robotStore)
-// const formData = ref<IRobotData>({
-//   id: 0,
-//   name: '',
-//   address: '',
-//   state: 1,
-//   failureNum: 0,
-//   admin: '',
-//   email: '',
-// })
 
 // const { setRowData } = robotStore
 // 点击 x 关闭对话框时, 调用 handleClose

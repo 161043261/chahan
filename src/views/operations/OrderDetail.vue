@@ -3,10 +3,12 @@ import { robotQueryApi } from '@/apis/chahan'
 import { orderQueryApi } from '@/apis/order'
 import type { IOrderData } from '@/types/order'
 import type { IRobotData } from '@/types/robot'
-import { getDate } from '@/utils'
+import { getDate, getTime } from '@/utils'
 import { ElDescriptions, ElDescriptionsItem, ElImage, ElTag } from 'element-plus'
 import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
+import robotSvg from '@/assets/robot.svg'
+import { robot_state2text_and_type } from '@/constants'
 
 const route = useRoute()
 const { orderId, robotId } = route.query
@@ -46,34 +48,44 @@ onMounted(async () => {
 <template>
   <main>
     <ElCard class="!rounded-3xl">
-      <template #header>
-        <!-- 具名插槽 -->
-        <slot name="header"> </slot>
-      </template>
+      <template #header> 订单详情 </template>
+      <ElDescriptions :title="`订单 ${orderData.id} 详情`"></ElDescriptions>
+
+      <ElDivider></ElDivider>
+
       <ElDescriptions
-        title="Width vertical list"
+        :title="`订单 ${orderData.id} 的机器人详情`"
         direction="vertical"
         border
-        style="margin-top: 20px"
+        :column="4"
       >
         <ElDescriptionsItem :rowspan="2" :width="140" label="机器人图像" align="center">
-          <ElImage
-            style="width: 100px; height: 100px"
-            src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
-          />
+          <ElImage class="w-[100px]" :src="robotSvg" />
         </ElDescriptionsItem>
-        <ElDescriptionsItem label="机器人名字">{{ robotData.name }}</ElDescriptionsItem>
-        <ElDescriptionsItem label="机器人状态">
-          <ElTag size="large">{{ robotData.state }}</ElTag>
+        <ElDescriptionsItem label="机器人名字" align="center">{{
+          robotData.name
+        }}</ElDescriptionsItem>
+        <ElDescriptionsItem label="机器人状态" align="center">
+          <ElTag
+            size="large"
+            :type="robot_state2text_and_type.get(robotData.state)?.type"
+            class="!text-[14px]"
+            >{{ robot_state2text_and_type.get(robotData.state)?.text }}</ElTag
+          >
         </ElDescriptionsItem>
-        <ElDescriptionsItem label="零件故障数">{{ robotData.failureNum }}</ElDescriptionsItem>
-        <ElDescriptionsItem label="管理员名字">{{ robotData.admin }} </ElDescriptionsItem>
-        <ElDescriptionsItem label="管理员邮箱">
+        <ElDescriptionsItem label="零件故障数" align="center">{{
+          robotData.failureNum
+        }}</ElDescriptionsItem>
+        <ElDescriptionsItem label="管理员名字" align="center"
+          >{{ robotData.admin }}
+        </ElDescriptionsItem>
+        <ElDescriptionsItem label="管理员邮箱" align="center">
           {{ robotData.email }}
         </ElDescriptionsItem>
       </ElDescriptions>
+      <template #footer> 查询时间 {{ `${getDate()} ${getTime()}` }} </template>
     </ElCard>
   </main>
 </template>
 
-<style scoped lang="css"></style>
+<style scoped lang="scss"></style>

@@ -8,7 +8,8 @@ import { usePagination } from '@/hooks/usePagination'
 import { order_states, order_state2text_and_type } from '@/constants'
 import { useToast2 } from '@/components/toast/toast'
 import { useRouter } from 'vue-router'
-import DraggableWindow from './components/DraggableWindow'
+// import DraggableWindow from './components/DraggableWindow.vue'
+import DraggableWindow from './components/draggable_window.tsx'
 import { getDate, getTime } from '@/utils'
 
 const router = useRouter()
