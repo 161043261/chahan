@@ -3,7 +3,7 @@ import MapContainer from '@/components/map/MapContainer.vue'
 import { ElRow, ElCol, ElCard, type CascaderOption } from 'element-plus'
 import { reactive, ref } from 'vue'
 import { robot_states, robot_state2text_and_type } from '@/constants'
-import addrList from '@/assets/addr_list.json'
+import addrList from '@/assets/pc_list.json'
 
 import { fetchLocation } from '@/utils/fetch_location'
 import { AddOne, CloseOne, CheckOne } from '@icon-park/vue-next'

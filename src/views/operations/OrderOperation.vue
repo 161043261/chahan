@@ -11,7 +11,7 @@ import { useRouter } from 'vue-router'
 import DraggableWindow from './components/DraggableWindow.vue'
 // import DraggableWindow from './components/draggable_window.tsx'
 import { getDate, getTime } from '@/utils'
-import { tableData2xlsx } from './export_excel'
+import { tableData2xlsx } from '@/utils/to_xlsx'
 
 const router = useRouter()
 const toast = useToast2()

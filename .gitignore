@@ -30,5 +30,7 @@ coverage
 *.tsbuildinfo
 
 stats.html
-plugins/assets/robot_list.json
-plugins/assets/order_list.json
+
+plugins/assets/*.json
+!plugins/assets/admin_menu.json
+!plugins/assets/user_menu.json
