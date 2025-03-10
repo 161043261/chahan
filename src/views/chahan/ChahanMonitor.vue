@@ -160,7 +160,7 @@ const handleClose = () => {
 
       <ElTable
         :data="robotList"
-        class="w-[100%]"
+        class="mt-[20px] w-[100%]"
         highlight-current-row
         stripe
         v-loading="loading"

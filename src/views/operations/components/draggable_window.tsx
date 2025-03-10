@@ -1,7 +1,7 @@
 import type { IOrderData } from '@/types/order'
 import { CloseOne } from '@icon-park/vue-next'
 import { ElDivider, ElTag } from 'element-plus'
-import { defineComponent, toRefs, type Directive, type DirectiveBinding } from 'vue'
+import { defineComponent, toRefs, type Directive } from 'vue'
 import { order_state2text_and_type } from '@/constants'
 interface IProps {
   orderData: IOrderData
@@ -13,11 +13,10 @@ export default defineComponent({
   emits: ['closeWindow'],
 
   setup(props: IProps, { emit, slots } /** ctx */) {
-    const vDrag: Directive<HTMLElement, void> = (el: HTMLElement, binding: DirectiveBinding) => {
+    const vDrag: Directive<HTMLElement, void> = (
+      el: HTMLElement /** , binding: DirectiveBinding */,
+    ) => {
       const dragEl = el.firstElementChild as HTMLDivElement
-      if (import.meta.env.DEV) {
-        console.log(dragEl, binding)
-      }
       dragEl.addEventListener('mousedown', (downEv: MouseEvent) => {
         const dx = downEv.clientX - el.offsetLeft
         const dy = downEv.clientY - el.offsetTop
@@ -74,7 +73,7 @@ export default defineComponent({
           </ul>
           <ElDivider></ElDivider>
 
-          <div class="flex justify-center text-slate-700">{slots.footer ? slots.footer() : ''}</div>
+          <div class="flex justify-center text-slate-500">{slots.footer ? slots.footer() : ''}</div>
         </div>
       </>
     )

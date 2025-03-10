@@ -23,7 +23,6 @@ httpClient.interceptors.request.use(
   (reqErr) => {
     ElNotification({
       title: '请求失败',
-      // todo: 将 class: 'text-red-500' 替换为 style: 'color: #fb2c36'
       message: h('p', { class: 'text-red-500' }, reqErr.message),
       type: 'error',
     })
@@ -43,7 +42,6 @@ httpClient.interceptors.response.use(
     if (code != 200) {
       ElNotification({
         title: '请求失败',
-        // todo: 将 class: 'text-red-500' 替换为 style: 'color: #fb2c36'
         message: h('p', { class: 'text-red-500' }, msg),
         type: 'error',
       })
@@ -55,7 +53,6 @@ httpClient.interceptors.response.use(
   (resErr) => {
     ElNotification({
       title: 'HTTP 响应错误',
-      // todo: 将 class: 'text-red-500' 替换为 style: 'color: #fb2c36'
       message: h('p', { class: 'text-red-500' }, resErr.message),
       type: 'error',
     })

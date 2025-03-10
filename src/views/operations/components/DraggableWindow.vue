@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { IOrderData } from '@/types/order'
 import { CloseOne } from '@icon-park/vue-next'
-import { toRef, type Directive, type DirectiveBinding } from 'vue'
+import { toRef, type Directive } from 'vue'
 import { order_state2text_and_type } from '@/constants'
 
 const props = defineProps<{
@@ -12,11 +12,12 @@ const emit = defineEmits<{
   closeWindow: []
 }>()
 
-const vDrag: Directive<HTMLElement, void> = (el: HTMLElement, binding: DirectiveBinding) => {
+const vDrag: Directive<HTMLElement, void> = (
+  el: HTMLElement /** , binding: DirectiveBinding */,
+) => {
   const dragEl = el.firstElementChild as HTMLDivElement
-  if (import.meta.env.DEV) {
-    console.log(dragEl, binding)
-  }
+
+  // todo: 是否可能资源泄露
   dragEl.addEventListener('mousedown', (downEv: MouseEvent) => {
     const dx = downEv.clientX - el.offsetLeft
     const dy = downEv.clientY - el.offsetTop
@@ -72,7 +73,7 @@ const orderData = toRef(props, 'orderData')
         <li>机器人名字: {{ orderData.robotName }}</li>
       </ul>
       <ElDivider></ElDivider>
-      <div class="flex justify-center text-slate-700">
+      <div class="flex justify-center text-slate-500">
         <slot name="footer"></slot>
       </div>
     </div>

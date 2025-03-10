@@ -322,7 +322,7 @@ const handleDetail3 = () => {
       @close-window="draggableWindowIsAlive = false"
       :order-data="orderData!"
     >
-      <template #header> 订单号 {{ orderData?.id }} 详情 </template>
+      <template #header> 订单 {{ orderData?.id }} 详情 </template>
       <template #footer>
         <div>查询时间: {{ `${getDate()} ${getTime()}` }}</div>
       </template>

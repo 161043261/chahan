@@ -149,7 +149,6 @@ watch(
           </template>
         </RobotCard>
       </div>
-      <!-- <ElBacktop :right="100" :bottom="100" /> -->
     </ElCard>
   </main>
 </template>
@@ -163,7 +162,7 @@ watch(
   // 指定隐式网格的行高
   grid-auto-rows: 250px;
   // 行/列间距
-  gap: 20px;
+  gap: 10px;
   // 网格项目的水平位置
   justify-items: center;
   // 网格项目的垂直位置

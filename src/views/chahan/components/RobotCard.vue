@@ -11,10 +11,10 @@ const { stateId, failureNum } = toRefs(props)
 
 <template>
   <div
-    class="bg-green-light grid-layout h-[250px] w-[350px] items-center justify-center !rounded-3xl duration-1000 hover:scale-110"
+    class="grid-layout h-[228px] w-[350px] items-center justify-center !rounded-3xl bg-[#e5fdd1] duration-1000 hover:scale-110"
   >
     <div class="flex flex-col items-center justify-between">
-      <ElTag size="large" :type="robot_state2text_and_type.get(stateId)?.type" class="!text-[20px]">
+      <ElTag size="large" :type="robot_state2text_and_type.get(stateId)?.type" class="!text-[15px]">
         {{ robot_state2text_and_type.get(stateId)?.text }}
       </ElTag>
       <img src="@/assets/robot.svg" alt="eva" width="100px" />
@@ -25,8 +25,8 @@ const { stateId, failureNum } = toRefs(props)
     <!-- 默认插槽 -->
     <div>
       <slot name="default"></slot>
-      <p :style="{ color: failureNum > 50 ? '#fb2c36' : '#fff' }">
-        {{ failureNum > 50 ? '有预警' : '无预警' }}
+      <p :style="{ color: failureNum > 50 ? '#fb2c36' : '#3d8d7a' }">
+        {{ failureNum > 50 ? '有预警 (零件故障数 > 50)' : '无预警 (零件故障数 <= 50)' }}
       </p>
     </div>
   </div>

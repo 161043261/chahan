@@ -1,5 +1,10 @@
+//! 需求:
+// 从订单详情 (order_detail.tsx) 页面跳转到订单操作页面 (OrderOperation.vue) 时
+// 要求对订单操作页面 (OrderOperation.vue) 做 <KeepAlive> 缓存
+// 从其他页面跳转到订单操作页面 (OrderOperation.vue) 时
+// 不对订单操作页面 (OrderOperation.vue) 做 <KeepAlive> 缓存
 import type { IOrderData } from '@/types/order'
-import { ref, defineComponent, onMounted } from 'vue'
+import { ref, defineComponent, onMounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { getDate, getTime } from '@/utils'
 import type { IRobotData } from '@/types/robot'
@@ -7,9 +12,13 @@ import { orderQueryApi } from '@/apis/order'
 import { robotQueryApi } from '@/apis/chahan'
 import { ElCard, ElDescriptions, ElDescriptionsItem, ElDivider, ElImage, ElTag } from 'element-plus'
 import robotSvg from '@/assets/robot.svg'
-import { robot_state2text_and_type } from '@/constants'
+import { order_state2text_and_type, robot_state2text_and_type } from '@/constants'
+import { ListNumbers, Order, Time } from '@icon-park/vue-next'
 
+// 注意: @/views/operations/order_detail.tsx 是 tsx 文件, 不是 vue 文件
+// 需要在 defineComponent 时指定组件名
 export default defineComponent({
+  name: 'OrderDetail',
   setup(/** props, { emit, slots } */) {
     const route = useRoute()
     const { orderId, robotId } = route.query
@@ -46,16 +55,74 @@ export default defineComponent({
     })
 
     const slots = {
-      header: () => '订单详情',
+      header: () => <div class="text-[20px]">订单详情</div>,
       footer: () => <p class="text-slate-500">{`查询时间 ${getDate()} ${getTime()}`}</p>,
     }
+
+    if (import.meta.env.DEV) {
+      watch(
+        () => route.path,
+        (newVal, oldVal) => {
+          console.log(newVal, '<==', oldVal)
+        },
+      )
+    }
+
     return () => (
       <main>
         <ElCard class="!rounded-3xl" v-slots={slots /** 传递插槽 */}>
-          <ElDescriptions title={`订单 ${orderData.value.id} 详情`}></ElDescriptions>
+          <ElDescriptions title={`订单 ${orderData.value.id} 详情`} column={3} border>
+            <ElDescriptionsItem
+              v-slots={{
+                label: () => (
+                  <div class="flex items-center justify-center gap-[10px]">
+                    <ListNumbers theme="outline" size="20" fill="#7ed321" strokeWidth={3} />
+                    订单号
+                  </div>
+                ),
+              }}
+              align="center"
+            >
+              {orderData.value.id}
+            </ElDescriptionsItem>
+
+            <ElDescriptionsItem
+              v-slots={{
+                label: () => (
+                  <div class="flex items-center justify-center gap-[10px]">
+                    <Order theme="outline" size="20" fill="#7ed321" strokeWidth={3} />
+                    订单状态
+                  </div>
+                ),
+              }}
+              align="center"
+            >
+              <ElTag
+                size="large"
+                type={order_state2text_and_type.get(orderData.value.state)?.type}
+                class="!text-[14px]"
+              >
+                {order_state2text_and_type.get(orderData.value.state)?.text}
+              </ElTag>
+            </ElDescriptionsItem>
+
+            <ElDescriptionsItem
+              v-slots={{
+                label: () => (
+                  <div class="flex-center flex items-center justify-center gap-[10px]">
+                    <Time theme="outline" size="20" fill="#7ed321" strokeWidth={3} />
+                    '订单日期'
+                  </div>
+                ),
+              }}
+              align="center"
+            >
+              {orderData.value.date}
+            </ElDescriptionsItem>
+          </ElDescriptions>
           <ElDivider></ElDivider>
           <ElDescriptions
-            title={`订单 ${orderData.value.id} 的机器人详情`}
+            title={`处理订单 ${orderData.value.id} 的机器人详情`}
             direction="vertical"
             border
             column={4}

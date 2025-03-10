@@ -90,7 +90,7 @@ const handleSubmit = async () => {
       <ElCol :span="6">
         <ElCard class="truncate !rounded-3xl leading-[30px]">
           <template #header>
-            <h1>统计数据</h1>
+            <h1 class="text-[20px]">统计数据</h1>
           </template>
           <p>机器人数量: {{ stateCounts[0] }}</p>
           <p>闲置机器人数量: {{ stateCounts[1] }}</p>
