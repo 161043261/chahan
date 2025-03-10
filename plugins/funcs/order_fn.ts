@@ -33,6 +33,14 @@ export const orderQueryFn: Connect.NextHandleFunction = (req, res) => {
 
   if (id) {
     resData = resData.filter((item) => item.id.includes(id as string))
+    res.end(
+      JSON.stringify({
+        code: 200,
+        message: '获取订单列表成功',
+        data: { list: resData, total: 1 },
+      }),
+    )
+    return
   }
 
   if (state && Number.parseInt(state as string) > 0) {

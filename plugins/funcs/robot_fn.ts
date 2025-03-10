@@ -19,6 +19,7 @@ export const robotQueryFn: Connect.NextHandleFunction = (req, res) => {
   res.setHeader('Content-Type', 'application/json')
   const parseUrl = url.parse(req.originalUrl!, true /* parseQueryString */).query
   const {
+    id /** 机器人 ID */,
     name /** 机器人名字 */,
     address /** 机器人地址 */,
     state /** 机器人状态 */,
@@ -35,12 +36,26 @@ export const robotQueryFn: Connect.NextHandleFunction = (req, res) => {
   // }
 
   let resData = readRobotList() // 不需要深拷贝
+  if (id) {
+    resData = resData.filter((item) => item.id === Number.parseInt(id as string))
+    res.end(
+      JSON.stringify({
+        code: 200,
+        message: '获取机器人列表成功',
+        data: { list: resData, total: 1 },
+      }),
+    )
+    return
+  }
+
   if (name) {
     resData = resData.filter((item) => item.name?.includes(name as string))
   }
+
   if (address) {
     resData = resData.filter((item) => item.address?.includes(address as string))
   }
+
   if (state && Number.parseInt(state as string) > 0) {
     resData = resData.filter((item) => item.state === Number.parseInt(state as string))
   }

@@ -34,7 +34,7 @@ const handleChange = async () => {
 
 const formData = reactive<Omit<IRobotData, 'id' | 'address'>>({
   name: '',
-  state: 1,
+  state: 0,
   failureNum: 0,
   admin: '',
   email: '',
@@ -42,7 +42,7 @@ const formData = reactive<Omit<IRobotData, 'id' | 'address'>>({
 
 const resetFormData = () => {
   formData.name = ''
-  formData.state = 1
+  formData.state = 0
   formData.failureNum = 0
   formData.admin = ''
   formData.email = ''

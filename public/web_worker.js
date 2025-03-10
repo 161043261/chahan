@@ -1,6 +1,6 @@
 onmessage = function (ev) {
   /**
-   * @type Array<{ state: 1 | 2 | 3 | 4 | 5, failureNum: number }>
+   * @type Array<{ state: 0 | 1 | 2 | 3 | 4 | 5, failureNum: number }>
    */
   const list = ev.data
   const stateCounts = [0, 0, 0, 0, 0, 0]

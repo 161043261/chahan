@@ -3,11 +3,12 @@ import type { IRobotList, IResData, IChartData4 } from '@/types/robot'
 import { get } from '@/utils/http'
 
 export async function robotQueryApi(params: {
+  id?: number
   name?: string
   address?: string
   state?: 0 | 1 | 2 | 3 | 4 | 5
-  pageNum: number
-  pageSize: number
+  pageNum?: number
+  pageSize?: number
 }): Promise<IRobotList> {
   return get(Api.RobotQuery, params)
 }
@@ -17,7 +18,7 @@ export async function robotAddApi(params: {
   lng?: number
   name: string
   address: string
-  state: 1 | 2 | 3 | 4 | 5
+  state: 0 | 1 | 2 | 3 | 4 | 5
   failureNum: number
   admin: string
   email: string
@@ -28,7 +29,7 @@ export async function robotAddApi(params: {
 export async function robotUpdateApi(params: {
   id: number
   address: string
-  state: 1 | 2 | 3 | 4 | 5
+  state: 0 | 1 | 2 | 3 | 4 | 5
   failureNum: number
   email: string
 }): Promise<IResData> {

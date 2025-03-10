@@ -81,7 +81,7 @@ onMounted(() => {
           lat?: number
           name: string
           address: string
-          state: 1 | 2 | 3 | 4 | 5
+          state: 0 | 1 | 2 | 3 | 4 | 5
           failureNum: number
           admin: string
           email: string

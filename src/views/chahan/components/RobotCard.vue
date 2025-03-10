@@ -3,7 +3,7 @@ import { robot_state2text_and_type } from '@/constants'
 import { toRefs } from 'vue'
 
 const props = defineProps<{
-  stateId: 1 | 2 | 3 | 4 | 5
+  stateId: 0 | 1 | 2 | 3 | 4 | 5
   failureNum: number
 }>()
 const { stateId, failureNum } = toRefs(props)

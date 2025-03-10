@@ -3,7 +3,11 @@ export type { IResData }
 
 export interface IOrderData {
   id: string
-  state: 0 | 1 | 2 | 3
+  state:
+    | 0 // 全部
+    | 1
+    | 2
+    | 3
   robotId: number
   robotName: string
   date: string

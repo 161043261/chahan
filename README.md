@@ -90,4 +90,30 @@ pnpm exec husky init
 - [main.ts](./src/main.ts)
 - [使用示例](./src/view/dashboard/DashboardIndex.vue)
 
+## 路由传参
+
+### query
+
+```ts
+router.push({
+  path: '/register',
+  // name: 'Register', // 不需要指定路由组件的名字
+  // query: URL 查询参数 http://localhost:5173/register?name=item1&price=1000&id=1
+  query: item,
+  state: item, // window.history.state = item
+})
+```
+
+### params
+
+```ts
+router.push({
+  name: 'RegisterWithId', // 必须指定路由组件的名字
+  // params: URL 路径参数 http://localhost:5173/register/1
+  params: {
+    id: item.id,
+  },
+})
+```
+
 ## 自定义指令: 可拖拽窗口

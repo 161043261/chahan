@@ -7,6 +7,7 @@ export interface IRobotData {
   name: string
   address: string
   state:
+    | 0 // 全部
     | 1 // 闲置
     | 2 // 使用
     | 3 // 故障

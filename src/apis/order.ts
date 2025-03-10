@@ -9,8 +9,8 @@ export function orderQueryApi(params: {
   robotName?: string
   startDate?: string
   endDate?: string
-  pageNum: number
-  pageSize: number
+  pageNum?: number
+  pageSize?: number
 }): Promise<IOrderList> {
   return get(Api.OrderQuery, params)
 }

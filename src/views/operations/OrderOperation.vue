@@ -153,11 +153,16 @@ const handleDetail3 = () => {
     return
   }
   // route.path === '/operations/detail'
-  router.push(
-    {
-      path: `/operations/detail?orderId=${orderData.value.id}`,
-    } /** `/operations/detail?orderId=${orderData.value.id}` */,
-  )
+  router.push({
+    // path: `/operations/detail?orderId=${orderData.value.id}&robotId=${orderData.value.robotId}`,
+    name: 'Detail',
+    //! query: URL 查询参数 (URL query parameters), 使用 query 时不需要指定路由组件的名字
+    //! params: URL 路径参数 (URL path parameters), 使用 params 时必须指定路由组件的名字
+    query: {
+      orderId: orderData.value.id,
+      robotId: orderData.value.robotId,
+    },
+  })
 }
 </script>
 
@@ -244,7 +249,11 @@ const handleDetail3 = () => {
           <ElTableColumn label="订单号" prop="id"> </ElTableColumn>
           <ElTableColumn label="订单状态" prop="state">
             <template #default="tableData">
-              <ElTag size="large" :type="order_state2text_and_type.get(tableData.row.state)?.type">
+              <ElTag
+                size="large"
+                :type="order_state2text_and_type.get(tableData.row.state)?.type"
+                class="!text-[14px]"
+              >
                 {{ order_state2text_and_type.get(tableData.row.state)?.text }}
               </ElTag>
             </template>
@@ -309,8 +318,7 @@ const handleDetail3 = () => {
     <DraggableWindow
       v-if="draggableWindowIsAlive"
       @close-window="draggableWindowIsAlive = false"
-      :width="700"
-      :order-data="orderData"
+      :order-data="orderData!"
     >
       <template #header> 订单号 {{ orderData?.id }} 详情 </template>
       <template #footer>

@@ -54,7 +54,7 @@ export type IRobotList = {
     id: number
     address: string
     name: string
-    state: /* 1 | 2 | 3 | 4 | 5 */ number
+    state: /* 0 | 1 | 2 | 3 | 4 | 5 */ number
     failureNum: number
     admin: string
     email: string
