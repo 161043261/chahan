@@ -148,17 +148,3 @@ export const robotUpdateFn: Connect.NextHandleFunction = (req, res) => {
     }),
   )
 }
-
-export const mapListFn: Connect.NextHandleFunction = (req, res) => {
-  res.setHeader('Content-Type', 'application/json')
-  const resData = readRobotList()
-  // resData[0].lng = 31.251326
-  // resData[0].lat = 121.391229
-  res.end(
-    JSON.stringify({
-      code: 200,
-      message: '获取地图标记列表成功',
-      data: { list: resData },
-    }),
-  )
-}

@@ -8,8 +8,9 @@ export enum Api {
   ChartData2 = '/chartData2',
   ChartData3 = '/chartData3',
   CountryList = '/countryList',
-  MapList = '/mapList',
+  MarkerList = '/markerList',
   Login = '/api/login',
   OrderQuery = '/orderQuery',
   OrderDelete = '/orderDelete',
+  AddressList = '/addressList',
 }

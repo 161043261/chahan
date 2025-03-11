@@ -1,39 +1,69 @@
-import { defineComponent, onMounted, ref, watchEffect } from 'vue'
-import { ElCard, ElCol, ElRow, ElInput } from 'element-plus'
+import { defineComponent, onMounted, ref, watch } from 'vue'
+import { ElCard, ElCol, ElRow, ElInput, ElTree } from 'element-plus'
+import type { ITreeData } from '@/types/map'
+import { addressListApi } from '@/apis/map'
 
 export default defineComponent({
   // name: '',
   setup(props, ctx) {
     const { emit /** , slots */ } = ctx
+    const addrList = ref<ITreeData[]>()
+
     const handleInput = () => {
       emit('update:modelValue', {
         addrStr: addrStr.value,
       })
     }
 
-    onMounted(() => {
-      // 必须写在 onMounted 中
-      watchEffect(() => console.log(addrStr.value))
+    onMounted(async () => {
+      addrList.value = (await addressListApi()).data.list
     })
 
-    const addrStr = ref('默认地址')
+    const addrStr = ref('')
+    const treeRef = ref<InstanceType<typeof ElTree>>()
+
+    const defaultProps = {
+      children: 'children',
+      label: 'label',
+    }
+
+    watch(
+      () => addrStr.value,
+      (newStr: string /** , oldStr: string */) => {
+        treeRef.value?.filter(newStr)
+      },
+    )
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const filterNode = (value: string, data: { [key: string]: any }) => {
+      if (!value) {
+        return true
+      }
+      return data.label.includes(value)
+    }
+
     return () => (
-      <>
-        <main>
-          <ElCard>
-            <ElRow>
-              <ElCol span={6}>
-                <ElInput
-                  class="w-[80%]"
-                  placeholder="请输入地址"
-                  v-model={addrStr.value}
-                  onInput={handleInput}
-                ></ElInput>
-              </ElCol>
-            </ElRow>
-          </ElCard>
-        </main>
-      </>
+      <main>
+        <ElCard class="!rounded-3xl">
+          <ElRow>
+            <ElCol span={5}>
+              <ElInput
+                placeholder="请输入地址"
+                v-model={addrStr.value}
+                onInput={handleInput}
+              ></ElInput>
+
+              <ElTree
+                ref={treeRef}
+                data={addrList.value}
+                props={defaultProps}
+                class="mt-[20px]"
+                filterNodeMethod={filterNode}
+              ></ElTree>
+            </ElCol>
+          </ElRow>
+        </ElCard>
+      </main>
     )
   },
 })

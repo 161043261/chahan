@@ -12,9 +12,10 @@ export const enum Api {
   RobotAdd = '/robotAdd',
   RobotDelete = '/robotDelete',
   RobotUpdate = '/robotUpdate',
-  MapList = '/mapList',
+  MarkerList = '/markerList',
   OrderQuery = '/orderQuery',
   OrderDelete = '/orderDelete',
+  AddressList = '/addressList',
 }
 
 export { adminMenu, userMenu }

@@ -2,7 +2,7 @@
 <script setup lang="ts">
 import AMapLoader from '@amap/amap-jsapi-loader'
 import { onMounted, onUnmounted, ref } from 'vue'
-import { mapListApi } from '@/apis/map'
+import { markerListApi } from '@/apis/map'
 import type { IRobotData } from '@/types/robot'
 import bus from '@/utils/bus'
 
@@ -38,7 +38,7 @@ onMounted(() => {
         center: [121.391229 /** lat */, 31.251326 /** lng */],
       })
 
-      mapListApi().then(({ data: { list } }) => {
+      markerListApi().then(({ data: { list } }) => {
         // web worker
         const worker = new Worker('/web_worker.js')
         worker.postMessage(list) // 深拷贝 list

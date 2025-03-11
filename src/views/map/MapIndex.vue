@@ -3,7 +3,7 @@ import MapContainer from '@/components/map/MapContainer.vue'
 import { ElRow, ElCol, ElCard, type CascaderOption } from 'element-plus'
 import { reactive, ref } from 'vue'
 import { robot_states, robot_state2text_and_type } from '@/constants'
-import addrList from '@/assets/pc_list.json'
+import pcList from '@/assets/pc_list.json'
 
 import { fetchLocation } from '@/utils/fetch_location'
 import { AddOne, CloseOne, CheckOne } from '@icon-park/vue-next'
@@ -11,8 +11,8 @@ import type { IRobotData } from '@/types/robot'
 import bus from '@/utils/bus'
 import { robotAddApi } from '@/apis/chahan'
 
-const addrOptions = addrList as CascaderOption[]
-const addrArr = ref([])
+const addressOptions = pcList as CascaderOption[]
+const addressList = ref([])
 
 const stateCounts = ref<number[] & { length: 6 }>([0, 0, 0, 0, 0, 0])
 const minMaxAvg = ref<[number, number, number]>([0, 0, 0])
@@ -29,7 +29,7 @@ const fixedDisabled = ref(true)
 const addrLatLng: [addr: string, lat: number, lng: number] = ['', 0, 0] as const
 
 const handleChange = async () => {
-  addrLatLng[0] = addrArr.value.join('')
+  addrLatLng[0] = addressList.value.join('')
   ;[addrLatLng[1], addrLatLng[2]] = await fetchLocation(addrLatLng[0])
 }
 
@@ -166,8 +166,8 @@ const handleSubmit = async () => {
               <ElSwitch v-model="persistent" class="ml-[10px]"></ElSwitch>
 
               <ElCascaderPanel
-                :options="addrOptions"
-                v-model="addrArr"
+                :options="addressOptions"
+                v-model="addressList"
                 @change="handleChange"
                 class="mt-[10px] !rounded-lg"
               >
