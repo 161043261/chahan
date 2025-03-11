@@ -52,7 +52,7 @@ const emit = defineEmits<{
   updateRobotList: []
 }>()
 
-// const formRef = ref()
+// const formRef = ref<InstanceType<typeof ElForm>>()
 const formRef = useTemplateRef<FormInstance>('formRef')
 defineExpose({
   resetFields: () => formRef.value?.resetFields(),

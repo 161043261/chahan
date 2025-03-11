@@ -8,7 +8,7 @@ import bus from '@/utils/bus'
 
 const watermarked = ref(false)
 
-const tabContainerRef = useTemplateRef('tabContainerRef')
+const tabContainerRef = useTemplateRef<InstanceType<typeof ElMain>>('tabContainerRef')
 bus.subscribe('store-scrollTop', () => {
   sessionStorage.setItem('scroll-top', tabContainerRef.value?.$el.scrollTop.toString())
   tabContainerRef.value!.$el.scrollTop = 0

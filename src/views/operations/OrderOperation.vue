@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ElCard, ElInput, ElSelect, ElInputNumber, ElMessage, ElMessageBox } from 'element-plus'
+import { ElCard, ElInput, ElSelect, ElInputNumber, ElMessage, ElMessageBox, ElTable } from 'element-plus'
 import { onBeforeMount, reactive, ref, useTemplateRef, watchEffect } from 'vue'
 import { name2icon } from '@/utils/icons'
 import { orderQueryApi, orderDeleteApi } from '@/apis/order'
@@ -36,7 +36,7 @@ const handleChange = (newDate: typeof date.value) => {
 }
 
 const orderList = ref<IOrderData[]>()
-const orderTable = useTemplateRef('orderTable')
+const orderTable = useTemplateRef<InstanceType<typeof ElTable>>('orderTable')
 const loading /** v-loading */ = ref(false)
 const loadOrderList = async () => {
   loading.value = true

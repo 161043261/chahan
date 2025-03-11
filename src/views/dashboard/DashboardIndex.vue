@@ -61,9 +61,9 @@ const toast = useToast()
 const userStore = useUserStore()
 const { menuList } = storeToRefs(userStore)
 
-const chartRef = ref()
-const chartRef2 = ref()
-const chartRef3 = ref()
+const chartRef = ref<HTMLDivElement | null>(null)
+const chartRef2 = ref<HTMLDivElement | null>(null)
+const chartRef3 = ref<HTMLDivElement | null>(null)
 
 const updateChart = useChart(chartRef, getChartOption)
 const updateChart2 = useChart(chartRef2, getChartOption2)
@@ -164,9 +164,8 @@ const handleClick = (idx: 0 | 1 | 2, callbacks: (() => void)[]) => {
   }, 2000)
 }
 
-const virtualListRef = ref()
-// const virtualListRef = useTemplateRef('virtualListRef')
-const virtualListSize = ref(0)
+const virtualListRef = ref/** <InstanceType<typeof VirtualList>> */()
+const virtualListSize = ref<number>(0)
 
 // provide
 provide('virtualListSize' /** key */, virtualListSize /** value */)

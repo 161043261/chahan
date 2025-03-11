@@ -27,7 +27,7 @@ const formRules = reactive<FormRules<IFormData>>({
   ],
 })
 
-const formRef = ref<FormInstance>()
+const formRef = ref<FormInstance>() // ref<InstanceType<typeof ElForm>>()
 const userStore = useUserStore()
 const router = useRouter()
 

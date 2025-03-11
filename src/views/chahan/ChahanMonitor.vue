@@ -97,8 +97,8 @@ const handleDelete = async (id: number) => {
   }
 }
 
-const robotFormRef = ref()
-// const robotFormRef = useTemplateRef('robotFormRef')
+const robotFormRef = ref<InstanceType<typeof RobotDialog>>()
+// const robotFormRef = useTemplateRef<InstanceType<typeof RobotDialog>>('robotFormRef')
 const handleClose = () => {
   dialogVisible.value = false
   robotFormRef.value?.resetFields()

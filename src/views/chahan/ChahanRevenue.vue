@@ -4,7 +4,7 @@ import { ElCard } from 'element-plus'
 import { ref } from 'vue'
 import getChartOption4 from './components/chart_option4'
 
-const chartRef = ref()
+const chartRef = ref<HTMLDivElement | null>(null)
 // const chartRef = useTemplateRef('chartRef')
 useChart(chartRef, getChartOption4)
 </script>
