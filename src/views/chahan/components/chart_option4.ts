@@ -47,7 +47,6 @@ const getChartOption4 = async () => {
         data: [],
         yAxisIndex: 0,
         itemStyle: {
-          // -color-green: rgba(184, 233, 134); // #b8e986;
           color: '#b8e986',
         },
       },
@@ -57,8 +56,7 @@ const getChartOption4 = async () => {
         data: [],
         yAxisIndex: 1,
         itemStyle: {
-          // --color-1st: #3d8d7a;
-          color: '#3d8d7a',
+          color: '#a1e3f9',
         },
         smooth: true,
       },

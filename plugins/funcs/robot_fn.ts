@@ -90,7 +90,9 @@ export const robotAddFn: Connect.NextHandleFunction = (req, res) => {
     failureNum: Number.parseInt(failureNum as string),
     admin: admin as string,
     email: email as string,
+    // 如果未传递 lng, 则随机生成一个
     lng: Number.parseFloat((lng as string) ?? (Math.random() * (30 - 28) + 28).toFixed(6)),
+    // 如果未传递 lat, 则随机生成一个
     lat: Number.parseFloat((lat as string) ?? (Math.random() * (120 - 118) + 118).toFixed(6)),
   })
   writeRobotList(robotList)

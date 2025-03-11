@@ -186,8 +186,8 @@ const handelConfirm = () => {
 
       <template #footer>
         <div class="dialog-footer">
-          <ElButton @click="handleCancel">取消</ElButton>
-          <ElButton type="primary" @click="handelConfirm">确定</ElButton>
+          <ElButton type="default" @click="handleCancel">取消</ElButton>
+          <ElButton type="success" @click="handelConfirm">确定</ElButton>
         </div>
       </template>
     </ElDialog>

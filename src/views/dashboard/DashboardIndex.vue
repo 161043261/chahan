@@ -79,7 +79,7 @@ const renderFunc = (props: { item: CountryItem; idx: number } /** { emit, slots 
     /* HyperScript */ 'div',
     {
       style: {
-        backgroundColor: props.idx % 2 === 0 ? 'var(--color-5th)' : 'var(--color-8th)',
+        backgroundColor: props.idx % 2 === 0 ? 'var(--color-5th)' : '#fff',
         display: 'flex',
         ['::-webkit-scrollbar']: {
           display: 'none !important',

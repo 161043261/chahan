@@ -22,11 +22,6 @@ export default defineComponent({
     const addrStr = ref('')
     const treeRef = ref<InstanceType<typeof ElTree>>()
 
-    const defaultProps = {
-      children: 'children',
-      label: 'label',
-    }
-
     watch(
       () => addrStr.value,
       (newStr: string /** , oldStr: string */) => {
@@ -45,8 +40,8 @@ export default defineComponent({
     return () => (
       <main>
         <ElCard class="!rounded-3xl">
-          <ElRow>
-            <ElCol span={5}>
+          <ElRow gutter={20}>
+            <ElCol span={6}>
               <ElInput
                 placeholder="请输入地址"
                 v-model={addrStr.value}
@@ -56,11 +51,12 @@ export default defineComponent({
               <ElTree
                 ref={treeRef}
                 data={addrList.value}
-                props={defaultProps}
                 class="mt-[20px]"
                 filterNodeMethod={filterNode}
               ></ElTree>
             </ElCol>
+
+            <ElCol span={18}></ElCol>
           </ElRow>
         </ElCard>
       </main>

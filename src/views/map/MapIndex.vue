@@ -43,11 +43,12 @@ const formData = reactive<Omit<IRobotData, 'id' | 'address'>>({
 
 const resetFormData = () => {
   formData.name = ''
-  formData.state = 0
+  formData.state = 1
   formData.failureNum = 0
   formData.admin = ''
   formData.email = ''
 }
+
 const handleClick = () => {
   fixedDisabled.value = !fixedDisabled.value
 }
@@ -118,11 +119,11 @@ const handleSubmit = async () => {
           :class="fixedDisabled ? 'hover:scale-110' : 'fixed-enabled'"
         >
           <template #header>
-            <div v-if="fixedDisabled" class="flex justify-between">
+            <div v-if="fixedDisabled" class="flex justify-between text-[20px]">
               <h1 @click="handleClick" class="cursor-pointer">放大新增地图标记窗口</h1>
             </div>
 
-            <div v-else class="flex justify-between">
+            <div v-else class="flex justify-between text-[20px]">
               <h1 @click="handleClick" class="cursor-pointer">缩小新增地图标记窗口</h1>
               <div class="flex justify-center gap-[10px]">
                 <!-- 点击以提交表单 -->

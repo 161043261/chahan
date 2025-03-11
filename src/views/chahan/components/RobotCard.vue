@@ -17,7 +17,8 @@ const { stateId, failureNum } = toRefs(props)
       <ElTag size="large" :type="robot_state2text_and_type.get(stateId)?.type" class="!text-[15px]">
         {{ robot_state2text_and_type.get(stateId)?.text }}
       </ElTag>
-      <img src="@/assets/robot.svg" alt="eva" width="100px" />
+      <!-- todo: 图片懒加载 -->
+      <img src="@/assets/robot.svg" alt="eva" width="70px" />
       <p>零件故障数</p>
       <p>{{ failureNum }}</p>
     </div>
@@ -25,7 +26,7 @@ const { stateId, failureNum } = toRefs(props)
     <!-- 默认插槽 -->
     <div>
       <slot name="default"></slot>
-      <p :style="{ color: failureNum > 50 ? '#fb2c36' : '#3d8d7a' }">
+      <p :style="{ color: failureNum > 50 ? '#fb2c36' : '#a1e3f9' }">
         {{ failureNum > 50 ? '有预警 (零件故障数 > 50)' : '无预警 (零件故障数 <= 50)' }}
       </p>
     </div>
