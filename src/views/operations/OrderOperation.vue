@@ -1,5 +1,13 @@
 <script setup lang="ts">
-import { ElCard, ElInput, ElSelect, ElInputNumber, ElMessage, ElMessageBox, ElTable } from 'element-plus'
+import {
+  ElCard,
+  ElInput,
+  ElSelect,
+  ElInputNumber,
+  ElMessage,
+  ElMessageBox,
+  ElTable,
+} from 'element-plus'
 import { onBeforeMount, reactive, ref, useTemplateRef, watchEffect } from 'vue'
 import { name2icon } from '@/utils/icons'
 import { orderQueryApi, orderDeleteApi } from '@/apis/order'

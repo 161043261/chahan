@@ -233,6 +233,7 @@ const handleSubmit = async () => {
   // top: 0;
   width: 400px;
   height: 600px;
-  transform: translate(-300px, -300px);
+  z-index: 10;
+  transform: translate(-444px, -444px);
 }
 </style>

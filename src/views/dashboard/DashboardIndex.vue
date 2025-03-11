@@ -164,7 +164,7 @@ const handleClick = (idx: 0 | 1 | 2, callbacks: (() => void)[]) => {
   }, 2000)
 }
 
-const virtualListRef = ref/** <InstanceType<typeof VirtualList>> */()
+const virtualListRef = ref /** <InstanceType<typeof VirtualList>> */()
 const virtualListSize = ref<number>(0)
 
 // provide
