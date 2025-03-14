@@ -149,7 +149,8 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/login',
     name: 'Login',
-    component: () => import('@/views/LoginIndex.vue'),
+    // component: () => import('@/views/LoginIndex.vue'),
+    component: () => import('@/views/login_index.tsx'),
   },
   {
     path: '/:pathMatch(.*)*', // 匹配未定义的任意路由

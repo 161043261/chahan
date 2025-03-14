@@ -80,9 +80,10 @@ const handleLogin = () => {
           />
         </ElFormItem>
 
-        <div class="flex w-[100%] justify-between">
-          <ElButton type="default" class="w-[150px]">注册</ElButton>
-          <ElButton type="success" class="w-[150px]" @click="handleLogin">登录</ElButton>
+        <div class="flex !w-[50%] flex-row-reverse">
+          <ElButton type="default" class="!w-[100px]">注册</ElButton>
+          <ElButton type="success" class="!w-[100px]" @click="handleLogin">登录</ElButton>
+
         </div>
       </ElForm>
     </div>
