@@ -1,4 +1,4 @@
-export const white_list = new Set<string>(['/login'])
+export const white_list = new Set<string>(['/login', '/notFound'])
 
 export const robot_states = [
   '全部' /** 0 */,

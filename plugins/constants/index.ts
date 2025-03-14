@@ -2,8 +2,8 @@ import adminMenu from '../assets/admin_menu.json'
 import userMenu from '../assets/user_menu.json'
 
 export const enum Api {
-      Login = '/api/login',
-   ChartData = '/api/chartData',
+  Login = '/api/login',
+  ChartData = '/api/chartData',
   ChartData2 = '/api/chartData2',
   ChartData3 = '/api/chartData3',
   ChartData4 = '/api/chartData4',

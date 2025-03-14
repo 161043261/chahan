@@ -83,7 +83,6 @@ const handleLogin = () => {
         <div class="flex !w-[50%] flex-row-reverse">
           <ElButton type="default" class="!w-[100px]">注册</ElButton>
           <ElButton type="success" class="!w-[100px]" @click="handleLogin">登录</ElButton>
-
         </div>
       </ElForm>
     </div>

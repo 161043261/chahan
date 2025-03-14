@@ -31,7 +31,7 @@ export const useUserStore = defineStore('user', () => {
           menuList: menuList_,
           token: token_,
           user: { nickname: nickname_, auths: roles_ },
-        }
+        },
       } = resData
 
       menuList.value = menuList_
