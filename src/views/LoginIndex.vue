@@ -50,7 +50,7 @@ const handleLogin = () => {
      -->
   <main class="bg h-dvh bg-cover bg-center bg-no-repeat">
     <div
-      class="glass-container absolute top-[50%] left-[10%] h-[300px] w-[500px] translate-y-[-50%] rounded-3xl p-[50px]"
+      class="glass-container absolute top-[50%] left-[10%] h-[300px] w-[456px] translate-y-[-50%] rounded-3xl p-[50px]"
     >
       <!-- gap: 20px; -->
       <div class="mb-[20px] flex items-center justify-center gap-[10px]">
@@ -60,13 +60,7 @@ const handleLogin = () => {
         <h1 class="text-3xl text-slate-500">炒饭机器人管理平台</h1>
       </div>
 
-      <ElForm
-        class="m-auto w-[80%]"
-        :model="formData"
-        label-width="auto"
-        :rules="formRules"
-        ref="formRef"
-      >
+      <ElForm :model="formData" label-width="auto" :rules="formRules" ref="formRef">
         <ElFormItem label="账号" prop="username">
           <ElInput v-model="formData.username" placeholder="请输入账号" :prefix-icon="User" />
         </ElFormItem>
@@ -80,7 +74,7 @@ const handleLogin = () => {
           />
         </ElFormItem>
 
-        <div class="flex !w-[50%] flex-row-reverse">
+        <div class="flex flex-row-reverse gap-[20px]">
           <ElButton type="default" class="!w-[100px]">注册</ElButton>
           <ElButton type="success" class="!w-[100px]" @click="handleLogin">登录</ElButton>
         </div>

@@ -81,19 +81,13 @@ export default defineComponent({
 
     return () => (
       <div class="bg h-dvh bg-cover bg-center bg-no-repeat">
-        <div class="glass-container absolute top-[50%] left-[10%] h-[300px] w-[500px] translate-y-[-50%] rounded-3xl p-[50px]">
+        <div class="glass-container absolute top-[50%] left-[10%] h-[300px] w-[456px] translate-y-[-50%] rounded-3xl p-[50px]">
           <div class="mb-[20px] flex items-center justify-center gap-[10px]">
             <Rice theme="filled" size="48" fill="#b8e986" strokeWidth={3} />
             <h1 class="text-3xl text-slate-500">炒饭机器人管理平台</h1>
           </div>
 
-          <ElForm
-            class="w-[80%]"
-            model={formData}
-            labelWidth={'auto'}
-            rules={formRules}
-            ref={formRef}
-          >
+          <ElForm model={formData} labelWidth={'auto'} rules={formRules} ref={formRef}>
             <ElFormItem label="账号" prop="username">
               <ElInput
                 v-model={formData.username}
