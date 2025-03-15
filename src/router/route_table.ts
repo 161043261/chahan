@@ -90,7 +90,6 @@ const routes: RouteRecordRaw[] = [
         name: 'Ads',
         component: () => import('@/views/ads/AdsIndex.vue'),
         meta: {
-          auths: ['admin'],
           tagName: '广告发布',
           icon: 'GoogleAds',
         },
@@ -100,6 +99,7 @@ const routes: RouteRecordRaw[] = [
         name: 'System',
         component: () => import('@/views/system/SystemIndex.vue'),
         meta: {
+          auths: ['admin'],
           tagName: '系统设置',
           icon: 'System',
         },

@@ -16,7 +16,7 @@ const loginFn: Connect.NextHandleFunction = (req, res) => {
         token: 'chahan_token',
         user: {
           nickname: '蛋炒饭之神',
-          auths: ['admin'],
+          auth: 'admin',
         },
         menuList: adminMenu,
       },
@@ -29,7 +29,7 @@ const loginFn: Connect.NextHandleFunction = (req, res) => {
         token: 'chahan_token',
         user: {
           nickname: '菜鸟',
-          auths: ['user'],
+          auth: 'user',
         },
         menuList: userMenu,
       },

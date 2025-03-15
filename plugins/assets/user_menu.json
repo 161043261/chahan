@@ -42,10 +42,5 @@
     "name": "广告发布",
     "url": "/ads",
     "icon": "GoogleAds"
-  },
-  {
-    "name": "系统设置",
-    "url": "/system",
-    "icon": "System"
   }
 ]

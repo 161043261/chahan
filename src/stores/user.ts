@@ -20,7 +20,7 @@ export const useUserStore = defineStore('user', () => {
   // 昵称
   const nickname = ref<string>(sessionStorage.getItem('nickname') ?? '')
   // 权限
-  const auths = ref<string[]>(JSON.parse(sessionStorage.getItem('auths') ?? '[]'))
+  const auth = ref<string>(sessionStorage.getItem('auth') ?? '')
 
   //! actions
   const login = async (data: ILoginReqData) => {
@@ -30,14 +30,14 @@ export const useUserStore = defineStore('user', () => {
         data: {
           menuList: menuList_,
           token: token_,
-          user: { nickname: nickname_, auths: roles_ },
+          user: { nickname: nickname_, auth: auth_ },
         },
       } = resData
 
       menuList.value = menuList_
       token.value = token_
       nickname.value = nickname_
-      auths.value = roles_
+      auth.value = auth_
 
       // 页面刷新后, pinia 中的数据 (state) 丢失
       // pinia 持久化
@@ -46,7 +46,7 @@ export const useUserStore = defineStore('user', () => {
       sessionStorage.setItem('menuList', JSON.stringify(menuList_))
       sessionStorage.setItem('token', token_)
       sessionStorage.setItem('nickname', nickname_)
-      sessionStorage.setItem('auths', JSON.stringify(roles_))
+      sessionStorage.setItem('auth', auth_)
     } catch (err) {
       if (import.meta.env.DEV) {
         console.error(err)
@@ -58,7 +58,7 @@ export const useUserStore = defineStore('user', () => {
     menuList.value = []
     token.value = ''
     nickname.value = ''
-    auths.value = []
+    auth.value = ''
     // sessionStorage.removeItem('token')
     sessionStorage.clear()
   }
@@ -69,7 +69,7 @@ export const useUserStore = defineStore('user', () => {
     menuList,
     token,
     nickname,
-    auths,
+    auth,
     login,
     logout,
   }
