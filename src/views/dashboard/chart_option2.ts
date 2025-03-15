@@ -69,7 +69,7 @@ const getChartOption2 = async () => {
   ;(chartOption.legend as any).data = chartData.data.map(({ name }) => name)
   for (let i = 0; i < chartData.data.length; i++) {
     ;(chartOption.series as any)[i].name = chartData.data[i].name
-    ;(chartOption.series as any)[i].data = chartData.data[i].dataArr
+    ;(chartOption.series as any)[i].data = chartData.data[i].value
   }
   return chartOption
 }

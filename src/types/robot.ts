@@ -26,10 +26,3 @@ export type IRobotList = {
     total?: number
   }
 } & IResData
-
-export type IChartData4 = {
-  data: {
-    name: string
-    dataArr: number[]
-  }[]
-} & IResData

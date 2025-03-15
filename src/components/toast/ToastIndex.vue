@@ -48,7 +48,6 @@ defineExpose({ mount, isAlive })
     <div
       v-if="isAlive"
       class="border-1st fixed top-[10%] left-[50%] z-100 -translate-x-[50%] rounded-lg border-[3px] p-[5px]"
-      :class="type"
     >
       <div class="flex items-center gap-[5px]">
         <CheckOne theme="filled" size="24" fill="#7ed321" v-if="type === 'success'" />

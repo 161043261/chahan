@@ -18,27 +18,20 @@ export interface ILoginResData {
 
 export interface IChartData {
   data: {
-    value: number
     name: string
+    value: number
   }[]
 }
 
 export interface IChartData2 {
   data: {
     name: string
-    dataArr: number[]
+    value: number[]
   }[]
 }
 
 export interface IChartData3 {
   data: [number, number, number, number, number]
-}
-
-export interface IChartData4 {
-  data: {
-    name: string
-    dataArr: number[]
-  }[]
 }
 
 export interface ICountryList {

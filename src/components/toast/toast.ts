@@ -1,5 +1,7 @@
 import { createVNode, getCurrentInstance, inject, render } from 'vue'
-import ToastIndex from './ToastIndex.vue'
+// import ToastIndex from './ToastIndex.vue'
+import ToastIndex from './toast_index'
+
 import type { App, Plugin, VNode } from 'vue'
 
 /**
@@ -66,6 +68,14 @@ declare module 'vue' {
   }
 }
 
+export const useToast = (): IToast => {
+  const appInstance = getCurrentInstance()
+  const proxy = appInstance?.proxy
+  return proxy?.$toast as IToast
+}
+
+//////////////////////////////////////////////////
+
 export function createToast(): {
   default: (message: string, duration?: number) => void
   success: (message: string, duration?: number) => void
@@ -117,14 +127,11 @@ export function createToast(): {
   }
 }
 
-export const useToast = (): IToast => {
-  const appInstance = getCurrentInstance()
-  const proxy = appInstance?.proxy
-  return proxy?.$toast as IToast
-}
-
 export const useToast2 = (): IToast => {
-  return inject('toast')!
+  //! main.ts
+  //* const toast: IToast = createToast()
+  //* app.provide<IToast>('toast', readonly(toast))
+  return inject<IToast>('toast')!
 }
 
 export interface IToast {

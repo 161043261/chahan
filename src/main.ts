@@ -11,7 +11,7 @@ import App from '@/App.vue'
 import router from '@/router'
 import ElementPlus from 'element-plus'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
-import { toastPlugin, createToast } from './components/toast/toast'
+import { toastPlugin, createToast, type IToast } from './components/toast/toast'
 
 // 副作用导入路由守卫文件
 import '@/router/guard'
@@ -28,7 +28,7 @@ app.use(ElementPlus, {
 // 自定义 toast Vue 插件
 app.use(toastPlugin)
 
-const toast = createToast()
-app.provide('toast', readonly(toast))
+const toast: IToast = createToast()
+app.provide<IToast>('toast', readonly(toast))
 
 app.mount('#app')

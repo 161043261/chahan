@@ -5,15 +5,15 @@ export interface IResData {
 
 export type IChartData = {
   data: {
-    value: number
     name: string
+    value: number
   }[]
 } & IResData
 
 export type IChartData2 = {
   data: {
     name: string
-    dataArr: number[]
+    value: number[]
   }[]
 } & IResData
 
