@@ -3,7 +3,7 @@ import router from '@/router'
 import { useUserStore } from '@/stores/user'
 // import { useTabStore } from '@/stores/tab'
 //! const userStore = useUserStore()
-import { white_list } from '@/constants'
+import { WHITE_LIST } from '@/constants'
 import { useTabStore } from '@/stores/tab'
 
 // 进度条组件
@@ -44,7 +44,7 @@ router.beforeEach((to) => {
   //! "getActivePinia()" was called but there was no active Pinia.
   //! Are you trying to use a store before calling "app.use(pinia)"?
   const userStore = useUserStore()
-  if (!white_list.has(to.path) && !userStore.token /**  !sessionStorage.getItem('token') */) {
+  if (!WHITE_LIST.has(to.path) && !userStore.token /**  !sessionStorage.getItem('token') */) {
     // vue-router@4 新版本
     // 没有返回值: 放行, 有返回值: 重定向
     barVNode.component?.exposed?.loadStart()

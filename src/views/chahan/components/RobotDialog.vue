@@ -11,7 +11,7 @@ import {
   ElInputNumber,
 } from 'element-plus'
 import { reactive, toRef, computed, useTemplateRef } from 'vue'
-import { robot_states, robot_state2text_and_type } from '@/constants'
+import { ROBOT_STATES, ROBOT_STATE2TEXT_AND_TYPE } from '@/constants'
 import type { IRobotData } from '@/types/robot'
 import { useRobotStore } from '@/stores/robot'
 import { storeToRefs } from 'pinia'
@@ -19,8 +19,8 @@ import { robotAddApi, robotUpdateApi } from '@/apis/chahan'
 
 const robotStore = useRobotStore()
 //! useAttrs: 不是响应式的, 不支持 camelCase 转 dashed, 不支持类型检查
-// const { robot_state2text_and_type } = useAttrs() as {
-//   robot_state2text_and_type: Map<
+// const { ROBOT_STATE2TEXT_AND_TYPE } = useAttrs() as {
+//   ROBOT_STATE2TEXT_AND_TYPE: Map<
 //     number,
 //     { text: RobotState; type: 'primary' | 'success' | 'info' | 'warning' | 'danger' }
 //   >
@@ -144,12 +144,12 @@ const handelConfirm = () => {
             <ElFormItem label="机器人状态" prop="state">
               <ElSelect placeholder="请选择机器人状态" v-model="formData.state">
                 <ElOption
-                  v-for="(state, idx) of robot_states.slice(1)"
+                  v-for="(state, idx) of ROBOT_STATES.slice(1)"
                   :key="state"
                   :value="idx + 1"
                   :label="state"
                 >
-                  <ElTag size="large" :type="robot_state2text_and_type.get(idx)?.type">
+                  <ElTag size="large" :type="ROBOT_STATE2TEXT_AND_TYPE.get(idx)?.type">
                     {{ state }}
                   </ElTag>
                 </ElOption>

@@ -2,7 +2,7 @@
 import MapContainer from '@/components/map/MapContainer.vue'
 import { ElRow, ElCol, ElCard, type CascaderOption } from 'element-plus'
 import { reactive, ref } from 'vue'
-import { robot_states, robot_state2text_and_type } from '@/constants'
+import { ROBOT_STATES, ROBOT_STATE2TEXT_AND_TYPE } from '@/constants'
 import pcList from '@/assets/pc_list.json'
 
 import { fetchLocation } from '@/utils/fetch_location'
@@ -182,12 +182,12 @@ const handleSubmit = async () => {
                 <ElFormItem label="机器人状态" prop="state">
                   <ElSelect placeholder="请选择机器人状态" v-model="formData.state">
                     <ElOption
-                      v-for="(state, idx) of robot_states.slice(1)"
+                      v-for="(state, idx) of ROBOT_STATES.slice(1)"
                       :key="state"
                       :value="idx + 1"
                       :label="state"
                     >
-                      <ElTag size="large" :type="robot_state2text_and_type.get(idx + 1)?.type">
+                      <ElTag size="large" :type="ROBOT_STATE2TEXT_AND_TYPE.get(idx + 1)?.type">
                         {{ state }}
                       </ElTag>
                     </ElOption>

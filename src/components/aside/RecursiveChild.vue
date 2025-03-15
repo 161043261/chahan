@@ -30,7 +30,7 @@ const handleClick = (item: IMenuItem) => {
 </script>
 
 <template>
-  <ElSubMenu v-if="item.children" :index="item.url">
+  <ElSubMenu v-if="item.children" :index="item.url ?? 'undefined'">
     <template #title>
       <ElIcon>
         <Component :is="name2icon.get(item.icon)"></Component>
@@ -43,7 +43,7 @@ const handleClick = (item: IMenuItem) => {
   <ElMenuItem
     v-else
     :index="item.url"
-    v-show="item.url !== '/operations/detail'"
+    v-show="item.url !== '/order/detail'"
     @click="handleClick(item)"
     class="duration-500"
   >

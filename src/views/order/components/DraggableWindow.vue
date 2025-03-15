@@ -2,7 +2,7 @@
 import type { IOrderData } from '@/types/order'
 import { CloseOne } from '@icon-park/vue-next'
 import { toRef, type Directive } from 'vue'
-import { order_state2text_and_type } from '@/constants'
+import { ORDER_STATE2TEXT_AND_TYPE } from '@/constants'
 
 const props = defineProps<{
   orderData: IOrderData
@@ -62,11 +62,11 @@ const orderData = toRef(props, 'orderData')
         <li>
           订单状态:
           <ElTag
-            :type="order_state2text_and_type.get(orderData.state)?.type"
+            :type="ORDER_STATE2TEXT_AND_TYPE.get(orderData.state)?.type"
             class="ml-[10px] !text-[14px]"
             size="large"
           >
-            {{ order_state2text_and_type.get(orderData.state)?.text }}
+            {{ ORDER_STATE2TEXT_AND_TYPE.get(orderData.state)?.text }}
           </ElTag>
         </li>
         <li>机器人 ID: {{ orderData.robotId }}</li>

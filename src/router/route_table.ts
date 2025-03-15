@@ -32,31 +32,21 @@ const routes: RouteRecordRaw[] = [
         },
       },
       {
-        path: '/chahan/monitor',
-        name: 'Monitor',
-        component: () => import('@/views/chahan/ChahanMonitor.vue'),
+        path: '/chahan',
+        name: 'Chahan',
+        component: () => import('@/views/chahan/ChahanIndex.vue'),
         meta: {
-          tagName: '炒饭机器人监控',
+          tagName: '炒饭机器人列表',
           icon: 'SurveillanceCameras',
         },
       },
       {
-        path: '/chahan/robot',
+        path: '/chahan/grid',
         name: 'Robot',
-        component: () => import('@/views/chahan/ChahanRobot.vue'),
+        component: () => import('@/views/chahan/ChahanGrid.vue'),
         meta: {
-          tagName: '炒饭机器人管理',
+          tagName: '炒饭机器人网格',
           icon: 'RobotOne',
-          // keepAlive: true,
-        },
-      },
-      {
-        path: '/chahan/revenue',
-        name: 'Revenue',
-        component: () => import('@/views/chahan/ChahanRevenue.vue'),
-        meta: {
-          tagName: '财务报表',
-          icon: 'Excel',
         },
       },
       {
@@ -69,61 +59,40 @@ const routes: RouteRecordRaw[] = [
         },
       },
       {
-        path: '/operations/order',
+        path: '/order',
         name: 'Order',
-        component: () => import('@/views/operations/OrderOperation.vue'),
+        component: () => import('@/views/order/OrderIndex.vue'),
         meta: {
           tagName: '订单管理',
           icon: 'Order',
         },
       },
       {
-        path: '/operations/detail',
+        path: '/order/detail',
         name: 'Detail',
-        component: () => import('@/views/operations/order_detail.tsx' /** OrderDetail.vue */),
+        component: () => import('@/views/order/order_detail'),
         meta: {
           tagName: '订单详情',
           icon: 'Find',
         },
       },
       {
-        path: '/operations/bill',
-        name: 'Bill',
-        component: () => import('@/views/operations/bill_operation'),
+        path: '/order/add',
+        name: 'FileAddition',
+        component: () => import('@/views/order/order_add'),
         meta: {
-          tagName: '账单管理',
-          icon: 'Bill',
-        },
-      },
-
-      {
-        path: '/repair',
-        name: 'Repair',
-        component: () => import('@/views/repair/RepairIndex.vue'),
-        meta: {
-          tagName: '炒饭机器人维修',
-          icon: 'Tool',
+          tagName: '导入订单',
+          icon: 'FileAddition',
         },
       },
       {
-        path: '/member',
-        name: 'Member',
-        component: () => import('@/views/member/MemberIndex.vue'),
-        // 创建完整路由表, 并使用路由元信息 meta 指定路由权限
+        path: '/ads',
+        name: 'Ads',
+        component: () => import('@/views/ads/AdsIndex.vue'),
         meta: {
           auths: ['admin'],
-          tagName: '会员中心',
-          icon: 'LightMember',
-        },
-      },
-      {
-        path: '/join',
-        name: 'Join',
-        component: () => import('@/views/join/JoinIndex.vue'),
-        meta: {
-          auths: ['admin'],
-          tagName: '加盟中心',
-          icon: 'CooperativeHandshake',
+          tagName: '广告发布',
+          icon: 'GoogleAds',
         },
       },
       {
@@ -133,15 +102,6 @@ const routes: RouteRecordRaw[] = [
         meta: {
           tagName: '系统设置',
           icon: 'System',
-        },
-      },
-      {
-        path: '/personal',
-        name: 'Personal',
-        component: () => import('@/views/personal/PersonalIndex.vue'),
-        meta: {
-          tagName: '我的账号',
-          icon: 'People',
         },
       },
     ],

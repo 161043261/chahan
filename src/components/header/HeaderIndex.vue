@@ -53,7 +53,7 @@ const enum Command {
 const handleCommand = async (command: Command) => {
   switch (command) {
     case Command.User:
-      router.push({ name: 'Personal' })
+      // router.push({ name: 'User' })
       break
 
     case Command.Logout:

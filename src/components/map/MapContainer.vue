@@ -18,14 +18,14 @@ const imgList: Record<string, { default: string }> = import.meta.glob(
   },
 )
 // import robotSvg /** string */ from '@/assets/robot.svg'
-import { amap_js_key, robot_state2text_and_type } from '@/constants'
+import { AMAP_JS_KEY, ROBOT_STATE2TEXT_AND_TYPE } from '@/constants'
 
 let map: any = null
 
 const robotList = ref<IRobotData[]>()
 onMounted(() => {
   AMapLoader.load({
-    key: amap_js_key,
+    key: AMAP_JS_KEY,
     version: '2.0',
     plugins: [
       /** 'AMap.Scale' */
@@ -102,7 +102,7 @@ onMounted(() => {
                 </div>
                 <ul class="w-[250px]">
                   <li class="truncate">机器人名字: ${name}</li>
-                  <li class="truncate">机器人状态: ${robot_state2text_and_type.get(state)!.text}</li>
+                  <li class="truncate">机器人状态: ${ROBOT_STATE2TEXT_AND_TYPE.get(state)!.text}</li>
                   <li class="truncate">零件故障数: ${failureNum}</li>
                   <li class="truncate">管理员名字: ${admin}</li>
                   <li class="truncate">管理员邮箱: ${email}</li>

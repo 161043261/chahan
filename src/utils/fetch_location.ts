@@ -1,4 +1,4 @@
-import { amap_web_key } from '@/constants'
+import { AMAP_WEB_KEY } from '@/constants'
 
 /**
  *
@@ -7,7 +7,7 @@ import { amap_web_key } from '@/constants'
  */
 export async function fetchLocation(address: string): Promise<number[]> {
   return new Promise((resolve, reject) => {
-    fetch(`https://restapi.amap.com/v3/geocode/geo?key=${amap_web_key}&address=${address}`)
+    fetch(`https://restapi.amap.com/v3/geocode/geo?key=${AMAP_WEB_KEY}&address=${address}`)
       .then((res) => res.json())
       .then((jsonData) =>
         resolve(

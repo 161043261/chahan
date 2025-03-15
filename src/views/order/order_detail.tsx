@@ -7,7 +7,7 @@ import { orderQueryApi } from '@/apis/order'
 import { robotQueryApi } from '@/apis/chahan'
 import { ElCard, ElDescriptions, ElDescriptionsItem, ElDivider, ElImage, ElTag } from 'element-plus'
 import robotSvg from '@/assets/robot.svg'
-import { order_state2text_and_type, robot_state2text_and_type } from '@/constants'
+import { ORDER_STATE2TEXT_AND_TYPE, ROBOT_STATE2TEXT_AND_TYPE } from '@/constants'
 import { ListNumbers, Order, Time } from '@icon-park/vue-next'
 
 // 注意: @/views/operations/order_detail.tsx 是 tsx 文件, 不是 vue 文件
@@ -94,10 +94,10 @@ export default defineComponent({
             >
               <ElTag
                 size="large"
-                type={order_state2text_and_type.get(orderData.value.state)?.type}
+                type={ORDER_STATE2TEXT_AND_TYPE.get(orderData.value.state)?.type}
                 class="!text-[14px]"
               >
-                {order_state2text_and_type.get(orderData.value.state)?.text}
+                {ORDER_STATE2TEXT_AND_TYPE.get(orderData.value.state)?.text}
               </ElTag>
             </ElDescriptionsItem>
 
@@ -133,10 +133,10 @@ export default defineComponent({
             <ElDescriptionsItem label="机器人状态" align="center">
               <ElTag
                 size="large"
-                type={robot_state2text_and_type.get(robotData.value.state)?.type}
+                type={ROBOT_STATE2TEXT_AND_TYPE.get(robotData.value.state)?.type}
                 class="!text-[14px]"
               >
-                {robot_state2text_and_type.get(robotData.value.state)?.text}
+                {ROBOT_STATE2TEXT_AND_TYPE.get(robotData.value.state)?.text}
               </ElTag>
             </ElDescriptionsItem>
 

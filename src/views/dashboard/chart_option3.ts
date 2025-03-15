@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { chartDataApi3 } from '@/apis/dashboard'
-import { robot_states } from '@/constants'
+import { ROBOT_STATES } from '@/constants'
 import type { ECOption } from '@/utils/echarts'
 
 const getChartOption3 = async () => {
@@ -9,7 +9,7 @@ const getChartOption3 = async () => {
   const chartOption: ECOption = {
     radar: {
       shape: 'circle',
-      indicator: robot_states.map((state) => ({ name: state, max: 100 })),
+      indicator: ROBOT_STATES.map((state) => ({ name: state, max: 100 })),
     },
     series: [
       {

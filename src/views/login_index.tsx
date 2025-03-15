@@ -84,7 +84,7 @@ export default defineComponent({
         <div class="glass-container absolute top-[50%] left-[10%] h-[300px] w-[456px] translate-y-[-50%] rounded-3xl p-[50px]">
           <div class="mb-[20px] flex items-center justify-center gap-[10px]">
             <Rice theme="filled" size="48" fill="#b8e986" strokeWidth={3} />
-            <h1 class="text-3xl text-slate-500">炒饭机器人管理平台</h1>
+            <h1 class="text-3xl text-slate-500">炒饭机器人网格平台</h1>
           </div>
 
           <ElForm model={formData} labelWidth={'auto'} rules={formRules} ref={formRef}>

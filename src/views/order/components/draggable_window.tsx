@@ -2,7 +2,7 @@ import type { IOrderData } from '@/types/order'
 import { CloseOne } from '@icon-park/vue-next'
 import { ElDivider, ElTag } from 'element-plus'
 import { defineComponent, toRefs, type Directive } from 'vue'
-import { order_state2text_and_type } from '@/constants'
+import { ORDER_STATE2TEXT_AND_TYPE } from '@/constants'
 interface IProps {
   orderData: IOrderData
 }
@@ -61,11 +61,11 @@ export default defineComponent({
             <li>
               订单状态:
               <ElTag
-                type={order_state2text_and_type.get(orderData.value.state)?.type}
+                type={ORDER_STATE2TEXT_AND_TYPE.get(orderData.value.state)?.type}
                 class="ml-[10px] !text-[14px]"
                 size="large"
               >
-                {order_state2text_and_type.get(orderData.value.state)?.text}
+                {ORDER_STATE2TEXT_AND_TYPE.get(orderData.value.state)?.text}
               </ElTag>
             </li>
             <li>机器人 ID: {orderData.value.robotId}</li>

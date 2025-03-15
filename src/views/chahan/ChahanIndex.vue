@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { robotDeleteApi, robotQueryApi } from '@/apis/chahan'
-import { robot_states, robot_state2text_and_type } from '@/constants'
+import { ROBOT_STATES, ROBOT_STATE2TEXT_AND_TYPE } from '@/constants'
 import type { IRobotData } from '@/types/robot'
 import { AddOne } from '@icon-park/vue-next'
 import RobotDialog from './components/RobotDialog.vue'
@@ -62,8 +62,8 @@ const { handleCurrentChange, handleSizeChange, pageInfo } = usePagination(
 
 //! 类型体操
 // type TupleToUnion<T extends readonly unknown[]> = T[number]
-// type RobotState = TupleToUnion<typeof robot_states>
-// type RobotState = (typeof robot_states)[number] // 也可以
+// type RobotState = TupleToUnion<typeof ROBOT_STATES>
+// type RobotState = (typeof ROBOT_STATES)[number] // 也可以
 
 const handleReset = () => {
   formData.nameOrAddress = ''
@@ -127,12 +127,12 @@ const handleClose = () => {
         <ElCol :span="5">
           <ElSelect placeholder="请选择炒饭机器人状态" v-model="formData.state">
             <ElOption
-              v-for="(state, idx) of robot_states.slice(1)"
+              v-for="(state, idx) of ROBOT_STATES.slice(1)"
               :label="state"
               :value="idx + 1"
               :key="state"
             >
-              <ElTag size="large" :type="robot_state2text_and_type.get(idx + 1)?.type">
+              <ElTag size="large" :type="ROBOT_STATE2TEXT_AND_TYPE.get(idx + 1)?.type">
                 {{ state }}
               </ElTag>
             </ElOption>
@@ -181,8 +181,8 @@ const handleClose = () => {
         <!-- state: stateId -->
         <ElTableColumn width="150" prop="state" label="机器人状态">
           <template #default="tableData">
-            <ElTag size="large" :type="robot_state2text_and_type.get(tableData.row.state)?.type">{{
-              robot_state2text_and_type.get(tableData.row.state)?.text
+            <ElTag size="large" :type="ROBOT_STATE2TEXT_AND_TYPE.get(tableData.row.state)?.type">{{
+              ROBOT_STATE2TEXT_AND_TYPE.get(tableData.row.state)?.text
             }}</ElTag>
           </template>
         </ElTableColumn>

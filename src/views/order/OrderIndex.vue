@@ -13,7 +13,7 @@ import { name2icon } from '@/utils/icons'
 import { orderQueryApi, orderDeleteApi } from '@/apis/order'
 import type { IOrderData } from '@/types/order'
 import { usePagination } from '@/hooks/usePagination'
-import { order_states, order_state2text_and_type } from '@/constants'
+import { ORDER_STATES, ORDER_STATE2TEXT_AND_TYPE } from '@/constants'
 import { useToast2 } from '@/components/toast/toast'
 import { useRouter } from 'vue-router'
 import DraggableWindow from './components/DraggableWindow.vue'
@@ -201,12 +201,12 @@ const export2xlsx = () => {
           v-model="formData.state"
         >
           <ElOption
-            v-for="(state, idx) of order_states.slice(1)"
+            v-for="(state, idx) of ORDER_STATES.slice(1)"
             :label="state"
             :value="idx + 1"
             :key="state"
           >
-            <ElTag size="large" :type="order_state2text_and_type.get(idx + 1)?.type">
+            <ElTag size="large" :type="ORDER_STATE2TEXT_AND_TYPE.get(idx + 1)?.type">
               {{ state }}
             </ElTag>
           </ElOption>
@@ -279,10 +279,10 @@ const export2xlsx = () => {
             <template #default="tableData">
               <ElTag
                 size="large"
-                :type="order_state2text_and_type.get(tableData.row.state)?.type"
+                :type="ORDER_STATE2TEXT_AND_TYPE.get(tableData.row.state)?.type"
                 class="!text-[14px]"
               >
-                {{ order_state2text_and_type.get(tableData.row.state)?.text }}
+                {{ ORDER_STATE2TEXT_AND_TYPE.get(tableData.row.state)?.text }}
               </ElTag>
             </template>
           </ElTableColumn>

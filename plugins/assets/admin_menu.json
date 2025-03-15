@@ -5,13 +5,11 @@
     "icon": "DataScreen"
   },
   {
-    "name": "炒饭机器人管理",
-    "url": "/chahan",
-    "icon": "KnifeFork",
+    "name": "炒饭机器人",
+    "icon": "Cooking",
     "children": [
-      { "name": "炒饭机器人监控", "url": "/chahan/monitor", "icon": "SurveillanceCameras" },
-      { "name": "炒饭机器人管理", "url": "/chahan/robot", "icon": "RobotOne" },
-      { "name": "财务报表", "url": "/chahan/revenue", "icon": "Excel" }
+      { "name": "炒饭机器人列表", "url": "/chahan", "icon": "SurveillanceCameras" },
+      { "name": "炒饭机器人网格", "url": "/chahan/grid", "icon": "RobotOne" }
     ]
   },
   {
@@ -21,49 +19,33 @@
   },
   {
     "name": "快捷操作",
-    "url": "/operations",
     "icon": "Tag",
     "children": [
       {
         "name": "订单管理",
-        "url": "/operations/order",
+        "url": "/order",
         "icon": "Order"
       },
       {
         "name": "订单详情",
-        "url": "/operations/detail",
+        "url": "/order/detail",
         "icon": "Find"
       },
       {
-        "name": "账单管理",
-        "url": "/operations/bill",
-        "icon": "Bill"
+        "name": "导入订单",
+        "url": "/order/add",
+        "icon": "FileAddition"
       }
     ]
   },
   {
-    "name": "炒饭机器人维修",
-    "url": "/repair",
-    "icon": "Tool"
-  },
-  {
-    "name": "会员中心",
-    "url": "/member",
-    "icon": "LightMember"
-  },
-  {
-    "name": "加盟中心",
-    "url": "/join",
-    "icon": "CooperativeHandshake"
+    "name": "广告发布",
+    "url": "/ads",
+    "icon": "GoogleAds"
   },
   {
     "name": "系统设置",
     "url": "/system",
     "icon": "System"
-  },
-  {
-    "name": "我的账号",
-    "url": "/personal",
-    "icon": "People"
   }
 ]
