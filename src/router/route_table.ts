@@ -25,7 +25,8 @@ const routes: RouteRecordRaw[] = [
       {
         path: '/dashboard',
         name: 'Dashboard',
-        component: () => import('@/views/dashboard/DashboardIndex.vue'),
+        // component: () => import('@/views/dashboard/DashboardIndex.vue'),
+        component: () => import('@/views/dashboard/dashboard_index'),
         meta: {
           tagName: '数据看板',
           icon: 'DataScreen',

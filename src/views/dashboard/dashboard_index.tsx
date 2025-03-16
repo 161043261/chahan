@@ -1,4 +1,4 @@
-import { defineComponent, provide, reactive, ref, onBeforeUnmount } from 'vue'
+import { defineComponent, provide, reactive, ref, onBeforeUnmount, Suspense } from 'vue'
 import { ElCol, ElRow, ElCard, ElTimeline, ElTimelineItem } from 'element-plus'
 import { useUserStore } from '@/stores/user'
 import { storeToRefs } from 'pinia'
@@ -34,8 +34,22 @@ export default defineComponent({
     type CountryListData = ICountryList['data']
     type CountryItem = CountryListData[number]
 
+    const renderFunc = (props: { item: CountryItem; idx: number }) => {
+      return (
+        <div
+          class={['flex']}
+          style={{
+            backgroundColor: `${props.idx % 2 === 0 ? '#e8f9ff' : '#fff'}`,
+          }}
+        >
+          <div class="w-[20%] text-center">{`${commaSep(props.item.revenue)}`}</div>
+          <div class="w-[80%] truncate">{`${props.item.address}`}</div>
+        </div>
+      )
+    }
+
     //! 异步组件
-    const getCountryListData = async () => (await countryListApi()).data
+    const getCountryList = async () => (await countryListApi()).data
 
     const timelineList = reactive<ITimeLineItem[]>([
       /** { timestamp: Date.now(), message: '测试' } */
@@ -91,47 +105,133 @@ export default defineComponent({
     // provide
     provide('virtualListSize' /** key */, virtualListSize /** value */)
 
-    return (
+    return () => (
       <div>
         <ElRow gutter={20}>
           <ElCol span={18}>
             <ElCard class="h-[150px] !rounded-3xl">
               {{
                 header: () => <h1 class="text-[20px]">快捷方式</h1>,
+                default: () => (
+                  <div class="flex justify-center gap-[60px]">
+                    {menuList.value.map((item) => (
+                      <RecursiveChild key={item.url} item={item}></RecursiveChild>
+                    ))}
+                  </div>
+                ),
               }}
-              <div class="flex justify-center gap-[60px]">
-                {menuList.value.map((item) => (
-                  <RecursiveChild key={item.url} item={item}></RecursiveChild>
-                ))}
-              </div>
             </ElCard>
 
             <ElCard class="mt-[20px] h-[500px] !rounded-3xl">
               {{
-                header: () => {
-                  return (
-                    <div class="flex items-center gap-[10px]">
-                      <h1 class="text-[20px]">炒饭机器人统计</h1>
-                      <div onClick={() => handleClick(0, [updateChart, updateChart2])}>
-                        <Refresh
-                          theme="outline"
-                          size={24}
-                          fill="#333"
-                          strokeWidth={3}
-                          class={[
-                            'cursor-pointer',
-                            animated.value && animatedIdx.value === 0 ? 'rotate-x' : '',
-                          ]}
-                        ></Refresh>
-                      </div>
+                header: () => (
+                  <div class="flex items-center gap-[10px]">
+                    <h1 class="text-[20px]">炒饭机器人统计</h1>
+                    <div onClick={() => handleClick(0, [updateChart, updateChart2])}>
+                      <Refresh
+                        theme="outline"
+                        size={24}
+                        fill="#333"
+                        strokeWidth={3}
+                        class={[
+                          'cursor-pointer',
+                          animated.value && animatedIdx.value === 0 ? 'rotate-x' : '',
+                        ]}
+                      ></Refresh>
                     </div>
-                  )
-                },
+                  </div>
+                ),
+
+                default: () => (
+                  <ElRow>
+                    <ElCol span={8}>
+                      <div ref={chartRef} class="h-[400px] w-[100%]"></div>
+                    </ElCol>
+                    <ElCol span={16}>
+                      <div ref={chartRef2} class="h-[400px] w-[100%]"></div>
+                    </ElCol>
+                  </ElRow>
+                ),
               }}
-              <ElRow>
-                
-              </ElRow>
             </ElCard>
+
+            <ElCard class="mt-[20px] !rounded-3xl">
+              {{
+                header: () => (
+                  <div class="flex items-center gap-[10px]">
+                    <h1 class="text-[20px]">营收排行榜, 数据量 {virtualListSize.value}</h1>
+                    <div
+                      onClick={() =>
+                        handleClick(2, [() => virtualListRef.value?.updateLargeList()])
+                      }
+                    >
+                      <Refresh
+                        theme="outline"
+                        size={24}
+                        fill="#333"
+                        strokeWidth={3}
+                        class={[
+                          'cursor-pointer',
+                          animated.value && animatedIdx.value === 2 ? 'rotate-x' : '',
+                        ]}
+                      ></Refresh>
+                    </div>
+                  </div>
+                ),
+
+                default: () => (
+                  <Suspense>
+                    {{
+                      default: () => (
+                        <VirtualList
+                          itemHeight={50}
+                          renderFunc={renderFunc}
+                          height={400}
+                          getLargeList={getCountryList}
+                          ref={virtualListRef}
+                        ></VirtualList>
+                      ),
+                      fallback: () => '',
+                    }}
+                  </Suspense>
+                ),
+              }}
+            </ElCard>
+          </ElCol>
+
+          <ElCol span={6}>
+            <ElCard class="h-[370px] !rounded-3xl">
+              {{
+                header: () => (
+                  <div class="flex items-center gap-[10px]">
+                    <h1 class="text-[20px]">机器人五边形数据</h1>
+                    <div onClick={() => handleClick(1, [updateChart3])}>
+                      <Refresh
+                        theme="outline"
+                        size={24}
+                        fill="#333"
+                        strokeWidth={3}
+                        class={[
+                          'cursor-pointer',
+                          animated.value && animatedIdx.value === 1 ? 'rotate-x' : '',
+                        ]}
+                      ></Refresh>
+                    </div>
+                  </div>
+                ),
+
+                default: () => <div ref={chartRef3} class="h-[240px] w-[100%]"></div>,
+              }}
+            </ElCard>
+            <ElCard class="mt-[20px] h-[500px] !rounded-3xl">
+              <ElTimeline class="overflow-auto">
+                {timelineList.map((item) => (
+                  <ElTimelineItem key={item.timestamp} timestamp={formatter(item.timestamp)} center>
+                    <ElCard class="!rounded-xl">{item.message}</ElCard>
+                  </ElTimelineItem>
+                ))}
+              </ElTimeline>
+            </ElCard>{' '}
           </ElCol>
         </ElRow>
       </div>

@@ -114,7 +114,7 @@ const renderFunc = (props: { item: CountryItem; idx: number } /** { emit, slots 
 }
 
 //! 异步组件
-const getCountryListData = async () => (await countryListApi()).data
+const getCountryList = async () => (await countryListApi()).data
 
 const timelineList = reactive<ITimeLineItem[]>([
   /** { timestamp: Date.now(), message: '测试' } */
@@ -233,7 +233,7 @@ provide('virtualListSize' /** key */, virtualListSize /** value */)
                 :item-height="50"
                 :render-func="renderFunc"
                 :height="400"
-                :get-large-list="getCountryListData"
+                :get-large-list="getCountryList"
                 ref="virtualListRef"
               ></VirtualList>
             </template>
@@ -255,7 +255,7 @@ provide('virtualListSize' /** key */, virtualListSize /** value */)
                 :strokeWidth="3"
                 class="cursor-pointer"
                 :class="{ ['rotate-x']: animated && animatedIdx === 1 }"
-                @click="handleClick(1, [() => updateChart3()])"
+                @click="handleClick(1, [updateChart3])"
               />
             </div>
           </template>
@@ -263,7 +263,7 @@ provide('virtualListSize' /** key */, virtualListSize /** value */)
         </ElCard>
 
         <!--! 20px + 808px, 1198px -->
-        <ElCard class="mt-[20px] h-[808px] !rounded-3xl">
+        <ElCard class="mt-[20px] h-[500px] !rounded-3xl">
           <ElTimeline class="overflow-auto">
             <ElTimelineItem
               v-for="timeline of timelineList"
@@ -271,8 +271,8 @@ provide('virtualListSize' /** key */, virtualListSize /** value */)
               :timestamp="formatter(timeline.timestamp)"
               :key="timeline.timestamp"
             >
-              <ElCard>
-                <p>{{ timeline.message }}</p>
+              <ElCard class="!rounded-xl">
+                {{ timeline.message }}
               </ElCard>
             </ElTimelineItem>
           </ElTimeline>
