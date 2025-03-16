@@ -7,8 +7,8 @@ import { useChart } from '@/composables/useChart.ts'
 import getChartOption from './chart_option.ts'
 import getChartOption2 from './chart_option2.ts'
 import getChartOption3 from './chart_option3.ts'
-import { countryListApi } from '@/apis/dashboard.ts'
-import type { ICountryList, ITimeLineItem } from '@/types/dashboard.ts'
+import { revenueListApi } from '@/apis/dashboard.ts'
+import type { IRevenueList, ITimeLineItem } from '@/types/dashboard.ts'
 import VirtualList from '@/utils/VirtualList.vue'
 import bus from '@/utils/bus'
 import { Refresh } from '@icon-park/vue-next'
@@ -31,10 +31,10 @@ export default defineComponent({
     const updateChart3 = useChart(chartRef3, getChartOption3)
 
     //! 类型体操
-    type CountryListData = ICountryList['data']
-    type CountryItem = CountryListData[number]
+    type RevenueListData = IRevenueList['data']
+    type RevenueItem = RevenueListData[number]
 
-    const renderFunc = (props: { item: CountryItem; idx: number }) => {
+    const renderFunc = (props: { item: RevenueItem; idx: number }) => {
       return (
         <div
           class={['flex']}
@@ -49,7 +49,7 @@ export default defineComponent({
     }
 
     //! 异步组件
-    const getCountryList = async () => (await countryListApi()).data
+    const getRevenueList = async () => (await revenueListApi()).data
 
     const timelineList = reactive<ITimeLineItem[]>([
       /** { timestamp: Date.now(), message: '测试' } */
@@ -187,7 +187,7 @@ export default defineComponent({
                           itemHeight={50}
                           renderFunc={renderFunc}
                           height={400}
-                          getLargeList={getCountryList}
+                          getLargeList={getRevenueList}
                           ref={virtualListRef}
                         ></VirtualList>
                       ),

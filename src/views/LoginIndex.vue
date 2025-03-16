@@ -57,7 +57,7 @@ const handleLogin = () => {
         <!-- <img src="@/assets/logo.svg" alt="logo" class="w-[70px] h-[70px]" />
           -->
         <Rice theme="filled" size="48" fill="#b8e986" :strokeWidth="3" />
-        <h1 class="text-3xl text-slate-500">炒饭机器人网格平台</h1>
+        <h1 class="text-3xl text-slate-500">炒饭机器人管理</h1>
       </div>
 
       <ElForm :model="formData" label-width="auto" :rules="formRules" ref="formRef">

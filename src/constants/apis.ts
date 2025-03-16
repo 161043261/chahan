@@ -8,7 +8,7 @@ export enum Api {
   ChartData = `/api/${version}/chartData`,
   ChartData2 = `/api/${version}/chartData2`,
   ChartData3 = `/api/${version}/chartData3`,
-  CountryList = `/api/${version}/countryList`,
+  RevenueList = `/api/${version}/revenueList`,
   MarkerList = `/api/${version}/markerList`,
   Login = `/api/${version}/login`,
   OrderQuery = `/api/${version}/orderQuery`,

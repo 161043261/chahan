@@ -6,14 +6,14 @@ export interface IResData {
 export type IChartData = {
   data: {
     name: string
-    value: number
+    data: number
   }[]
 } & IResData
 
 export type IChartData2 = {
   data: {
     name: string
-    value: number[]
+    data: number[]
   }[]
 } & IResData
 
@@ -21,7 +21,7 @@ export type IChartData3 = {
   data: [number, number, number, number, number]
 } & IResData
 
-export type ICountryList = {
+export type IRevenueList = {
   data: {
     id: number
     address: string

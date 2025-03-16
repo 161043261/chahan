@@ -1,15 +1,15 @@
 import mockjs from 'mockjs'
-import type { ICountryList, IOrderList, IRobotList } from '../types'
+import type { IRevenueList, IOrderList, IRobotList } from '../types'
 import { randArr } from '../utils'
 
-type ICountryListData = ICountryList['data']
-const mockCountryList = (
+type IRevenueListData = IRevenueList['data']
+const mockRevenueList = (
   amount: number,
 ): {
-  countryList: ICountryListData
+  revenueList: IRevenueListData
 } => {
   return mockjs.mock({
-    [`countryList|${amount}`]: [
+    [`revenueList|${amount}`]: [
       {
         'id|+1': 1,
         address: '@county(true)',
@@ -19,7 +19,7 @@ const mockCountryList = (
 }
 
 const mockRobotList = (amount: number): IRobotList['data'] => {
-  // const robotList: IRobotList['data'] = mockCountryList(amount).countryList.map((item) => ({
+  // const robotList: IRobotList['data'] = mockRevenueList(amount).revenueList.map((item) => ({
   //   id: item.id,
   //   address: item.address,
   //   name: mockjs.Random.word(),
@@ -67,4 +67,4 @@ const mockOrderList = (amount: number, robotList: IRobotList['data']): IOrderLis
     })
 }
 
-export { mockCountryList, mockRobotList, mockOrderList }
+export { mockRevenueList, mockRobotList, mockOrderList }

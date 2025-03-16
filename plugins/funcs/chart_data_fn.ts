@@ -8,9 +8,9 @@ const chartDataFn: Connect.NextHandleFunction = (req, res) => {
     code: 200,
     message: '获取营收比例成功',
     data: [
-      { value: randNum(1, 100), name: '炒饭A' },
-      { value: randNum(1, 100), name: '炒饭B' },
-      { value: randNum(1, 100), name: '炒饭C' },
+      { name: '炒饭A', data: randNum(1, 100) },
+      { name: '炒饭B', data: randNum(1, 100) },
+      { name: '炒饭C', data: randNum(1, 100) },
     ],
   }
   res.end(JSON.stringify(resData))
@@ -22,9 +22,9 @@ const chartDataFn2: Connect.NextHandleFunction = (req, res) => {
     code: 200,
     message: '获取机器人电量成功',
     data: [
-      { name: '充电量', value: randArr(1, 100, 9) },
-      { name: '充电时长', value: randArr(1, 100, 9) },
-      { name: '充电功率', value: randArr(1, 100, 9) },
+      { name: '充电量', data: randArr(1, 100, 9) },
+      { name: '充电时长', data: randArr(1, 100, 9) },
+      { name: '充电功率', data: randArr(1, 100, 9) },
     ],
   }
   res.end(JSON.stringify(resData))

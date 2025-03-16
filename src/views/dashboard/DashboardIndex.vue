@@ -16,8 +16,8 @@ import { useChart } from '@/composables/useChart.ts'
 import getChartOption from './chart_option.ts'
 import getChartOption2 from './chart_option2.ts'
 import getChartOption3 from './chart_option3.ts'
-import { countryListApi } from '@/apis/dashboard.ts'
-import type { ICountryList, ITimeLineItem } from '@/types/dashboard.ts'
+import { revenueListApi } from '@/apis/dashboard.ts'
+import type { IRevenueList, ITimeLineItem } from '@/types/dashboard.ts'
 import VirtualList from '@/utils/VirtualList.vue'
 import bus from '@/utils/bus'
 import { Refresh } from '@icon-park/vue-next'
@@ -70,11 +70,11 @@ const updateChart2 = useChart(chartRef2, getChartOption2)
 const updateChart3 = useChart(chartRef3, getChartOption3)
 
 //! 类型体操
-type CountryListData = ICountryList['data']
-type CountryItem = CountryListData[number]
+type RevenueListData = IRevenueList['data']
+type RevenueItem = RevenueListData[number]
 
 //! 渲染函数
-const renderFunc = (props: { item: CountryItem; idx: number } /** { emit, slots } */) => {
+const renderFunc = (props: { item: RevenueItem; idx: number } /** { emit, slots } */) => {
   return h(
     /* HyperScript */ 'div',
     {
@@ -114,7 +114,7 @@ const renderFunc = (props: { item: CountryItem; idx: number } /** { emit, slots 
 }
 
 //! 异步组件
-const getCountryList = async () => (await countryListApi()).data
+const getRevenueList = async () => (await revenueListApi()).data
 
 const timelineList = reactive<ITimeLineItem[]>([
   /** { timestamp: Date.now(), message: '测试' } */
@@ -233,7 +233,7 @@ provide('virtualListSize' /** key */, virtualListSize /** value */)
                 :item-height="50"
                 :render-func="renderFunc"
                 :height="400"
-                :get-large-list="getCountryList"
+                :get-large-list="getRevenueList"
                 ref="virtualListRef"
               ></VirtualList>
             </template>

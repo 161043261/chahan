@@ -6,7 +6,7 @@ export const enum Api {
   ChartData = '/api/chartData',
   ChartData2 = '/api/chartData2',
   ChartData3 = '/api/chartData3',
-  CountryList = '/api/countryList',
+  RevenueList = '/api/revenueList',
   RobotQuery = '/api/robotQuery',
   RobotAdd = '/api/robotAdd',
   RobotDelete = '/api/robotDelete',

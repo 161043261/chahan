@@ -1,5 +1,5 @@
 import { Api } from '@/constants/apis'
-import type { IChartData, IChartData2, IChartData3, ICountryList } from '@/types/dashboard'
+import type { IChartData, IChartData2, IChartData3, IRevenueList } from '@/types/dashboard'
 import { get } from '@/utils/http'
 
 async function chartDataApi(): Promise<IChartData> {
@@ -14,8 +14,8 @@ async function chartDataApi3(): Promise<IChartData3> {
   return get(Api.ChartData3)
 }
 
-async function countryListApi(): Promise<ICountryList> {
-  return get(Api.CountryList)
+async function revenueListApi(): Promise<IRevenueList> {
+  return get(Api.RevenueList)
 }
 
-export { chartDataApi, chartDataApi2, chartDataApi3, countryListApi }
+export { chartDataApi, chartDataApi2, chartDataApi3, revenueListApi }

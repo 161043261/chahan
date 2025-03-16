@@ -1,4 +1,4 @@
-@use '../assets/global.scss';
+@use '@/assets/global.scss';
 
 .el-button {
   border: none;
@@ -9,7 +9,7 @@
 }
 
 .bg {
-  background-image: url(../assets/bg.jpg);
+  background-image: url('@/assets/bg.jpg');
 }
 
 .glass-container {

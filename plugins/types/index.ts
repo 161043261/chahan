@@ -19,14 +19,14 @@ export interface ILoginResData {
 export interface IChartData {
   data: {
     name: string
-    value: number
+    data: number
   }[]
 }
 
 export interface IChartData2 {
   data: {
     name: string
-    value: number[]
+    data: number[]
   }[]
 }
 
@@ -34,7 +34,7 @@ export interface IChartData3 {
   data: [number, number, number, number, number]
 }
 
-export interface ICountryList {
+export interface IRevenueList {
   data: {
     id: number
     address: string
