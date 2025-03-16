@@ -116,7 +116,13 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/:pathMatch(.*)*', // 匹配未定义的任意路由
     name: 'NotFound',
-    component: () => import('@/views/not_found.tsx'),
+    // component: () => import('@/views/NotFound.vue'),
+    component: () => import('@/views/not_found'),
+  },
+  {
+    path: '/v_model', // 匹配未定义的任意路由
+    name: 'vModel',
+    component: () => import('@/views/v_model'),
   },
 ]
 
