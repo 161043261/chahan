@@ -197,7 +197,7 @@ provide('virtualListSize' /** key */, virtualListSize /** value */)
                 :strokeWidth="3"
                 class="cursor-pointer"
                 :class="{ ['rotate-x']: animated && animatedIdx === 0 }"
-                @click="handleClick(0, [() => updateChart(), () => updateChart2()])"
+                @click="handleClick(0, [updateChart, updateChart2])"
               />
             </div>
           </template>
