@@ -20,11 +20,11 @@ const chartDataFn2: Connect.NextHandleFunction = (req, res) => {
   res.setHeader('Content-Type', 'application/json')
   const resData: IChartData2 & IResData = {
     code: 200,
-    message: '获取机器人电量成功',
+    message: '获取充电信息成功',
     data: [
-      { name: '充电量', data: randArr(1, 100, 9) },
-      { name: '充电时长', data: randArr(1, 100, 9) },
       { name: '充电功率', data: randArr(1, 100, 9) },
+      { name: '充电时长', data: randArr(1, 100, 9) },
+      { name: '充电量', data: randArr(1, 100, 9) },
     ],
   }
   res.end(JSON.stringify(resData))
