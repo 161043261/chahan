@@ -1,5 +1,5 @@
 import { Api } from '@/constants/apis'
-import type { IRobotList, IResData, IChartData4 } from '@/types/robot'
+import type { IRobotList, IResData } from '@/types/robot'
 import { get } from '@/utils/http'
 
 export async function robotQueryApi(params: {
@@ -38,8 +38,4 @@ export async function robotUpdateApi(params: {
 
 export async function robotDeleteApi(params: { id: number }): Promise<IResData> {
   return get(Api.RobotDelete, params)
-}
-
-export async function chartDataApi4(): Promise<IChartData4> {
-  return get(Api.ChartData4)
 }

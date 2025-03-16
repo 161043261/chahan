@@ -5,7 +5,6 @@ export enum Api {
   RobotAdd = `/api/${version}/robotAdd`,
   RobotDelete = `/api/${version}/robotDelete`,
   RobotUpdate = `/api/${version}/robotUpdate`,
-  ChartData4 = `/api/${version}/chartData4`,
   ChartData = `/api/${version}/chartData`,
   ChartData2 = `/api/${version}/chartData2`,
   ChartData3 = `/api/${version}/chartData3`,

@@ -1,6 +1,6 @@
-export { chartDataFn, chartDataFn2, chartDataFn3, chartDataFn4 } from './chart_data_fn'
+export { chartDataFn, chartDataFn2, chartDataFn3 } from './chart_data_fn'
 export { default as loginFn } from './login_fn'
-export { countryListFn } from './country_list_fn'
+export { default as countryListFn } from './country_list_fn'
 export { robotQueryFn, robotAddFn, robotDeleteFn, robotUpdateFn } from './robot_fn'
 export { orderQueryFn, orderDeleteFn } from './order_fn'
 export { markerListFn, addressListFn } from './map_fn'

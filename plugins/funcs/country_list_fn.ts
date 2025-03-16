@@ -3,7 +3,7 @@ import { ICountryList, IResData } from '../types'
 import { mockCountryList } from '../mock'
 import { randNum } from '../utils'
 
-export const countryListFn: Connect.NextHandleFunction = (req, res) => {
+const countryListFn: Connect.NextHandleFunction = (req, res) => {
   res.setHeader('Content-Type', 'application/json')
   const countryListData = mockCountryList(randNum(100_000, 200_000) /** amount */)
   const resData: ICountryList & IResData = {
@@ -17,3 +17,5 @@ export const countryListFn: Connect.NextHandleFunction = (req, res) => {
   resData.data.sort((a, b) => b.revenue! - a.revenue!)
   res.end(JSON.stringify(resData))
 }
+
+export default countryListFn
