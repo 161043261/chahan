@@ -19,7 +19,7 @@
 
 ### layouts
 
-- [LayoutIndex.vue](src/layouts/LayoutIndex.vue) -> [layout_index.tsx](src/layouts/layout_index.tsx)
+- [LayoutIndex.vue](src/layouts/LayoutIndex.vue)
 - [LayoutTab.vue](src/layouts/LayoutTab.vue) -> [layout_tab.tsx](src/layouts/layout_tab.tsx)
 
 ### views

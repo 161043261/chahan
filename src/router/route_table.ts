@@ -13,6 +13,7 @@ const routes: RouteRecordRaw[] = [
     path: '/',
     name: 'Home',
     component: () => import('@/layouts/LayoutIndex.vue'),
+    // component: () => import('@/layouts/layout_index'),
     redirect: {
       name: 'Empty',
     },
@@ -71,6 +72,7 @@ const routes: RouteRecordRaw[] = [
       {
         path: '/order/detail',
         name: 'Detail',
+        // component: () => import('@/views/order/OrderDetail.vue'),
         component: () => import('@/views/order/order_detail'),
         meta: {
           tagName: '订单详情',
@@ -80,6 +82,7 @@ const routes: RouteRecordRaw[] = [
       {
         path: '/order/add',
         name: 'FileAddition',
+        // component: () => import('@/views/order/OrderAdd.vue'),
         component: () => import('@/views/order/order_add'),
         meta: {
           tagName: '导入订单',
