@@ -2,7 +2,8 @@ import { defineComponent, provide, reactive, ref, onBeforeUnmount, Suspense } fr
 import { ElCol, ElRow, ElCard, ElTimeline, ElTimelineItem } from 'element-plus'
 import { useUserStore } from '@/stores/user'
 import { storeToRefs } from 'pinia'
-import RecursiveChild from './RecursiveChild.vue'
+// import RecursiveChild from './RecursiveChild.vue'
+import RecursiveChild from './recursive_child'
 import { useChart } from '@/composables/useChart.ts'
 import getChartOption from './chart_option.ts'
 import getChartOption2 from './chart_option2.ts'
@@ -106,6 +107,11 @@ export default defineComponent({
     // provide
     provide('virtualListSize' /** key */, virtualListSize /** value */)
 
+    ////////////////////////////////////
+    const __debug_height = ref(400)
+    const __debug_itemHeight = ref(50)
+    ////////////////////////////////////
+
     return () => (
       <div>
         <ElRow gutter={20}>
@@ -176,7 +182,28 @@ export default defineComponent({
                           animated.value && animatedIdx.value === 2 ? 'rotate-x' : '',
                         ]}
                       ></Refresh>
+
+                      {/* ************************************************** */}
+                      {import.meta.env.DEV ? (
+                        <>
+                          <button
+                            class="mx-[20px] border-1 p-[10px]"
+                            onClick={() => (__debug_height.value += 100)}
+                          >
+                            height+=100
+                          </button>
+                          <button
+                            class="border-1 p-[10px]"
+                            onClick={() => (__debug_itemHeight.value += 10)}
+                          >
+                            itemHeight+=10
+                          </button>
+                        </>
+                      ) : (
+                        ''
+                      )}
                     </div>
+                    {/* ************************************************** */}
                   </div>
                 ),
 
@@ -185,9 +212,9 @@ export default defineComponent({
                     {{
                       default: () => (
                         <VirtualList
-                          itemHeight={50}
+                          itemHeight={__debug_itemHeight.value}
                           renderFunc={renderFunc}
-                          height={400}
+                          height={__debug_height.value}
                           fetchLargeList={fetchRevenueList}
                           ref={virtualListRef}
                         ></VirtualList>
@@ -224,7 +251,6 @@ export default defineComponent({
                 default: () => <div ref={chartRef3} class="h-[240px] w-[100%]"></div>,
               }}
             </ElCard>
-
             <ElCard class="mt-[20px] h-[500px] !rounded-3xl">
               <ElTimeline class="overflow-auto">
                 {timelineList.map((item) => (

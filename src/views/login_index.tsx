@@ -1,4 +1,4 @@
-import './login.scss'
+import './login_index.scss'
 
 import { Lock, Rice, User } from '@icon-park/vue-next'
 import { ElButton, ElForm, ElFormItem, ElInput, type FormRules } from 'element-plus'

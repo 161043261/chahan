@@ -175,7 +175,6 @@ provide('virtualListSize' /** key */, virtualListSize /** value */)
   <main>
     <ElRow :gutter="20">
       <ElCol :span="18">
-        <!--! 150px, 150px -->
         <ElCard class="h-[150px] !rounded-3xl">
           <template #header>
             <h1 class="text-[20px]">快捷方式</h1>
@@ -185,7 +184,6 @@ provide('virtualListSize' /** key */, virtualListSize /** value */)
           </div>
         </ElCard>
 
-        <!--! 20px + 500px, 670px -->
         <ElCard class="mt-[20px] h-[500px] !rounded-3xl">
           <template #header>
             <div class="flex items-center gap-[10px]">
@@ -211,7 +209,6 @@ provide('virtualListSize' /** key */, virtualListSize /** value */)
           </ElRow>
         </ElCard>
 
-        <!--! 20px + 508px, 1198px -->
         <ElCard class="mt-[20px] !rounded-3xl">
           <template #header>
             <div class="flex items-center gap-[10px]">
@@ -243,7 +240,6 @@ provide('virtualListSize' /** key */, virtualListSize /** value */)
       </ElCol>
 
       <ElCol :span="6">
-        <!--! 370px, 370px-->
         <ElCard class="h-[370px] !rounded-3xl">
           <template #header>
             <div class="flex items-center gap-[10px]">
@@ -262,7 +258,6 @@ provide('virtualListSize' /** key */, virtualListSize /** value */)
           <div ref="chartRef3" class="h-[240px] w-[100%]"></div>
         </ElCard>
 
-        <!--! 20px + 808px, 1198px -->
         <ElCard class="mt-[20px] h-[500px] !rounded-3xl">
           <ElTimeline class="overflow-auto">
             <ElTimelineItem

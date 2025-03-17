@@ -6,7 +6,7 @@ const props = defineProps<{
   height: number
   itemHeight: number
   fetchLargeList: () => Promise<T[]>
-  renderFunc: (props: { item: T, idx: number }) => VNode
+  renderFunc: (props: { item: T; idx: number }) => VNode
 }>()
 
 // 组件暴露接口
