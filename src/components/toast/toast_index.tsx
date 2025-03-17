@@ -1,6 +1,6 @@
 import { Attention, Caution, CheckOne, CloseOne } from '@icon-park/vue-next'
 import { defineComponent, onBeforeUnmount, ref, Transition } from 'vue'
-import './toast.module.scss'
+import transition from './transition.module.scss'
 
 interface Props {
   message: string
@@ -102,7 +102,13 @@ export default defineComponent(
     ctx.expose({ mount, isAlive })
     return () => (
       <div>
-        <Transition name="fade">
+        <Transition
+          name="fade"
+          enterActiveClass={transition['fade-enter-active']}
+          leaveActiveClass={transition['fade-leave-active']}
+          enterFromClass={transition['fade-enter-from']}
+          leaveToClass={transition['fade-leave-to']}
+        >
           {isAlive.value ? (
             <div class="border-1st fixed top-[10%] left-[50%] z-100 -translate-x-[50%] rounded-lg border-[3px] p-[5px]">
               <div class="flex items-center gap-[5px]">

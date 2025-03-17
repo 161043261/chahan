@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { computed, defineComponent, reactive, inject, ref, type Ref, type VNode } from 'vue'
-import styled from './styled.module.scss'
+import './virtual_list.scss'
 
 interface IProps<T> {
   height: number // 可视区高度
@@ -60,7 +60,7 @@ export default defineComponent({
 
     return () => (
       <div
-        class={[styled.virtualList, 'relative', 'overflow-auto', 'bg-slate-50']}
+        class="virtual-list relative overflow-auto bg-slate-50"
         onScroll={handleScroll}
         style={{ height: props.height + 'px' }}
       >

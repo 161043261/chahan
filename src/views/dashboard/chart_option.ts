@@ -49,7 +49,10 @@ const getChartOption = async () => {
   }
   //// chartOption.series[0].data = Array.from({ length: 3 }, () => ({ value: 0, name: '' }))
   for (let i = 0; i < chartData.data.length; i++) {
-    ;(chartOption.series as any)[0].data = chartData.data
+    ;(chartOption.series as any)[0].data = chartData.data.map((item) => ({
+      name: item.name,
+      value: item.data,
+    }))
   }
   return chartOption
 }

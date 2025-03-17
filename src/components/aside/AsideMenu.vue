@@ -14,21 +14,23 @@ const handleClick = () => router.push({ name: 'Home' })
 </script>
 
 <template>
-  <div
-    class="flex h-[70px] cursor-pointer items-center justify-center gap-[10px] px-[10px]"
-    @click="handleClick"
-  >
-    <Rice theme="filled" size="48" fill="#b8e986" :strokeWidth="3" />
-    <h1 class="text-[20px]">炒饭机器人</h1>
-  </div>
+  <div>
+    <div
+      class="flex h-[70px] cursor-pointer items-center justify-center gap-[10px] px-[10px]"
+      @click="handleClick"
+    >
+      <Rice theme="filled" size="48" fill="#b8e986" :strokeWidth="3" />
+      <h1 class="text-[20px]">炒饭机器人</h1>
+    </div>
 
-  <ElMenu class="menu !border-none" :router="true" :default-active="route.path">
-    <RecursiveChild v-for="item of menuList" :key="item.url" :item="item"></RecursiveChild>
-  </ElMenu>
+    <ElMenu class="el-menu !border-none" router :default-active="route.path">
+      <RecursiveChild v-for="item of menuList" :key="item.url" :item="item"></RecursiveChild>
+    </ElMenu>
+  </div>
 </template>
 
 <style scoped lang="scss">
-.menu {
+.el-menu {
   :deep(.is-active) {
     background-color: var(--color-green) !important;
     color: #fff;

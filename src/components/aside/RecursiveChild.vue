@@ -30,32 +30,38 @@ const handleClick = (item: IMenuItem) => {
 </script>
 
 <template>
-  <ElSubMenu v-if="item.children" :index="item.url ?? 'undefined'">
-    <template #title>
+  <div class="container">
+    <ElSubMenu v-if="item.children" :index="item.name">
+      <template #title>
+        <ElIcon>
+          <Component :is="name2icon.get(item.icon)"></Component>
+        </ElIcon>
+        <span>{{ item.name }}</span>
+      </template>
+      <RecursiveChild
+        v-for="child of item.children"
+        :key="child.url"
+        :item="child"
+      ></RecursiveChild>
+    </ElSubMenu>
+
+    <ElMenuItem
+      v-else
+      :index="item.url"
+      v-show="item.url !== '/order/detail'"
+      @click="handleClick(item)"
+      class="duration-500"
+    >
       <ElIcon>
         <Component :is="name2icon.get(item.icon)"></Component>
       </ElIcon>
       <span>{{ item.name }}</span>
-    </template>
-    <RecursiveChild v-for="child of item.children" :key="child.url" :item="child"></RecursiveChild>
-  </ElSubMenu>
-
-  <ElMenuItem
-    v-else
-    :index="item.url"
-    v-show="item.url !== '/order/detail'"
-    @click="handleClick(item)"
-    class="duration-500"
-  >
-    <ElIcon>
-      <Component :is="name2icon.get(item.icon)"></Component>
-    </ElIcon>
-    <span>{{ item.name }}</span>
-  </ElMenuItem>
+    </ElMenuItem>
+  </div>
 </template>
 
 <style scoped lang="scss">
-::-webkit-scrollbar {
+.container::-webkit-scrollbar {
   display: none !important;
 }
 </style>

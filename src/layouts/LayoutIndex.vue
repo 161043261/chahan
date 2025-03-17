@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { ElContainer, ElHeader, ElAside, ElMain } from 'element-plus'
-import AsideMenu from '@/components/aside/AsideMenu.vue'
+// import AsideMenu from '@/components/aside/AsideMenu.vue'
+import AsideMenu from '@/components/aside/aside_menu'
 import HeaderIndex from '@/components/header/HeaderIndex.vue'
+// import HeaderIndex from '@/components/header/header_index'
 import LayoutTab from './LayoutTab.vue'
 import { ref, useTemplateRef } from 'vue'
 import bus from '@/utils/bus'

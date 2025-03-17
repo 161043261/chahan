@@ -26,7 +26,6 @@ const getChartOption3 = async () => {
       },
     ],
   }
-
   ;(chartOption.series as any)[0].data[0].value = chartData.data
   return chartOption
 }
