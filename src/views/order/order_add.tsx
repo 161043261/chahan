@@ -30,7 +30,7 @@ export default defineComponent({
     )
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const filterNode = (value: string, data: { [key: string]: any }) => {
+    const nodeFilter = (value: string, data: { [key: string]: any }) => {
       if (!value) {
         return true
       }
@@ -52,7 +52,7 @@ export default defineComponent({
                 ref={treeRef}
                 data={addrList.value}
                 class="mt-[20px]"
-                filterNodeMethod={filterNode}
+                filterNodeMethod={nodeFilter}
               ></ElTree>
             </ElCol>
 

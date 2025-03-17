@@ -53,6 +53,7 @@ export default defineComponent({
       }
     })
 
+    // tsx 插槽的第一种写法
     const slots = {
       header: () => <div class="text-[20px]">订单详情</div>,
       footer: () => <p class="text-slate-500">{`查询时间 ${getDate()} ${getTime()}`}</p>,
@@ -69,61 +70,62 @@ export default defineComponent({
 
     return () => (
       <main>
+        {/* tsx 插槽的第一种写法 */}
         <ElCard class="!rounded-3xl" v-slots={slots /** 传递插槽 */}>
+          {/* FIXME */}
           <ElDescriptions title={`订单 ${orderData.value.id} 详情`} column={3} border>
-            <ElDescriptionsItem
-              v-slots={{
+            <ElDescriptionsItem align="center">
+              {/* tsx 插槽的第二种写法 */}
+              {{
                 label: () => (
                   <div class="flex items-center justify-center gap-[10px]">
                     <ListNumbers theme="outline" size="20" fill="#7ed321" strokeWidth={3} />
                     订单号
                   </div>
                 ),
+                default: () => orderData.value.id,
               }}
-              align="center"
-            >
-              {orderData.value.id}
             </ElDescriptionsItem>
 
-            <ElDescriptionsItem
-              v-slots={{
+            <ElDescriptionsItem align="center">
+              {{
                 label: () => (
                   <div class="flex items-center justify-center gap-[10px]">
                     <Order theme="outline" size="20" fill="#7ed321" strokeWidth={3} />
                     订单状态
                   </div>
                 ),
+                default: () => (
+                  <ElTag
+                    size="large"
+                    type={ORDER_STATE2TEXT_AND_TYPE.get(orderData.value.state)?.type}
+                    class="!text-[14px]"
+                  >
+                    {ORDER_STATE2TEXT_AND_TYPE.get(orderData.value.state)?.text}
+                  </ElTag>
+                ),
               }}
-              align="center"
-            >
-              <ElTag
-                size="large"
-                type={ORDER_STATE2TEXT_AND_TYPE.get(orderData.value.state)?.type}
-                class="!text-[14px]"
-              >
-                {ORDER_STATE2TEXT_AND_TYPE.get(orderData.value.state)?.text}
-              </ElTag>
             </ElDescriptionsItem>
 
-            <ElDescriptionsItem
-              v-slots={{
+            <ElDescriptionsItem align="center">
+              {{
                 label: () => (
                   <div class="flex-center flex items-center justify-center gap-[10px]">
                     <Time theme="outline" size="20" fill="#7ed321" strokeWidth={3} />
-                    '订单日期'
+                    订单日期
                   </div>
                 ),
+                default: () => orderData.value.date,
               }}
-              align="center"
-            >
-              {orderData.value.date}
             </ElDescriptionsItem>
           </ElDescriptions>
-          <ElDivider></ElDivider>
+
+          <ElDivider />
+
           <ElDescriptions
             title={`处理订单 ${orderData.value.id} 的机器人详情`}
             direction="vertical"
-            border
+            border={true}
             column={4}
           >
             <ElDescriptionsItem rowspan={2} width={140} label="机器人图像" align="center">

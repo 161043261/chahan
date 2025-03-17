@@ -46,7 +46,8 @@
 
 ## Vue 项目使用 tsx
 
-- [layout_tab.tsx](./src/layouts/layout_tab.tsx)
+- [layout_tab.tsx](src/layouts/layout_tab.tsx) h 函数, 插槽
+- [order_detail.tsx](src/views/order/order_detail.tsx) 插槽
 
 ## 路由权限控制
 
