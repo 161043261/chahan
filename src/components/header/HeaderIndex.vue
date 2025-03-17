@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Remind, User, Power } from '@icon-park/vue-next'
-import { ElBadge, ElDropdown, ElDropdownMenu, ElDropdownItem } from 'element-plus'
+import { ElBadge, ElDropdown, ElDropdownMenu, ElDropdownItem, ElSwitch } from 'element-plus'
 import { useUserStore } from '@/stores/user'
 import { storeToRefs } from 'pinia'
 import { useRouter } from 'vue-router'
@@ -13,7 +13,7 @@ const router = useRouter()
 const isAlive = ref(false)
 
 const emit = defineEmits<{
-  (e: 'switch-watermark', isAlive: boolean): void
+  (ev: 'switchWatermark', isAlive: boolean): void
 }>()
 
 // const emit = defineEmits<{
@@ -73,12 +73,12 @@ const handleCommand = async (command: Command) => {
           style="--el-switch-on-color: var(--color-green); --el-switch-off-color: var(--color-1st)"
           active-text="水印开"
           inactive-text="水印关"
-          @change="emit('switch-watermark', isAlive)"
+          @change="emit('switchWatermark', isAlive)"
         />
 
         <ElBadge
           :is-dot="true"
-          class="item mt-[5px] cursor-pointer duration-1000"
+          class="mt-[5px] cursor-pointer duration-1000"
           :class="{ animate__animated: animated, animate__swing: animated }"
           ><Remind theme="filled" size="25" fill="#b8e986" :strokeWidth="3" @click="handleClick"
         /></ElBadge>
@@ -99,11 +99,4 @@ const handleCommand = async (command: Command) => {
   </main>
 </template>
 
-<style scoped lang="css">
-.el-card {
-  border-radius: 50px;
-  &:hover {
-    background-color: var(--color-green-light);
-  }
-}
-</style>
+<style scoped lang="scss"></style>

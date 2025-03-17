@@ -122,7 +122,8 @@ export default defineComponent({
               {{
                 header: () => <h1 class="text-[20px]">快捷方式</h1>,
                 default: () => (
-                  <div class="flex justify-center gap-[60px]">
+                  // gap: 80px
+                  <div class="flex justify-center gap-[80px]">
                     {menuList.value.map((item) => (
                       <RecursiveChild key={item.url} item={item}></RecursiveChild>
                     ))}

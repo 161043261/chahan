@@ -23,14 +23,14 @@ const handleClick = () => router.push({ name: 'Home' })
       <h1 class="text-[20px]">炒饭机器人</h1>
     </div>
 
-    <ElMenu class="el-menu !border-none" router :default-active="route.path">
+    <ElMenu class="menu-list !border-none" router :default-active="route.path">
       <RecursiveChild v-for="item of menuList" :key="item.url" :item="item"></RecursiveChild>
     </ElMenu>
   </div>
 </template>
 
 <style scoped lang="scss">
-.el-menu {
+.menu-list {
   :deep(.is-active) {
     background-color: var(--color-green) !important;
     color: #fff;

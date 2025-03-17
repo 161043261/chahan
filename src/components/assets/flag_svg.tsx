@@ -1,5 +1,10 @@
 import { defineComponent } from 'vue'
 
+// defineComponent(setup, ctx)
+// setup = () => renderFunc
+// renderFunc = () => <></>
+// defineComponent(() => () => <></>)
+// 不推荐这种写法
 export default defineComponent(() => () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="0.88em" height="1em" viewBox="0 0 448 512">
     <path

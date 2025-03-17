@@ -19,7 +19,8 @@ const handleClick = (url: string) => {
 
 <template>
   <main>
-    <div v-if="item.children" class="flex justify-between gap-[50px]">
+    <!-- gap: 70px -->
+    <div v-if="item.children" class="flex justify-between gap-[70px]">
       <RecursiveChild
         v-for="child of item.children"
         :key="child.url"

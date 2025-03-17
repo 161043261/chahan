@@ -12,8 +12,8 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/',
     name: 'Home',
-    component: () => import('@/layouts/LayoutIndex.vue'),
-    // component: () => import('@/layouts/layout_index'),
+    // component: () => import('@/layouts/LayoutIndex.vue'),
+    component: () => import('@/layouts/layout_index'),
     redirect: {
       name: 'Empty',
     },

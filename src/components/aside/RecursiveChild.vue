@@ -30,7 +30,7 @@ const handleClick = (item: IMenuItem) => {
 </script>
 
 <template>
-  <div class="container">
+  <div class="child-container">
     <ElSubMenu v-if="item.children" :index="item.name">
       <template #title>
         <ElIcon>
@@ -61,7 +61,7 @@ const handleClick = (item: IMenuItem) => {
 </template>
 
 <style scoped lang="scss">
-.container::-webkit-scrollbar {
+.child-container::-webkit-scrollbar {
   display: none !important;
 }
 </style>

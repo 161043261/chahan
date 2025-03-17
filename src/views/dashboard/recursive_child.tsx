@@ -18,7 +18,8 @@ const RecursiveChild = defineComponent(
     return () => (
       <div>
         {props.item.children ? (
-          <div class="flex justify-between gap-[50px]">
+          // gap: 70px
+          <div class="flex justify-between gap-[70px]">
             {props.item.children.map((child) => (
               <RecursiveChild key={child.url} item={child} />
             ))}

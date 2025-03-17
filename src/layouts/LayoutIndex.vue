@@ -1,11 +1,8 @@
 <script setup lang="ts">
 import { ElContainer, ElHeader, ElAside, ElMain } from 'element-plus'
-// import AsideMenu from '@/components/aside/AsideMenu.vue'
-import AsideMenu from '@/components/aside/aside_menu'
+import AsideMenu from '@/components/aside/AsideMenu.vue'
 import HeaderIndex from '@/components/header/HeaderIndex.vue'
-// import HeaderIndex from '@/components/header/header_index'
-// import LayoutTab from './LayoutTab.vue'
-import LayoutTab from './layout_tab'
+import LayoutTab from './LayoutTab.vue'
 import { ref, useTemplateRef } from 'vue'
 import bus from '@/utils/bus'
 
@@ -28,7 +25,9 @@ bus.subscribe('set-scrollTop', () => {
     </ElAside>
     <ElContainer>
       <ElHeader class="z-10 !h-[10vh] !p-0">
-        <HeaderIndex @switch-watermark="(isAlive) => (watermarked = isAlive)"></HeaderIndex>
+        <HeaderIndex
+          @switch-watermark="(isAlive: boolean) => (watermarked = isAlive)"
+        ></HeaderIndex>
       </ElHeader>
       <ElMain class="!h-[90vh]" ref="tabContainerRef">
         <LayoutTab :watermarked="watermarked"></LayoutTab>

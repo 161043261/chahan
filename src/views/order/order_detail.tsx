@@ -70,10 +70,10 @@ export default defineComponent({
 
     return () => (
       <main>
-        {/* tsx 插槽的第一种写法 */}
+        {/* tsx 插槽的第一种写法, tsx 中是 v-slots, 不是 v-slot, 不推荐这种写法 */}
         <ElCard class="!rounded-3xl" v-slots={slots /** 传递插槽 */}>
-          {/* FIXME */}
-          <ElDescriptions title={`订单 ${orderData.value.id} 详情`} column={3} border>
+          {/* border={true} 等价于 border */}
+          <ElDescriptions title={`订单 ${orderData.value.id} 详情`} column={3} border={true}>
             <ElDescriptionsItem align="center">
               {/* tsx 插槽的第二种写法 */}
               {{
@@ -125,7 +125,7 @@ export default defineComponent({
           <ElDescriptions
             title={`处理订单 ${orderData.value.id} 的机器人详情`}
             direction="vertical"
-            border={true}
+            border
             column={4}
           >
             <ElDescriptionsItem rowspan={2} width={140} label="机器人图像" align="center">
@@ -149,11 +149,9 @@ export default defineComponent({
             <ElDescriptionsItem label="零件故障数" align="center">
               {robotData.value.failureNum}
             </ElDescriptionsItem>
-
             <ElDescriptionsItem label="管理员名字" align="center">
               {robotData.value.admin}
             </ElDescriptionsItem>
-
             <ElDescriptionsItem label="管理员邮箱" align="center">
               {robotData.value.email}
             </ElDescriptionsItem>

@@ -1,3 +1,5 @@
+import './recursive_child.scss'
+
 import { defineComponent, h } from 'vue'
 import { ElSubMenu, ElMenuItem, ElIcon } from 'element-plus'
 import { type IMenuItem } from '@/types/user'
@@ -25,7 +27,7 @@ const RecursiveChild = defineComponent({
     }
 
     return () => (
-      <div class="container">
+      <div class="child-container">
         {props.item.children ? (
           <ElSubMenu index={props.item.name}>
             {{

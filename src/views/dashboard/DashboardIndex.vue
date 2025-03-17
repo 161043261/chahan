@@ -179,7 +179,8 @@ provide('virtualListSize' /** key */, virtualListSize /** value */)
           <template #header>
             <h1 class="text-[20px]">快捷方式</h1>
           </template>
-          <div class="flex justify-center gap-[60px]">
+          <!-- gap: 80px -->
+          <div class="flex justify-center gap-[80px]">
             <RecursiveChild v-for="item of menuList" :key="item.url" :item="item"></RecursiveChild>
           </div>
         </ElCard>

@@ -147,11 +147,9 @@ if (import.meta.env.DEV) {
             <ElDescriptionsItem label="零件故障数" align="center">
               {{ robotData.failureNum }}
             </ElDescriptionsItem>
-
             <ElDescriptionsItem label="管理员名字" align="center">
               {{ robotData.admin }}
             </ElDescriptionsItem>
-
             <ElDescriptionsItem label="管理员邮箱" align="center">
               {{ robotData.email }}
             </ElDescriptionsItem>

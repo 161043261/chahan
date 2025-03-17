@@ -1,0 +1,38 @@
+.tab-container {
+  .is-active {
+    background-color: var(--color-green) !important;
+    color: #fff !important;
+  }
+}
+
+.el-tabs__item {
+  &:hover {
+    color: #000 !important;
+  }
+}
+
+.ctx-menu {
+  left: v-bind(ctxMenuX);
+  top: v-bind(ctxMenuY);
+  li {
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 5px 8px;
+    &:hover {
+      background-color: var(--color-green-light);
+    }
+  }
+}
+
+.el-tabs__nav,
+.el-tabs__item {
+  border-radius: 20px !important;
+}
+
+.is-icon-close {
+  transform: scale(1.5) !important;
+  margin-left: 10px;
+  &:hover {
+    background-color: var(--color-1st);
+  }
+}

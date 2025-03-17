@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useTabStore } from '@/stores/tab'
 import { storeToRefs } from 'pinia'
-import { ElTabs, ElTabPane, type TabsPaneContext, type TabPaneName } from 'element-plus'
+import { ElTabs, ElTabPane, type TabsPaneContext, type TabPaneName, ElDivider } from 'element-plus'
 
 import { name2icon } from '@/utils/icons'
 import { useRoute, useRouter } from 'vue-router'
@@ -66,53 +66,58 @@ const removeAll = () => {
 </script>
 
 <template>
-  <!-- v-model="route.path" -->
-  <ElTabs
-    :model-value="route.path"
-    class="tabs"
-    @tab-click="handleClick"
-    type="card"
-    closable
-    @tab-remove="handleRemove"
-    @contextmenu.prevent="handleCtxMenu"
-  >
-    <ElTabPane
-      v-for="{ name, icon, url } of tabList"
-      :key="url"
-      :label="name"
-      :name="url"
-      class="rounded-lg"
+  <div>
+    <!-- v-model="route.path" -->
+    <ElTabs
+      :model-value="route.path"
+      class="tab-container"
+      @tab-click="handleClick"
+      type="card"
+      closable
+      @tab-remove="handleRemove"
+      @contextmenu.prevent="handleCtxMenu"
     >
-      <template #label>
-        <div class="flex items-center gap-[5px]">
-          <component :is="name2icon.get(icon)"></component>
-          <span>{{ name }}</span>
-        </div>
-      </template>
+      <ElTabPane
+        v-for="{ name, icon, url } of tabList"
+        :key="url"
+        :label="name"
+        :name="url"
+        class="rounded-lg"
+      >
+        <template #label>
+          <div class="flex items-center gap-[5px]">
+            <component :is="name2icon.get(icon)"></component>
+            <span>{{ name }}</span>
+          </div>
+        </template>
 
-      <!--! 这里有 v-for, <RouterView> 不能写在这里
+        <!--! 这里有 v-for, <RouterView> 不能写在这里
       否则打开多个页面时, 有多个 <RouterView>, 同一个页面会被挂载多次
       如果是开发环境, 即 import.meta.env.DEV === true 时,
       '@/views/dashboard/DashboardIndex.vue: Mounted' 会被打印多次
       -->
-      <!-- <RouterView></RouterView> -->
-    </ElTabPane>
-  </ElTabs>
+        <!-- <RouterView></RouterView> -->
+      </ElTabPane>
+    </ElTabs>
 
-  <Transition
-    enter-active-class="animate__animated animate__flipInX"
-    leave-active-class="animate__animated animate__flipOutX"
-  >
-    <ul class="ctx-menu fixed z-10 rounded-lg bg-slate-100 text-slate-500 shadow-lg" v-if="isAlive">
-      <li>选择关闭方式</li>
-      <li><hr /></li>
-      <li @click="removeAll">关闭所有标签页</li>
-    </ul>
-  </Transition>
+    <Transition
+      enter-active-class="animate__animated animate__flipInX"
+      leave-active-class="animate__animated animate__flipOutX"
+    >
+      <ul
+        class="ctx-menu fixed z-10 rounded-lg bg-slate-100 text-slate-500 shadow-lg"
+        v-if="isAlive"
+      >
+        <li>选择关闭方式</li>
+        <li><ElDivider /></li>
+        <li @click="removeAll">关闭所有标签页</li>
+      </ul>
+    </Transition>
+  </div>
 </template>
 
 <style scoped lang="scss">
-.tabs {
+.tab-container {
   :deep(.is-active) {
     background-color: var(--color-green) !important;
     color: #fff !important;
