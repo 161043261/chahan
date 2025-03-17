@@ -73,7 +73,6 @@ interface Props {
 
 export default defineComponent(
   (props: Props, ctx /** { attrs, slots, emit, expose } */) => {
-    console.log(props)
     const isAlive = ref(false)
     let timer: number | null = null
 

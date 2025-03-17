@@ -17,8 +17,9 @@ export default defineComponent({
   setup(/** props, { emit, slots } */) {
     const route = useRoute()
     const { orderId, robotId } = route.query
+
     const orderData = ref<IOrderData>({
-      id: '0',
+      id: '',
       state: 1,
       robotId: 0,
       robotName: '',
@@ -36,6 +37,9 @@ export default defineComponent({
     })
 
     onMounted(async () => {
+      if (!orderId || !robotId) {
+        return
+      }
       try {
         const p1 = orderQueryApi({ id: orderId as string }).then((res) => res.data.list)
         const p2 = robotQueryApi({ id: Number.parseInt(robotId as string) }).then(

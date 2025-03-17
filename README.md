@@ -1,5 +1,9 @@
 # <em>chahan</em>
 
+## Vue 项目使用 tsx
+
+- [layout_tab.tsx](./src/layouts/layout_tab.tsx)
+
 ## Vite 项目使用 mock.js
 
 ```bash

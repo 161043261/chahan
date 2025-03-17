@@ -31,7 +31,7 @@ const RecursiveChild = defineComponent({
             {{
               title: () => (
                 <div>
-                  {h(name2icon.get(props.item.icon)!)}
+                  <ElIcon>{h(name2icon.get(props.item.icon)!)}</ElIcon>
                   <span>{props.item.name}</span>
                 </div>
               ),
@@ -43,16 +43,16 @@ const RecursiveChild = defineComponent({
               },
             }}
           </ElSubMenu>
-        ) : (
+        ) : props.item.url !== '/order/detail' ? (
           <ElMenuItem
             index={props.item.url}
             onClick={() => handleClick(props.item)}
-            class={['duration-500', props.item.url === '/order/detail' ? 'hidden' : '']}
+            class="duration-500"
           >
             <ElIcon>{h(name2icon.get(props.item.icon)!)}</ElIcon>
             <span>{props.item.name}</span>
           </ElMenuItem>
-        )}
+        ) : null}
       </div>
     )
   },

@@ -1,5 +1,7 @@
+import './dashboard_index.scss'
+
 import { defineComponent, provide, reactive, ref, onBeforeUnmount, Suspense } from 'vue'
-import { ElCol, ElRow, ElCard, ElTimeline, ElTimelineItem } from 'element-plus'
+import { ElCol, ElRow, ElCard, ElTimeline, ElTimelineItem, ElButton } from 'element-plus'
 import { useUserStore } from '@/stores/user'
 import { storeToRefs } from 'pinia'
 // import RecursiveChild from './RecursiveChild.vue'
@@ -182,28 +184,21 @@ export default defineComponent({
                           animated.value && animatedIdx.value === 2 ? 'rotate-x' : '',
                         ]}
                       ></Refresh>
-
-                      {/* ************************************************** */}
-                      {import.meta.env.DEV ? (
-                        <>
-                          <button
-                            class="mx-[20px] border-1 p-[10px]"
-                            onClick={() => (__debug_height.value += 100)}
-                          >
-                            height+=100
-                          </button>
-                          <button
-                            class="border-1 p-[10px]"
-                            onClick={() => (__debug_itemHeight.value += 10)}
-                          >
-                            itemHeight+=10
-                          </button>
-                        </>
-                      ) : (
-                        ''
-                      )}
                     </div>
+
                     {/* ************************************************** */}
+                    {import.meta.env.DEV ? (
+                      <>
+                        <ElButton class="mx-[10px]" onClick={() => (__debug_height.value += 100)}>
+                          height+=100
+                        </ElButton>
+                        <ElButton onClick={() => (__debug_itemHeight.value += 10)}>
+                          itemHeight+=10
+                        </ElButton>
+                      </>
+                    ) : (
+                      <></>
+                    )}
                   </div>
                 ),
 
