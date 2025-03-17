@@ -1,5 +1,49 @@
 # <em>chahan</em>
 
+## Current Migration
+
+- [EmptyIndex.vue](src/views/EmptyIndex.vue)
+- [LoginIndex.vue](src/views/LoginIndex.vue) -> [login_index.tsx](src/views/login_index.tsx)
+- [NotFound.vue](src/views/NotFound.vue) -> [not_found.tsx](src/views/not_found.tsx)
+
+### components
+
+- [AsideMenu.vue](src/components/aside/AsideMenu.vue) -> [aside_menu.tsx](src/components/aside/aside_menu.tsx)
+- [RecursiveChild.vue](src/components/aside/RecursiveChild.vue) -> [recursive_child.tsx](src/components/aside/recursive_child.tsx)
+- [HeaderIndex.vue](src/components/header/HeaderIndex.vue) -> [header_index.tsx](src/components/header/header_index.tsx)
+- [HeaderTabs.vue](src/components/header/HeaderTabs.vue) -> [header_tabs.tsx](src/components/header/header_tabs.tsx)
+- [MapContainer.vue](src/components/map/MapContainer.vue)
+- [ToastIndex.vue](src/components/toast/ToastIndex.vue) -> [toast_index.tsx](src/components/toast/toast_index.tsx)
+- [ProgressBar.vue](src/components/ProgressBar.vue)
+- [VirtualList.vue](src/components/VirtualList.vue) -> [virtual_list.tsx](src/components/virtual_list.tsx)
+
+### layouts
+
+- [LayoutIndex.vue](src/layouts/LayoutIndex.vue) -> [layout_index.tsx](src/layouts/layout_index.tsx)
+- [LayoutTab.vue](src/layouts/LayoutTab.vue) -> [layout_tab.tsx](src/layouts/layout_tab.tsx)
+
+### views
+
+- [AdsIndex.vue](src/views/ads/AdsIndex.vue)
+- [RobotGrid.vue](src/views/chahan/RobotGrid.vue)
+- [ChahanIndex.vue](src/views/chahan/ChahanIndex.vue)
+- [RobotGrid.vue](src/views/chahan/RobotGrid.vue)
+- [ChahanDialog.vue](src/views/chahan/components/ChahanDialog.vue)
+- [RobotCard.vue](src/views/chahan/components/RobotCard.vue)
+- [DashboardIndex.vue](src/views/dashboard/DashboardIndex.vue) -> [dashboard_index.tsx](src/views/dashboard/dashboard_index.tsx)
+- [RecursiveChild.vue](src/views/dashboard/RecursiveChild.vue) -> [recursive_child.tsx](src/views/dashboard/recursive_child.tsx)
+- [MapIndex.vue](src/views/map/MapIndex.vue)
+- OrderAdd.vue [TODO] -> [order_add.tsx](src/views/order/order_add.tsx)
+- OrderDetail.vue [TODO] -> [order_detail.tsx](src/views/order/order_detail.tsx)
+- [OrderIndex.vue](src/views/order/OrderIndex.vue)
+- [DraggableWindow.vue](src/views/order/components/DraggableWindow.vue) -> [draggable_window.tsx](src/views/order/components/draggable_window.tsx)
+- [PersonalIndex.vue](src/views/personal/PersonalIndex.vue)
+- [SystemIndex.vue](src/views/system/SystemIndex.vue)
+
+### Canvas
+
+- [CanvasDemo.vue](src/assets/CanvasDemo.vue)
+
 ## Vue 项目使用 tsx
 
 - [layout_tab.tsx](./src/layouts/layout_tab.tsx)

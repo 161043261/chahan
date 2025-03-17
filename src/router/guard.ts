@@ -7,7 +7,7 @@ import { WHITE_LIST } from '@/constants'
 import { useTabStore } from '@/stores/tab'
 
 // 进度条组件
-import ProgressBar from '@/utils/ProgressBar.vue'
+import ProgressBar from '@/components/ProgressBar.vue'
 import { createVNode, render } from 'vue'
 import { ElMessage } from 'element-plus'
 const barVNode = createVNode(ProgressBar)

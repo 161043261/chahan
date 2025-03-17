@@ -3,7 +3,7 @@ import { robotDeleteApi, robotQueryApi } from '@/apis/chahan'
 import { ROBOT_STATES, ROBOT_STATE2TEXT_AND_TYPE } from '@/constants'
 import type { IRobotData } from '@/types/robot'
 import { AddOne } from '@icon-park/vue-next'
-import RobotDialog from './components/RobotDialog.vue'
+import ChahanDialog from './components/ChahanDialog.vue'
 import {
   ElCard,
   ElRow,
@@ -97,7 +97,7 @@ const handleDelete = async (id: number) => {
   }
 }
 
-const robotFormRef = ref<InstanceType<typeof RobotDialog>>()
+const robotFormRef = ref<InstanceType<typeof ChahanDialog>>()
 // const robotFormRef = useTemplateRef<InstanceType<typeof RobotDialog>>('robotFormRef')
 const handleClose = () => {
   dialogVisible.value = false
@@ -155,7 +155,7 @@ const handleClose = () => {
       </ElRow>
 
       <!--! useAttrs: 不是响应式的, 不支持 camelCase 转 dashed, 不支持类型检查 -->
-      <RobotDialog
+      <ChahanDialog
         :dialog-visible="dialogVisible"
         :is-update="isUpdate"
         @close-dialog="handleClose"

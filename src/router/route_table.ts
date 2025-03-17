@@ -44,7 +44,7 @@ const routes: RouteRecordRaw[] = [
       {
         path: '/chahan/grid',
         name: 'Robot',
-        component: () => import('@/views/chahan/ChahanGrid.vue'),
+        component: () => import('@/views/chahan/RobotGrid.vue'),
         meta: {
           tagName: '炒饭机器人网格',
           icon: 'RobotOne',
