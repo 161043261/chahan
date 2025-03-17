@@ -26,6 +26,7 @@ export default defineComponent({
             {{
               default: ({ Component }: { Component: Component }) => (
                 <Transition enterActiveClass="animate__animated animate__fadeInLeft">
+                  {/* h 函数 */}
                   <KeepAlive include={['ChahanRobot', 'OrderDetail']}>{h(Component)}</KeepAlive>
                 </Transition>
               ),

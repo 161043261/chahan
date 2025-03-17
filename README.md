@@ -2,9 +2,7 @@
 
 ## Current Migration
 
-- [EmptyIndex.vue](src/views/EmptyIndex.vue)
-- [LoginIndex.vue](src/views/LoginIndex.vue) -> [login_index.tsx](src/views/login_index.tsx)
-- [NotFound.vue](src/views/NotFound.vue) -> [not_found.tsx](src/views/not_found.tsx)
+[App.vue](src/App.vue) -> [app.tsx](src/app.tsx)
 
 ### components
 
@@ -24,19 +22,22 @@
 
 ### views
 
+- [EmptyIndex.vue](src/views/EmptyIndex.vue)
+- [LoginIndex.vue](src/views/LoginIndex.vue) -> [login_index.tsx](src/views/login_index.tsx)
+- [NotFound.vue](src/views/NotFound.vue) -> [not_found.tsx](src/views/not_found.tsx)
 - [AdsIndex.vue](src/views/ads/AdsIndex.vue)
-- [RobotGrid.vue](src/views/chahan/RobotGrid.vue)
 - [ChahanIndex.vue](src/views/chahan/ChahanIndex.vue)
+- [RobotGrid.vue](src/views/chahan/RobotGrid.vue)
 - [RobotGrid.vue](src/views/chahan/RobotGrid.vue)
 - [ChahanDialog.vue](src/views/chahan/components/ChahanDialog.vue)
 - [RobotCard.vue](src/views/chahan/components/RobotCard.vue)
 - [DashboardIndex.vue](src/views/dashboard/DashboardIndex.vue) -> [dashboard_index.tsx](src/views/dashboard/dashboard_index.tsx)
 - [RecursiveChild.vue](src/views/dashboard/RecursiveChild.vue) -> [recursive_child.tsx](src/views/dashboard/recursive_child.tsx)
 - [MapIndex.vue](src/views/map/MapIndex.vue)
-- OrderAdd.vue [TODO] -> [order_add.tsx](src/views/order/order_add.tsx)
-- OrderDetail.vue [TODO] -> [order_detail.tsx](src/views/order/order_detail.tsx)
+- [OrderAdd.vue](src/views/order/OrderAdd.vue) -> [order_add.tsx](src/views/order/order_add.tsx)
+- [OrderDetail.vue](src/views/order/OrderDetail.vue) -> [order_detail.tsx](src/views/order/order_detail.tsx)
 - [OrderIndex.vue](src/views/order/OrderIndex.vue)
-- [DraggableWindow.vue](src/views/order/components/DraggableWindow.vue) -> [draggable_window.tsx](src/views/order/components/draggable_window.tsx)
+- [DraggableWindow.vue](src/views/order/components/DraggableWindow.vue) -> [draggable_window.tsx](src/views/order/components/draggable_window.tsx) **UNDO**
 - [PersonalIndex.vue](src/views/personal/PersonalIndex.vue)
 - [SystemIndex.vue](src/views/system/SystemIndex.vue)
 
@@ -46,7 +47,7 @@
 
 ## Vue 项目使用 tsx
 
-- [layout_tab.tsx](src/layouts/layout_tab.tsx) h 函数, 插槽
+- [layout_tab.tsx](src/layouts/layout_tab.tsx) props 解构, h 函数, 插槽
 - [order_detail.tsx](src/views/order/order_detail.tsx) 插槽
 
 ## 路由权限控制

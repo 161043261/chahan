@@ -70,7 +70,7 @@ export default defineComponent({
 
     return () => (
       <main>
-        {/* tsx 插槽的第一种写法, tsx 中是 v-slots, 不是 v-slot, 不推荐这种写法 */}
+        {/* tsx 插槽的第一种写法; tsx 中是 v-slots, 不是 v-slot, 不推荐这种写法 */}
         <ElCard class="!rounded-3xl" v-slots={slots /** 传递插槽 */}>
           {/* border={true} 等价于 border */}
           <ElDescriptions title={`订单 ${orderData.value.id} 详情`} column={3} border={true}>
