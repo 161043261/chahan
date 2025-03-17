@@ -9,7 +9,8 @@ import getChartOption2 from './chart_option2.ts'
 import getChartOption3 from './chart_option3.ts'
 import { revenueListApi } from '@/apis/dashboard.ts'
 import type { IRevenueList, ITimeLineItem } from '@/types/dashboard.ts'
-import VirtualList from '@/utils/VirtualList.vue'
+// import VirtualList from '@/utils/VirtualList.vue'
+import VirtualList from '@/utils/virtual_list'
 import bus from '@/utils/bus'
 import { Refresh } from '@icon-park/vue-next'
 import { commaSep } from '@/utils/comma_sep.ts'
@@ -49,7 +50,7 @@ export default defineComponent({
     }
 
     //! 异步组件
-    const getRevenueList = async () => (await revenueListApi()).data
+    const fetchRevenueList = async () => (await revenueListApi()).data
 
     const timelineList = reactive<ITimeLineItem[]>([
       /** { timestamp: Date.now(), message: '测试' } */
@@ -187,7 +188,7 @@ export default defineComponent({
                           itemHeight={50}
                           renderFunc={renderFunc}
                           height={400}
-                          getLargeList={getRevenueList}
+                          fetchLargeList={fetchRevenueList}
                           ref={virtualListRef}
                         ></VirtualList>
                       ),
@@ -223,6 +224,7 @@ export default defineComponent({
                 default: () => <div ref={chartRef3} class="h-[240px] w-[100%]"></div>,
               }}
             </ElCard>
+
             <ElCard class="mt-[20px] h-[500px] !rounded-3xl">
               <ElTimeline class="overflow-auto">
                 {timelineList.map((item) => (
