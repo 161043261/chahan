@@ -5,7 +5,7 @@ import { computed, inject, reactive, ref, toRefs, type Ref, type VNode } from 'v
 const props = defineProps<{
   height: number
   itemHeight: number
-  getLargeList: () => Promise<T[]>
+  fetchLargeList: () => Promise<T[]>
   renderFunc: (props: { item: T; idx: number }) => VNode
 }>()
 
@@ -14,7 +14,7 @@ defineExpose<{
   updateLargeList: () => Promise<void>
 }>({
   updateLargeList: async () => {
-    largeList.value = await props.getLargeList()
+    largeList.value = await props.fetchLargeList()
     virtualListSize.value = largeList.value.length
   },
 })
@@ -23,7 +23,7 @@ const virtualListSize = inject<Ref<number>>('virtualListSize', ref(0) /** defaul
 // watchEffect(() => console.log(virtualListSize.value))
 
 // 大列表
-const largeList = ref(await props.getLargeList())
+const largeList = ref(await props.fetchLargeList())
 virtualListSize.value = largeList.value.length
 
 // 可视区高度, 子项高度

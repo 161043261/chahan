@@ -114,7 +114,7 @@ const renderFunc = (props: { item: RevenueItem; idx: number } /** { emit, slots 
 }
 
 //! 异步组件
-const getRevenueList = async () => (await revenueListApi()).data
+const fetchRevenueList = async () => (await revenueListApi()).data
 
 const timelineList = reactive<ITimeLineItem[]>([
   /** { timestamp: Date.now(), message: '测试' } */
@@ -233,7 +233,7 @@ provide('virtualListSize' /** key */, virtualListSize /** value */)
                 :item-height="50"
                 :render-func="renderFunc"
                 :height="400"
-                :get-large-list="getRevenueList"
+                :fetch-large-list="fetchRevenueList"
                 ref="virtualListRef"
               ></VirtualList>
             </template>
