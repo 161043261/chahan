@@ -1,6 +1,13 @@
 # <em>chahan</em>
 
-## Current Migration
+## Migration
+
+```tsx
+defineComponent({ name, props, emits, slots, expose, setup })
+defineComponent(setup, { name, props, emits, slots })
+setup: (props, { emit /** fn */, slots, expose /** fn */ }) => renderFunc
+renderFunc: () => <></>
+```
 
 [App.vue](src/App.vue) -> [app.tsx](src/app.tsx)
 
@@ -41,14 +48,28 @@
 - [PersonalIndex.vue](src/views/personal/PersonalIndex.vue)
 - [SystemIndex.vue](src/views/system/SystemIndex.vue)
 
-### Canvas
+### others
 
 - [CanvasDemo.vue](src/assets/CanvasDemo.vue)
 
 ## Vue 项目使用 tsx
 
-- [layout_tab.tsx](src/layouts/layout_tab.tsx) props 解构, h 函数, 插槽
-- [order_detail.tsx](src/views/order/order_detail.tsx) 插槽
+```tsx
+// 写法 1
+defineComponent({ name, props, emits, slots, expose, setup })
+// 写法 2
+defineComponent(setup, { name, props, emits, slots })
+// setup 函数
+setup: (props, { emit /** fn */, slots, expose /** fn */ }) => renderFunc
+// 渲染函数
+renderFunc: () => <></>
+```
+
+### `defineComponent` 两种写法
+
+- [recursive_child.tsx](src/components/aside/recursive_child.tsx) `defineComponent` 写法 1
+- [recursive_child.tsx](src/views/dashboard/recursive_child.tsx) `defineComponent` 写法 2
+- [app.tsx](src/app.tsx)  `defineComponent` 写法 2
 
 ## 路由权限控制
 
