@@ -48,12 +48,6 @@
 
 - [layout_tab.tsx](./src/layouts/layout_tab.tsx)
 
-## Vite 项目使用 mock.js
-
-```bash
-pnpm add mockjs @types/mockjs -D
-```
-
 ## 路由权限控制
 
 1. 前端不创建完整路由表, 前端根据后端返回的路由权限, 动态添加路由 `router.addRoute()`,
@@ -69,25 +63,19 @@ pnpm add mockjs @types/mockjs -D
 | lg  | large       | >=1200px 大屏幕   |
 | xl  | extra large | >=1920px 超大屏幕 |
 
-## ttf2woff2
-
-```bash
-pnpm install ttf2woff2 -g
-cat Chahan.ttf | ttf2woff2 > Chahan.woff2
-```
-
 ## 亮点
 
 1. vue3, vue-router@4, pinia, tailwindcss, animate.css, element-plus, echarts, 高德地图
 2. 手写事件总线, 发布/订阅
 3. 手写 vite 插件
-4. 虚拟滚动列表, h 函数
-5. 左侧菜单是后端动态渲染的
+4. 虚拟滚动列表, tsx, h 函数
+5. 左侧菜单后端动态渲染
 6. 递归组件
-7. 网格布局
-8. web_worker
-9. 缓存滚动位置
-10. 全局 toast (两种实现)
+7. 网格布局, 缓存滚动位置
+8. web_worker, 参考 [web_worker.js](public/web_worker.js)
+9. 全局 toast (两种方式)
+10. 迁移到 tsx (进行中)
+11. 迁移到 Nuxt (进行中)
 
 ## provide/inject
 
@@ -120,15 +108,6 @@ husky 是一个 git hook 工具
 - prestop -> stop -> poststop
 - prepublish/prepare: 在 publish 或 install 时执行
 
-- prepublishonly: 只在 publish 时执行
-- 可以使用 -- 传递参数
-- 对于 npm, 预定义脚本不需要加 run, 自定义脚本需要加 run
-
-```bash
-pnpm add husky -D
-pnpm exec husky init
-```
-
 ## 全局 toast
 
 两种方式: `app.config.globalProperties/vuePlugin` 和 `app.provide/inject` 实现全局 toast, 参考
@@ -136,7 +115,7 @@ pnpm exec husky init
 - [toast.ts](./src/components/toast/toast.ts)
 - [ToastIndex.ts](./src/components/toast/ToastIndex.vue)
 - [main.ts](./src/main.ts)
-- [使用示例](./src/view/dashboard/DashboardIndex.vue)
+- [使用示例](./src/views/dashboard/DashboardIndex.vue)
 
 ## 路由传参
 
@@ -165,3 +144,5 @@ router.push({
 ```
 
 ## 自定义指令: 可拖拽窗口
+
+参考 [DraggableWindow.vue](src/views/order/components/DraggableWindow.vue), [draggable_window.tsx](src/views/order/components/draggable_window.tsx)
