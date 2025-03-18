@@ -54,7 +54,7 @@ const RecursiveChild = defineComponent({
             <ElIcon>{h(name2icon.get(props.item.icon)!)}</ElIcon>
             <span>{props.item.name}</span>
           </ElMenuItem>
-        ) : null}
+        ) : <></>}
       </div>
     )
   },
