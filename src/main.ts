@@ -1,4 +1,4 @@
-import '@/assets/style.css'
+import '@/assets/tailwind.css'
 import '@/assets/global.scss'
 import 'animate.css'
 

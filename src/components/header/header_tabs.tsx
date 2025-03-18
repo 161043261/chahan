@@ -97,22 +97,21 @@ export default defineComponent({
         </div>
 
         {/* vue 中, v-if/v-show 加在 Transition 的直接子元素上 */}
-        {isAlive.value ? (
-          <Transition
-            enterActiveClass="animate__animated animate__flipInX"
-            leaveActiveClass="animate__animated animate__flipOutX"
-          >
+
+        <Transition
+          enterActiveClass="animate__animated animate__flipInX"
+          leaveActiveClass="animate__animated animate__flipOutX"
+        >
+          {isAlive.value ? (
             <ul class="ctx-menu fixed z-10 rounded-lg bg-slate-100 text-slate-500 shadow-lg">
               <li>选择关闭方式</li>
               <li>
                 <ElDivider />
               </li>
               <li onClick={removeAll}>关闭所有标签页</li>
-            </ul>{' '}
-          </Transition>
-        ) : (
-          <></>
-        )}
+            </ul>
+          ) : ''}
+        </Transition>
       </div>
     )
   },
