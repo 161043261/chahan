@@ -4,7 +4,7 @@ import { chartDataApi } from '@/apis/dashboard'
 import type { ECOption } from '@/utils/echarts'
 
 const getChartOption = async () => {
-  const chartData = await chartDataApi()
+  const res = await chartDataApi()
   const chartOption: ECOption = {
     legend: {
       top: 'bottom',
@@ -48,11 +48,8 @@ const getChartOption = async () => {
     },
   }
   //// chartOption.series[0].data = Array.from({ length: 3 }, () => ({ value: 0, name: '' }))
-  for (let i = 0; i < chartData.data.length; i++) {
-    ;(chartOption.series as any)[0].data = chartData.data.map((item) => ({
-      name: item.name,
-      value: item.data,
-    }))
+  for (let i = 0; i < res.data.length; i++) {
+    ;(chartOption.series as any)[0].data = res.data
   }
   return chartOption
 }

@@ -6,7 +6,7 @@ export interface IResData {
 export type IChartData = {
   data: {
     name: string
-    data: number
+    value: number
   }[]
 } & IResData
 

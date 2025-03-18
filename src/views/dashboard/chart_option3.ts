@@ -5,7 +5,7 @@ import { ROBOT_STATES } from '@/constants'
 import type { ECOption } from '@/utils/echarts'
 
 const getChartOption3 = async () => {
-  const chartData = await chartDataApi3()
+  const res = await chartDataApi3()
   const chartOption: ECOption = {
     radar: {
       shape: 'circle',
@@ -26,7 +26,7 @@ const getChartOption3 = async () => {
       },
     ],
   }
-  ;(chartOption.series as any)[0].data[0].value = chartData.data
+  ;(chartOption.series as any)[0].data[0].value = res.data
   return chartOption
 }
 

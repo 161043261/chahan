@@ -19,7 +19,7 @@ export interface ILoginResData {
 export interface IChartData {
   data: {
     name: string
-    data: number
+    value: number
   }[]
 }
 

@@ -4,7 +4,7 @@ import { chartDataApi2 } from '@/apis/dashboard'
 import type { ECOption } from '@/utils/echarts'
 
 const getChartOption2 = async () => {
-  const chartData = await chartDataApi2()
+  const res = await chartDataApi2()
   const chartOption: ECOption = {
     title: {
       text: '机器人电量统计',
@@ -66,10 +66,10 @@ const getChartOption2 = async () => {
     ],
   }
 
-  ;(chartOption.legend as any).data = chartData.data.map(({ name }) => name)
-  for (let i = 0; i < chartData.data.length; i++) {
-    ;(chartOption.series as any)[i].name = chartData.data[i].name
-    ;(chartOption.series as any)[i].data = chartData.data[i].data
+  ;(chartOption.legend as any).data = res.data.map(({ name }) => name)
+  for (let i = 0; i < res.data.length; i++) {
+    ;(chartOption.series as any)[i].name = res.data[i].name
+    ;(chartOption.series as any)[i].data = res.data[i].data
   }
   return chartOption
 }
