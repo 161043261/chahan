@@ -110,7 +110,9 @@ export default defineComponent({
               </li>
               <li onClick={removeAll}>关闭所有标签页</li>
             </ul>
-          ) : ''}
+          ) : (
+            ''
+          )}
         </Transition>
       </div>
     )

@@ -123,9 +123,9 @@ const routes: RouteRecordRaw[] = [
     component: () => import('@/views/not_found'),
   },
   {
-    path: '/v_model', // 匹配未定义的任意路由
-    name: 'vModel',
-    component: () => import('@/views/v_model'),
+    path: '/cv', // 匹配未定义的任意路由
+    name: 'CV',
+    component: () => import('@/views/cv/cv_index'),
   },
 ]
 

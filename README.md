@@ -56,7 +56,7 @@ renderFunc: () => <></>
 
 ```tsx
 // 写法 1
-defineComponent({ name, props, emits, slots, expose, setup })
+defineComponent({ name, props, emits, expose, setup })
 // 写法 2
 defineComponent(setup, { name, props, emits, slots })
 // setup 函数
@@ -89,16 +89,16 @@ renderFunc: () => <></>
 ## 亮点
 
 1. vue3, vue-router@4, pinia, tailwindcss, animate.css, element-plus, echarts, 高德地图
-2. 手写事件总线, 发布/订阅
+2. 手写单例模式的事件 bus, 发布/订阅
 3. 手写 vite 插件
-4. 虚拟滚动列表, tsx, h 函数
+4. 虚拟滚动列表, h 函数
 5. 左侧菜单后端动态渲染
 6. 递归组件
-7. 网格布局, 缓存滚动位置
-8. web_worker, 参考 [web_worker.js](public/web_worker.js)
-9. 全局 toast (两种方式)
+7. grid 网格布局, 缓存滚动位置
+8. web worker
+9. 全局 toast (使用 vue 插件, 全局 provide/inject 两种方式实现)
 10. 迁移到 tsx (进行中)
-11. 迁移到 Nuxt (进行中)
+11. 迁移到 SSR 框架 Nuxt (进行中)
 
 ## provide/inject
 
@@ -169,3 +169,7 @@ router.push({
 ## 自定义指令: 可拖拽窗口
 
 参考 [DraggableWindow.vue](src/views/order/components/DraggableWindow.vue), [draggable_window.tsx](src/views/order/components/draggable_window.tsx)
+
+## TODO
+
+如何打包多页面
