@@ -4,8 +4,7 @@ import { defineComponent, provide, reactive, ref, onBeforeUnmount, Suspense } fr
 import { ElCol, ElRow, ElCard, ElTimeline, ElTimelineItem, ElButton } from 'element-plus'
 import { useUserStore } from '@/stores/user'
 import { storeToRefs } from 'pinia'
-// import RecursiveChild from './RecursiveChild.vue'
-import RecursiveChild from './recursive_child'
+import RecursiveChild from './recursive_child.tsx'
 import { useChart } from '@/composables/useChart.ts'
 import getChartOption from './chart_option.ts'
 import getChartOption2 from './chart_option2.ts'
@@ -215,7 +214,7 @@ export default defineComponent({
                           ref={virtualListRef}
                         ></VirtualList>
                       ),
-                      fallback: () => '',
+                      fallback: () => <></>,
                     }}
                   </Suspense>
                 ),

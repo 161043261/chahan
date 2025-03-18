@@ -93,8 +93,6 @@ const removeAll = () => {
 
         <!--! 这里有 v-for, <RouterView> 不能写在这里
       否则打开多个页面时, 有多个 <RouterView>, 同一个页面会被挂载多次
-      如果是开发环境, 即 import.meta.env.DEV === true 时,
-      '@/views/dashboard/DashboardIndex.vue: Mounted' 会被打印多次
       -->
         <!-- <RouterView></RouterView> -->
       </ElTabPane>

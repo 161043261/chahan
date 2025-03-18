@@ -4,8 +4,7 @@ import { useUserStore } from '@/stores/user'
 import { storeToRefs } from 'pinia'
 import { useRouter } from 'vue-router'
 import { onBeforeUnmount, ref, defineComponent } from 'vue'
-// import HeaderTabs from './header_tabs'
-import HeaderTabs from './HeaderTabs.vue'
+import HeaderTabs from './header_tabs'
 
 export default defineComponent({
   emits: ['switchWatermark'],

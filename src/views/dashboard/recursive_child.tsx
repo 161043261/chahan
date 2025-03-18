@@ -30,7 +30,7 @@ const RecursiveChild = defineComponent(
             onClick={() => handleClick(props.item.url)}
           >
             {/* 使用 h 函数 */}
-            {Icon ? h(Icon!) : ''}
+            {Icon ? h(Icon!) : <></>}
           </div>
         )}
       </div>

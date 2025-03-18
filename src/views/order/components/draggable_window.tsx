@@ -43,7 +43,7 @@ export default defineComponent({
           v-drag={vDrag}
         >
           <div class="flex cursor-pointer items-center justify-between pt-[20px]">
-            <>{slots.header ? slots.header() : ''}</>
+            <>{slots.header ? slots.header() : <></>}</>
             <span onClick={handleClose}>
               <CloseOne
                 theme="filled"
@@ -73,7 +73,9 @@ export default defineComponent({
           </ul>
           <ElDivider></ElDivider>
 
-          <div class="flex justify-center text-slate-500">{slots.footer ? slots.footer() : ''}</div>
+          <div class="flex justify-center text-slate-500">
+            {slots.footer ? slots.footer() : <></>}
+          </div>
         </div>
       </>
     )
