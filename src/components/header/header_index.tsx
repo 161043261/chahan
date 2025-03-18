@@ -11,7 +11,7 @@ export default defineComponent({
 
   setup(props, { emit }) {
     const userStore = useUserStore()
-    const { nickname } = storeToRefs(userStore)
+    const { username } = storeToRefs(userStore)
     const router = useRouter()
     const isAlive = ref(false)
 
@@ -91,7 +91,7 @@ export default defineComponent({
             <ElDropdown onCommand={handleCommand}>
               {{
                 default: () => (
-                  <span class="cursor-pointer text-lg outline-none"> 欢迎: {nickname.value} </span>
+                  <span class="cursor-pointer text-lg outline-none"> 欢迎: {username.value} </span>
                 ),
                 dropdown: () => (
                   <ElDropdownMenu>

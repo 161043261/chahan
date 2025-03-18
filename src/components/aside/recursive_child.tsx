@@ -2,7 +2,7 @@ import './recursive_child.scss'
 
 import { defineComponent, h } from 'vue'
 import { ElSubMenu, ElMenuItem, ElIcon } from 'element-plus'
-import { type IMenuItem } from '@/types/user'
+import type { IMenuItem } from '@/types/user'
 import { name2icon } from '@/utils/icons'
 import { useTabStore } from '@/stores/tab'
 

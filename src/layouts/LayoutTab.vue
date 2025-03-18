@@ -11,7 +11,7 @@ const userStore = useUserStore()
 <template>
   <!--! <RouterView>, <Transition> or <KeepAlive>. Use slot props instead -->
   <ElWatermark
-    :content="watermarked ? userStore.nickname : ''"
+    :content="watermarked ? userStore.username : ''"
     :font="{ fontSize: 28, fontFamily: 'Iosevka, YouYuan, Yuanti SC' }"
   >
     <RouterView v-slot="{ Component }">

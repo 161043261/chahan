@@ -13,12 +13,11 @@ import { ref } from 'vue'
 
 export const useUserStore = defineStore('user', () => {
   //! state
+  const username = ref<string>(sessionStorage.getItem('username') ?? '')
   // 菜单
   const menuList = ref<IMenuItem[]>(JSON.parse(sessionStorage.getItem('menuList') ?? '[]'))
   // token
   const token = ref<string>(sessionStorage.getItem('token') ?? '')
-  // 昵称
-  const nickname = ref<string>(sessionStorage.getItem('nickname') ?? '')
   // 权限
   const auth = ref<string>(sessionStorage.getItem('auth') ?? '')
 
@@ -27,25 +26,21 @@ export const useUserStore = defineStore('user', () => {
     try {
       const resData = await loginApi(data)
       const {
-        data: {
-          menuList: menuList_,
-          token: token_,
-          user: { nickname: nickname_, auth: auth_ },
-        },
+        data: { menuList: menuList_, token: token_, auth: auth_ },
       } = resData
 
+      username.value = data.username
       menuList.value = menuList_
       token.value = token_
-      nickname.value = nickname_
       auth.value = auth_
 
       // 页面刷新后, pinia 中的数据 (state) 丢失
       // pinia 持久化
       // 1. pinia 中的数据 (state) 是响应式的
       // 2. pinia 存取速度快
+      sessionStorage.setItem('username', data.username)
       sessionStorage.setItem('menuList', JSON.stringify(menuList_))
       sessionStorage.setItem('token', token_)
-      sessionStorage.setItem('nickname', nickname_)
       sessionStorage.setItem('auth', auth_)
     } catch (err) {
       if (import.meta.env.DEV) {
@@ -55,9 +50,9 @@ export const useUserStore = defineStore('user', () => {
   }
 
   const logout = () => {
+    username.value = ''
     menuList.value = []
     token.value = ''
-    nickname.value = ''
     auth.value = ''
     // sessionStorage.removeItem('token')
     sessionStorage.clear()
@@ -66,9 +61,9 @@ export const useUserStore = defineStore('user', () => {
   //! getters (使用 computed 计算属性)
 
   return {
+    username,
     menuList,
     token,
-    nickname,
     auth,
     login,
     logout,

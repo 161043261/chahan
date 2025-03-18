@@ -1,7 +1,7 @@
 import { Connect } from 'vite'
 import url from 'node:url'
 import fs from 'node:fs'
-import { type IRobotList } from '../types'
+import type { IRobotList } from '../types'
 
 function readRobotList(): IRobotList['data'] {
   const jsonStr = fs.readFileSync('./plugins/assets/robot_list.json', 'utf8')

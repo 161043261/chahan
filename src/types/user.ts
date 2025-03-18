@@ -15,10 +15,7 @@ export interface ILoginResData {
   message: string
   data: {
     token: string
-    user: {
-      nickname: string
-      auth: string
-    }
+    auth: string
     menuList: IMenuItem[]
   }
 }

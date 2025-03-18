@@ -8,10 +8,7 @@ export interface IResData {
 export interface ILoginResData {
   data?: {
     token: string
-    user: {
-      nickname: string
-      auth: string
-    }
+    auth: string
     menuList: typeof adminMenu | typeof userMenu
   }
 }

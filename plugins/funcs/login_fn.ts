@@ -14,10 +14,7 @@ const loginFn: Connect.NextHandleFunction = (req, res) => {
       message: '登录成功',
       data: {
         token: 'chahan_token',
-        user: {
-          nickname: '蛋炒饭之神',
-          auth: 'admin',
-        },
+        auth: 'admin',
         menuList: adminMenu,
       },
     }
@@ -27,10 +24,7 @@ const loginFn: Connect.NextHandleFunction = (req, res) => {
       message: '登录成功',
       data: {
         token: 'chahan_token',
-        user: {
-          nickname: '菜鸟',
-          auth: 'user',
-        },
+        auth: 'user',
         menuList: userMenu,
       },
     }

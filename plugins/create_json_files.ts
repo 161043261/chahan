@@ -1,4 +1,4 @@
-import { type Plugin } from 'vite'
+import type { Plugin } from 'vite'
 import path from 'node:path'
 import fs from 'node:fs'
 import { mockOrderList, mockRobotList } from './mock'

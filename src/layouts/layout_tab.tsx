@@ -19,7 +19,7 @@ export default defineComponent({
     return () => (
       <div>
         <ElWatermark
-          content={watermarked.value ? userStore.nickname : ''}
+          content={watermarked.value ? userStore.username : ''}
           font={{ fontSize: 28, fontFamily: 'Iosevka, YouYuan, Yuanti SC' }}
         >
           <RouterView>

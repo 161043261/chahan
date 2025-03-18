@@ -1,4 +1,4 @@
-import { type IOrderList } from '../types'
+import type { IOrderList } from '../types'
 import fs from 'node:fs'
 import { Connect } from 'vite'
 import url from 'node:url'

@@ -8,7 +8,7 @@ import { onBeforeUnmount, ref } from 'vue'
 import HeaderTabs from './HeaderTabs.vue'
 
 const userStore = useUserStore()
-const { nickname } = storeToRefs(userStore)
+const { username } = storeToRefs(userStore)
 const router = useRouter()
 const isAlive = ref(false)
 
@@ -84,7 +84,7 @@ const handleCommand = async (command: Command) => {
         /></ElBadge>
 
         <ElDropdown @command="handleCommand">
-          <span class="cursor-pointer text-lg outline-none"> 欢迎: {{ nickname }} </span>
+          <span class="cursor-pointer text-lg outline-none"> 欢迎: {{ username }} </span>
           <template #dropdown>
             <ElDropdownMenu>
               <ElDropdownItem :icon="User" :command="Command.User">我的账号</ElDropdownItem>
