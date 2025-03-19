@@ -21,7 +21,8 @@ const routes: RouteRecordRaw[] = [
       {
         path: '/empty',
         name: 'Empty',
-        component: () => import('@/views/EmptyIndex.vue'),
+        // component: () => import('@/views/EmptyIndex.vue'),
+        component: () => import('@/views/empty_index'),
       },
       {
         path: '/dashboard',

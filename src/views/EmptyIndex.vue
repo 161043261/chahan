@@ -3,7 +3,7 @@ import { ref, watchEffect } from 'vue'
 import MineSvg from '@/components/assets/MineSvg.vue'
 import FlagSvg from '@/components/assets/FlagSvg.vue'
 
-interface CeilState {
+interface ICeilState {
   x: number
   y: number
   flipped: boolean // 是否被翻开
@@ -46,7 +46,7 @@ const DIRECTIONS = [
   [-1, -1],
 ]
 
-const ceilsGrid = ref<CeilState[][]>(
+const ceilsGrid = ref<ICeilState[][]>(
   Array.from(
     {
       length: HEIGHT,
@@ -56,7 +56,7 @@ const ceilsGrid = ref<CeilState[][]>(
         {
           length: WIDTH,
         },
-        (_, x): CeilState => {
+        (_, x): ICeilState => {
           return {
             x,
             y,
@@ -70,7 +70,7 @@ const ceilsGrid = ref<CeilState[][]>(
   ),
 )
 
-function generateMines(initialCeil: CeilState) {
+function generateMines(initialCeil: ICeilState) {
   for (const ceilsRow of ceilsGrid.value) {
     for (const ceil of ceilsRow) {
       if (initialCeil.x === ceil.x && initialCeil.y === ceil.y) {
@@ -82,7 +82,7 @@ function generateMines(initialCeil: CeilState) {
   setAdjacentMines()
 }
 
-function expandZero(ceil: CeilState) {
+function expandZero(ceil: ICeilState) {
   if (ceil.adjacentMines > 0) {
     return
   }
@@ -101,22 +101,12 @@ function setAdjacentMines() {
       if (ceil.mine) {
         return
       }
-      // DIRECTIONS.forEach(([dx, dy]) => {
-      //   const x2 = ceil.x + dx
-      //   const y2 = ceil.y + dy
-      //   if (x2 < 0 || x2 >= WIDTH || y2 < 0 || y2 >= HEIGHT) {
-      //     return
-      //   }
-      //   if (ceilsGrid[y2][x2].mine) {
-      //     ceil.adjacentMines++
-      //   }
-      // })
       ceil.adjacentMines += getSiblings(ceil).filter((item) => item.mine).length
     })
   })
 }
 
-function handleClick(ceil: CeilState) {
+function handleClick(ceil: ICeilState) {
   ceil.flagged = false
   if (!mineGenerated) {
     generateMines(ceil)
@@ -132,7 +122,7 @@ function handleClick(ceil: CeilState) {
   // judger()
 }
 
-function handleContextMenu(ceil: CeilState) {
+function handleContextMenu(ceil: ICeilState) {
   if (ceil.flipped) {
     return
   }
@@ -141,22 +131,20 @@ function handleContextMenu(ceil: CeilState) {
   // judger()
 }
 
-function getCeilClass(ceil: CeilState) {
+function getCeilClass(ceil: ICeilState) {
   if (ceil.flagged) {
     // alpha channel: 50%
     return 'bg-slate-100/50'
   }
-
   if (!ceil.flipped) {
     // alpha channel: 50%
     return 'hover:bg-slate-300/50 bg-slate-100/50'
   }
-
   // ceil.flagged === false && ceil.flipped === true
   return ceil.mine ? 'bg-red-300' : BG_COLORS[ceil.adjacentMines]
 }
 
-function getSiblings(ceil: CeilState): CeilState[] {
+function getSiblings(ceil: ICeilState): ICeilState[] {
   return DIRECTIONS.map(([dx, dy]) => {
     const x2 = ceil.x + dx
     const y2 = ceil.y + dy
@@ -164,7 +152,7 @@ function getSiblings(ceil: CeilState): CeilState[] {
       return null
     }
     return ceilsGrid.value[y2][x2]
-  }).filter(Boolean) as CeilState[] // 过滤 null 值
+  }).filter(Boolean) as ICeilState[] // 过滤 null 值
 }
 
 function judger() {
@@ -182,11 +170,7 @@ function judger() {
   }
 }
 
-watchEffect(
-  judger /** () => {
-  judger()
-} */,
-)
+watchEffect(judger /** () => { judger() } */)
 </script>
 
 <template>

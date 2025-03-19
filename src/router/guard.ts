@@ -13,51 +13,6 @@ import { ElMessage } from 'element-plus'
 const barVNode = createVNode(ProgressBar)
 render(barVNode, document.body)
 
-// router.beforeEach((to) => {
-//   //! "getActivePinia()" was called but there was no active Pinia.
-//   //! Are you trying to use a store before calling "app.use(pinia)"?
-//   const userStore = useUserStore()
-//   if (!WHITE_LIST.has(to.path) && !userStore.token /**  !sessionStorage.getItem('token') */) {
-//     // vue-router@4 新版本
-//     // 没有返回值: 放行, 有返回值: 重定向
-//     barVNode.component?.exposed?.loadStart()
-//     return { path: '/login' }
-//   }
-
-//   if (
-//     userStore.token &&
-//     (to.path === '/login' ||
-//       (to.meta?.auths && // 需要权限
-//         !to.meta.auths!.includes(userStore.auth))) // 没有权限
-//   ) {
-//     if (to.path !== '/login') {
-//       ElMessage.warning({
-//         message: '违规操作',
-//         grouping: true,
-//       })
-//       return
-//     }
-//     barVNode.component?.exposed?.loadStart()
-//     return { name: 'Home' }
-//   }
-
-//   //! 用户可能刷新页面, 或手动修改地址栏
-//   //! 所以需要在路由前置守卫这里 addTab, setCurrentTab
-//   const tabStore = useTabStore()
-//   const { addTab } = tabStore
-//   if (to.meta.tagName) {
-//     const { tagName, icon } = to.meta
-//     addTab(tagName, icon!, to.path)
-//   }
-//   barVNode.component?.exposed?.loadStart()
-// })
-
-// router.afterEach(
-//   (/** to, from */) => {
-//     barVNode.component?.exposed?.loadEnd()
-//   } /** guard 后置守卫函数 */,
-// )
-
 router.beforeEach(
   (
     to /** (@/router/index.ts
