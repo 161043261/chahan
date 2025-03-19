@@ -118,9 +118,9 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: '/:pathMatch(.*)*', // 匹配未定义的任意路由
-    name: 'NotFound',
-    // component: () => import('@/views/NotFound.vue'),
-    component: () => import('@/views/not_found'),
+    redirect: {
+      name: 'Empty',
+    },
   },
 ]
 
