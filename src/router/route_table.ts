@@ -121,7 +121,7 @@ const routes: RouteRecordRaw[] = [
     name: 'NotFound',
     // component: () => import('@/views/NotFound.vue'),
     component: () => import('@/views/not_found'),
-  }
+  },
 ]
 
 export default routes
