@@ -1,7 +1,7 @@
 import './dashboard_index.scss'
 
 import { defineComponent, provide, reactive, ref, onBeforeUnmount, Suspense } from 'vue'
-import { ElCol, ElRow, ElCard, ElTimeline, ElTimelineItem, ElButton } from 'element-plus'
+import { ElCol, ElRow, ElCard, ElTimeline, ElTimelineItem } from 'element-plus'
 import { useUserStore } from '@/stores/user'
 import { storeToRefs } from 'pinia'
 import RecursiveChild from './recursive_child.tsx'
@@ -108,11 +108,6 @@ export default defineComponent({
     // provide
     provide('virtualListSize' /** key */, virtualListSize /** value */)
 
-    ////////////////////////////////////
-    const __debug_height = ref(400)
-    const __debug_itemHeight = ref(50)
-    ////////////////////////////////////
-
     return () => (
       <div>
         <ElRow gutter={20}>
@@ -185,20 +180,6 @@ export default defineComponent({
                         ]}
                       ></Refresh>
                     </div>
-
-                    {/* ************************************************** */}
-                    {import.meta.env.DEV ? (
-                      <>
-                        <ElButton class="mx-[10px]" onClick={() => (__debug_height.value += 100)}>
-                          height+=100
-                        </ElButton>
-                        <ElButton onClick={() => (__debug_itemHeight.value += 10)}>
-                          itemHeight+=10
-                        </ElButton>
-                      </>
-                    ) : (
-                      <></>
-                    )}
                   </div>
                 ),
 
@@ -207,9 +188,9 @@ export default defineComponent({
                     {{
                       default: () => (
                         <VirtualList
-                          itemHeight={__debug_itemHeight.value}
+                          itemHeight={50}
                           renderFunc={renderFunc}
-                          height={__debug_height.value}
+                          height={400}
                           fetchLargeList={fetchRevenueList}
                           ref={virtualListRef}
                         ></VirtualList>

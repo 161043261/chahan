@@ -35,7 +35,7 @@ export interface IRevenueList {
   data: {
     id: number
     address: string
-    revenue?: number
+    revenue: number
   }[]
 }
 
