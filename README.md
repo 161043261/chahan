@@ -24,12 +24,12 @@ renderFunc: () => <></>
 
 ### layouts
 
-- [LayoutIndex.vue](src/layouts/LayoutIndex.vue)
+- [LayoutIndex.vue](src/layouts/LayoutIndex.vue) -> [layout_index.tsx](src/layouts/layout_index.tsx)
 - [LayoutTab.vue](src/layouts/LayoutTab.vue) -> [layout_tab.tsx](src/layouts/layout_tab.tsx)
 
 ### views
 
-- [EmptyIndex.vue](src/views/EmptyIndex.vue)
+- [EmptyIndex.vue](src/views/EmptyIndex.vue) -> [empty_index.tsx](src/views/empty_index.tsx)
 - [LoginIndex.vue](src/views/LoginIndex.vue) -> [login_index.tsx](src/views/login_index.tsx)
 - [NotFound.vue](src/views/NotFound.vue) -> [not_found.tsx](src/views/not_found.tsx)
 - [AdsIndex.vue](src/views/ads/AdsIndex.vue)
@@ -169,7 +169,3 @@ router.push({
 ## 自定义指令: 可拖拽窗口
 
 参考 [DraggableWindow.vue](src/views/order/components/DraggableWindow.vue), [draggable_window.tsx](src/views/order/components/draggable_window.tsx)
-
-## TODO
-
-如何打包多页面
