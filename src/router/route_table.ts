@@ -121,12 +121,7 @@ const routes: RouteRecordRaw[] = [
     name: 'NotFound',
     // component: () => import('@/views/NotFound.vue'),
     component: () => import('@/views/not_found'),
-  },
-  {
-    path: '/cv', // 匹配未定义的任意路由
-    name: 'CV',
-    component: () => import('@/views/cv/cv_index'),
-  },
+  }
 ]
 
 export default routes

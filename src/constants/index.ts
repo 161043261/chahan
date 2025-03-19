@@ -1,4 +1,4 @@
-export const WHITE_LIST = new Set<string>(['/login', '/cv'])
+export const WHITE_LIST = new Set<string>(['/login'])
 
 export const ROBOT_STATES = [
   '全部' /** 0 */,
