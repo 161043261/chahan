@@ -11,7 +11,7 @@ import {
 import { onBeforeMount, reactive, ref, useTemplateRef, watchEffect } from 'vue'
 import { name2icon } from '@/utils/icons'
 import { orderQueryApi, orderDeleteApi } from '@/apis/order'
-import type { IOrderData } from '@/types/order'
+import type { IOrderItem } from '@/types/order'
 import { usePagination } from '@/composables/usePagination'
 import { ORDER_STATES, ORDER_STATE2TEXT_AND_TYPE } from '@/constants'
 import { useToast2 } from '@/components/toast/toast'
@@ -43,7 +43,7 @@ const handleChange = (newDate: typeof date.value) => {
   formData.endDate = newDate /* date.value */[1]
 }
 
-const orderList = ref<IOrderData[]>()
+const orderList = ref<IOrderItem[]>()
 const orderTable = useTemplateRef<InstanceType<typeof ElTable>>('orderTable')
 const loading /** v-loading */ = ref(false)
 const loadOrderList = async () => {
@@ -102,7 +102,7 @@ const handleBatchDelete = () => {
     })
 }
 
-const handleSelectionChange = (selectedRows: IOrderData[]) => {
+const handleSelectionChange = (selectedRows: IOrderItem[]) => {
   idList.value = selectedRows.map((item) => item.id)
 }
 
@@ -123,9 +123,9 @@ const ctxMenuIsAlive = ref(false)
 const ctxMenuX = ref<string>('0px')
 const ctxMenuY = ref<string>('0px')
 
-const orderData = ref<IOrderData>()
+const orderData = ref<IOrderItem>()
 const draggableWindowIsAlive = ref(false)
-const handleCtxMenu = (ev: MouseEvent, rowData: IOrderData) => {
+const handleCtxMenu = (ev: MouseEvent, rowData: IOrderItem) => {
   ctxMenuX.value = `${ev.pageX}px`
   ctxMenuY.value = `${ev.pageY}px`
   orderData.value = rowData
@@ -143,7 +143,7 @@ watchEffect(() => {
 onBeforeMount(() => window.removeEventListener('click', handleWindowClick))
 
 // 左键, 在悬浮窗中打开
-const handleDetail = (rowData: IOrderData) => {
+const handleDetail = (rowData: IOrderItem) => {
   orderData.value = rowData
   draggableWindowIsAlive.value = true
 }

@@ -20,16 +20,6 @@ const mockRevenueList = (
 }
 
 const mockRobotList = (amount: number): IRobotList['data'] => {
-  // const robotList: IRobotList['data'] = mockRevenueList(amount).revenueList.map((item) => ({
-  //   id: item.id,
-  //   address: item.address,
-  //   name: mockjs.Random.word(),
-  //   state: randNum(0, 5) + 1,
-  //   failureNum: randNum(0, 200),
-  //   admin: mockjs.Random.cname(),
-  //   email: mockjs.Random.email(),
-  // }))
-  // return robotList
   return mockjs.mock({
     [`robotList|${amount}`]: [
       {
@@ -54,7 +44,7 @@ const mockOrderList = (amount: number, robotList: IRobotList['data']): IOrderLis
     .mock({
       [`orderList|${amount}`]: [
         {
-          //! 一些 mockjs 语法
+          //! mockjs 语法
           id: "@string('number', 7)", // 7 位数字
           'state|1': [1, 2, 3], // 'state|1-3': 1,
           date: `@date('${year}-MM-dd')`,

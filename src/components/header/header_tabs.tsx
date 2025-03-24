@@ -2,7 +2,7 @@ import './header_tabs.scss'
 
 import { useTabStore } from '@/stores/tab'
 import { storeToRefs } from 'pinia'
-import { ElTabs, ElTabPane, type TabsPaneContext, type TabPaneName, ElDivider } from 'element-plus'
+import { ElTabs, ElTabPane, type TabsPaneContext, type TabPaneName } from 'element-plus'
 
 import { name2icon } from '@/utils/icons'
 import { useRoute, useRouter } from 'vue-router'
@@ -56,6 +56,7 @@ export default defineComponent({
     const handleCtxMenu = (ev: MouseEvent) => {
       ////////////////////
       ev.preventDefault()
+      console.log(ctxMenuX.value, ctxMenuY.value)
       ////////////////////
       if (tabList.value.length === 0) {
         return
@@ -103,10 +104,16 @@ export default defineComponent({
           leaveActiveClass="animate__animated animate__flipOutX"
         >
           {isAlive.value ? (
-            <ul class="ctx-menu fixed z-10 rounded-lg bg-slate-100 text-slate-500 shadow-lg">
+            <ul
+              class={`ctx-menu fixed z-10 rounded-lg bg-slate-100 text-slate-500 shadow-lg !left-[${ctxMenuX.value}] !top-[${ctxMenuY.value}]`}
+              style={{
+                left: ctxMenuX.value,
+                right: ctxMenuY.value,
+              }}
+            >
               <li>选择关闭方式</li>
               <li>
-                <ElDivider />
+                <hr />
               </li>
               <li onClick={removeAll}>关闭所有标签页</li>
             </ul>

@@ -21,12 +21,14 @@ export type IChartData3 = {
   data: [number, number, number, number, number]
 } & IResData
 
+export interface IRevenueItem {
+  id: number
+  address: string
+  revenue: number
+}
+
 export type IRevenueList = {
-  data: {
-    id: number
-    address: string
-    revenue: number
-  }[]
+  data: IRevenueItem[]
 } & IResData
 
 export interface ITimeLineItem {

@@ -12,8 +12,8 @@
 }
 
 .ctx-menu {
-  left: v-bind(ctxMenuX);
-  top: v-bind(ctxMenuY);
+  // left: v-bind(ctxMenuX);
+  // top: v-bind(ctxMenuY);
   li {
     border-radius: 8px;
     cursor: pointer;

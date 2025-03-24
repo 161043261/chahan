@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { onMounted, ref, watch } from 'vue'
 import { ElCard, ElCol, ElRow, ElInput, ElTree } from 'element-plus'
-import type { ITreeData } from '@/types/map'
+import type { ITreeNode } from '@/types/map'
 import { addressListApi } from '@/apis/map'
 
 onMounted(async () => {
   addrList.value = (await addressListApi()).data.list
 })
 
-const addrList = ref<ITreeData[]>()
+const addrList = ref<ITreeNode[]>()
 const addrStr = ref('')
 const treeRef = ref<InstanceType<typeof ElTree>>()
 watch(

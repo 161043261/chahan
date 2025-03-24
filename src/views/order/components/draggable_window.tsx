@@ -1,10 +1,10 @@
-import type { IOrderData } from '@/types/order'
+import type { IOrderItem } from '@/types/order'
 import { CloseOne } from '@icon-park/vue-next'
 import { ElDivider, ElTag } from 'element-plus'
 import { defineComponent, toRefs, type Directive } from 'vue'
 import { ORDER_STATE2TEXT_AND_TYPE } from '@/constants'
 interface IProps {
-  orderData: IOrderData
+  orderData: IOrderItem
 }
 
 //! 能否在 tsx 文件中使用自定义指令?

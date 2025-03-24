@@ -12,7 +12,7 @@ import {
 } from 'element-plus'
 import { reactive, toRef, computed, useTemplateRef } from 'vue'
 import { ROBOT_STATES, ROBOT_STATE2TEXT_AND_TYPE } from '@/constants'
-import type { IRobotData } from '@/types/robot'
+import type { IRobotItem } from '@/types/robot'
 import { useRobotStore } from '@/stores/robot'
 import { storeToRefs } from 'pinia'
 import { robotAddApi, robotUpdateApi } from '@/apis/chahan'
@@ -38,7 +38,7 @@ const isUpdate = toRef(props, 'isUpdate')
 
 // const title = isUpdate.value ? '更新机器人' : '新增机器人'
 const title = computed(() => (isUpdate.value ? '更新机器人' : '新增机器人'))
-const rules = reactive<FormRules<IRobotData>>({
+const rules = reactive<FormRules<IRobotItem>>({
   name: [{ required: true, message: '机器人名字不能为空', trigger: 'blur' }],
   address: [{ required: true, message: '机器人地址不能为空', trigger: 'blur' }],
   admin: [{ required: true, message: '管理员名字不能为空', trigger: 'blur' }],

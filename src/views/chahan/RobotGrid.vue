@@ -3,7 +3,7 @@
 import { ElCard, ElSelect } from 'element-plus'
 import RobotCard from './components/RobotCard.vue'
 import { robotQueryApi } from '@/apis/chahan'
-import type { IRobotData } from '@/types/robot'
+import type { IRobotItem } from '@/types/robot'
 import { computed, onActivated, onDeactivated, onMounted, reactive, ref, watch } from 'vue'
 import bus from '@/utils/bus'
 
@@ -48,7 +48,7 @@ import bus from '@/utils/bus'
 // }
 
 const stateId2list = reactive(
-  new Map<number, IRobotData[]>(
+  new Map<number, IRobotItem[]>(
     Array.from({
       length: 6,
     })
@@ -59,7 +59,7 @@ const stateId2list = reactive(
 const stateId = ref<number>(0) // 响应式
 const stateCnt = reactive<number[]>(new Array<number>(6).fill(0)) // 响应式
 const totalList = computed(() => stateId2list.get(stateId.value)) // 响应式
-const robotList = ref<IRobotData[]>([]) // 响应式
+const robotList = ref<IRobotItem[]>([]) // 响应式
 
 onMounted(async () => {
   const dataList = (await robotQueryApi({ pageNum: 0, pageSize: -1 })).data.list

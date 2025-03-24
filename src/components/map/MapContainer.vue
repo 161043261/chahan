@@ -3,7 +3,7 @@
 import AMapLoader from '@amap/amap-jsapi-loader'
 import { onMounted, onUnmounted, ref } from 'vue'
 import { markerListApi } from '@/apis/map'
-import type { IRobotData } from '@/types/robot'
+import type { IRobotItem } from '@/types/robot'
 import bus from '@/utils/bus'
 
 const emit = defineEmits<{
@@ -22,7 +22,7 @@ import { AMAP_JS_KEY, ROBOT_STATE2TEXT_AND_TYPE } from '@/constants'
 
 let map: any = null
 
-const robotList = ref<IRobotData[]>()
+const robotList = ref<IRobotItem[]>()
 onMounted(() => {
   AMapLoader.load({
     key: AMAP_JS_KEY,

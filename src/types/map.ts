@@ -1,14 +1,14 @@
 import type { IResData } from './dashboard'
 export type { IResData }
 
-export interface ITreeData {
+export interface ITreeNode {
   label: string
   value?: string
-  children?: ITreeData[]
+  children?: ITreeNode[]
 }
 
 export type ITreeList = {
   data: {
-    list: ITreeData[]
+    list: ITreeNode[]
   }
 } & IResData

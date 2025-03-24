@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type { IOrderData } from '@/types/order'
+import type { IOrderItem } from '@/types/order'
 import { CloseOne } from '@icon-park/vue-next'
 import { toRef, type Directive } from 'vue'
 import { ORDER_STATE2TEXT_AND_TYPE } from '@/constants'
 
 const props = defineProps<{
-  orderData: IOrderData
+  orderData: IOrderItem
 }>()
 
 const emit = defineEmits<{

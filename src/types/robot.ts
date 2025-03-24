@@ -2,7 +2,7 @@ import type { IResData } from './dashboard'
 
 export type { IResData }
 
-export interface IRobotData {
+export interface IRobotItem {
   id: number
   name: string
   address: string
@@ -22,7 +22,7 @@ export interface IRobotData {
 
 export type IRobotList = {
   data: {
-    list: IRobotData[]
+    list: IRobotItem[]
     total?: number
   }
 } & IResData

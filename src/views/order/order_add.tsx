@@ -1,13 +1,13 @@
 import { defineComponent, onMounted, ref, watch } from 'vue'
 import { ElCard, ElCol, ElRow, ElInput, ElTree } from 'element-plus'
-import type { ITreeData } from '@/types/map'
+import type { ITreeNode } from '@/types/map'
 import { addressListApi } from '@/apis/map'
 
 export default defineComponent({
   // name: '',
   setup(props, ctx) {
     const { emit /** , slots */ } = ctx
-    const addrList = ref<ITreeData[]>()
+    const addrList = ref<ITreeNode[]>()
 
     const handleInput = () => {
       emit('update:modelValue', {

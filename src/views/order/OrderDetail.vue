@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { IOrderData } from '@/types/order'
+import type { IOrderItem } from '@/types/order'
 import { ref, onMounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { getDate, getTime } from '@/utils'
-import type { IRobotData } from '@/types/robot'
+import type { IRobotItem } from '@/types/robot'
 import { orderQueryApi } from '@/apis/order'
 import { robotQueryApi } from '@/apis/chahan'
 import { ElCard, ElDescriptions, ElDescriptionsItem, ElDivider, ElImage, ElTag } from 'element-plus'
@@ -14,7 +14,7 @@ import { ListNumbers, Order, Time } from '@icon-park/vue-next'
 const route = useRoute()
 const { orderId, robotId } = route.query
 
-const orderData = ref<IOrderData>({
+const orderData = ref<IOrderItem>({
   id: '',
   state: 1,
   robotId: 0,
@@ -22,7 +22,7 @@ const orderData = ref<IOrderData>({
   date: getDate(),
 })
 
-const robotData = ref<IRobotData>({
+const robotData = ref<IRobotItem>({
   id: 0,
   state: 1,
   name: '',

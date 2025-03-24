@@ -1,7 +1,7 @@
 import type { IResData } from './dashboard'
 export type { IResData }
 
-export interface IOrderData {
+export interface IOrderItem {
   id: string
   state:
     | 0 // 全部
@@ -15,7 +15,7 @@ export interface IOrderData {
 
 export type IOrderList = {
   data: {
-    list: IOrderData[]
+    list: IOrderItem[]
     total: number
   }
 } & IResData

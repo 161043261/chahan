@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { robotDeleteApi, robotQueryApi } from '@/apis/chahan'
 import { ROBOT_STATES, ROBOT_STATE2TEXT_AND_TYPE } from '@/constants'
-import type { IRobotData } from '@/types/robot'
+import type { IRobotItem } from '@/types/robot'
 import { AddOne } from '@icon-park/vue-next'
 import ChahanDialog from './components/ChahanDialog.vue'
 import {
@@ -35,7 +35,7 @@ const formData = reactive({
 //   total: 0,
 // })
 
-const robotList = ref<IRobotData[]>([])
+const robotList = ref<IRobotItem[]>([])
 const loading /** v-loading */ = ref(false)
 
 const loadRobotList = async () => {
@@ -80,7 +80,7 @@ const handleAdd = () => {
   dialogVisible.value = true
 }
 
-const handleUpdate = (rowData: IRobotData) => {
+const handleUpdate = (rowData: IRobotItem) => {
   robotStore.setRowData(rowData)
   isUpdate.value = true // 是更新
   dialogVisible.value = true

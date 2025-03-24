@@ -1,9 +1,9 @@
-import type { IRobotData } from '@/types/robot'
+import type { IRobotItem } from '@/types/robot'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
 export const useRobotStore = defineStore('robot', () => {
-  const defaultRowData: IRobotData = {
+  const defaultRowData: IRobotItem = {
     id: 0, // id > 0
     name: '',
     address: '',
@@ -14,10 +14,10 @@ export const useRobotStore = defineStore('robot', () => {
   }
 
   // state
-  const rowData = ref<IRobotData>(defaultRowData)
+  const rowData = ref<IRobotItem>(defaultRowData)
 
   // actions
-  const setRowData = (newRowData: IRobotData) => {
+  const setRowData = (newRowData: IRobotItem) => {
     rowData.value = newRowData
   }
 

@@ -7,7 +7,7 @@ import pcList from '@/assets/pc_list.json'
 
 import { fetchLocation } from '@/utils/fetch_location'
 import { AddOne, CloseOne, CheckOne } from '@icon-park/vue-next'
-import type { IRobotData } from '@/types/robot'
+import type { IRobotItem } from '@/types/robot'
 import bus from '@/utils/bus'
 import { robotAddApi } from '@/apis/chahan'
 
@@ -33,7 +33,7 @@ const handleChange = async () => {
   ;[addrLatLng[1], addrLatLng[2]] = await fetchLocation(addrLatLng[0])
 }
 
-const formData = reactive<Omit<IRobotData, 'id' | 'address'>>({
+const formData = reactive<Omit<IRobotItem, 'id' | 'address'>>({
   name: '',
   state: 1,
   failureNum: 0,
