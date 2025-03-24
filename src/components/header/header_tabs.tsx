@@ -105,7 +105,7 @@ export default defineComponent({
         >
           {isAlive.value ? (
             <ul
-              class={`ctx-menu fixed z-10 rounded-lg bg-slate-100 text-slate-500 shadow-lg !left-[${ctxMenuX.value}] !top-[${ctxMenuY.value}]`}
+              class={`ctx-menu fixed z-10 w-[150px] rounded-lg bg-slate-100 text-slate-500 shadow-lg !left-[${ctxMenuX.value}] !top-[${ctxMenuY.value}]`}
               style={{
                 left: ctxMenuX.value,
                 right: ctxMenuY.value,
