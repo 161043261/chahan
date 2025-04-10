@@ -3,6 +3,6 @@ import { RouterView } from 'vue-router'
 
 export default defineComponent(() => () => (
   <main>
-    <RouterView></RouterView>
+    <RouterView />
   </main>
 ))
