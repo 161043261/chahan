@@ -3,13 +3,6 @@
 ## Vue 项目使用 tsx
 
 ```tsx
-defineComponent({ name, props, emits, slots, expose, setup })
-defineComponent(setup, { name, props, emits, slots })
-setup: (props, { emit /** fn */, slots, expose /** fn */ }) => renderFunc
-renderFunc: () => <></>
-```
-
-```tsx
 // 写法 1
 defineComponent({ name, props, emits, expose, setup })
 // 写法 2
@@ -22,14 +15,14 @@ renderFunc: () => <></>
 
 ### `defineComponent` 两种写法
 
-- [recursive_child.tsx](src/components/aside/recursive_child.tsx) `defineComponent` 写法 1
-- [recursive_child.tsx](src/views/dashboard/recursive_child.tsx) `defineComponent` 写法 2
+- [recursive_child.tsx](src/components/aside/RecursiveChild.tsx) `defineComponent` 写法 1
+- [recursive_child.tsx](src/views/dashboard/RecursiveChild.tsx) `defineComponent` 写法 2
 - [app.tsx](src/app.tsx) `defineComponent` 写法 2
 
 ## 路由权限控制
 
 1. 前端不创建完整路由表, 前端根据后端返回的路由权限, 动态添加路由 `router.addRoute()`,
-2. 前端创建完整路由表 [route_table.ts](./src/router/route_table.ts), 使用路由元信息 `meta` 指定路由权限, 并在路由守卫中校验权限
+2. 前端创建完整路由表 [routes.ts](./src/router/routes.ts), 使用路由元信息 `meta` 指定路由权限, 并在路由守卫中校验权限
 
 ## 响应式布局
 
@@ -53,7 +46,7 @@ renderFunc: () => <></>
 8. web worker
 9. 全局 toast (使用 vue 插件, 全局 provide/inject 两种方式实现)
 10. 迁移到 tsx (进行中)
-11. 迁移到 SSR 框架 Nuxt (进行中)
+11. 迁移到 Nuxt 框架 [chahan-dev](./chahan-dev/README.md)
 
 ## provide/inject
 
@@ -123,4 +116,4 @@ router.push({
 
 ## 自定义指令: 可拖拽窗口
 
-参考 [DraggableWindow.vue](src/views/order/components/DraggableWindow.vue), [draggable_window.tsx](src/views/order/components/draggable_window.tsx)
+参考 [DraggableWindow (vue 版本)](src/views/order/components/DraggableWindow.vue), [DraggableWindow (tsx 版本)](src/views/order/components/DraggableWindow.tsx)
