@@ -3,7 +3,6 @@ import './HeaderTabs.scss'
 import { useTabStore } from '@/stores/tab'
 import { storeToRefs } from 'pinia'
 import { ElTabs, ElTabPane, type TabsPaneContext, type TabPaneName } from 'element-plus'
-
 import { name2icon } from '@/utils/icons'
 import { useRoute, useRouter } from 'vue-router'
 import { defineComponent, h, onBeforeMount, ref, Transition, watch } from 'vue'
