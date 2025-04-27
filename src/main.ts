@@ -8,7 +8,7 @@ import '@icon-park/vue-next/styles/index.css'
 import { createApp, readonly } from 'vue'
 import { createPinia } from 'pinia'
 // import App from '@/App.vue'
-import App from '@/App';
+import App from '@/App'
 import router from '@/router'
 import ElementPlus from 'element-plus'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'

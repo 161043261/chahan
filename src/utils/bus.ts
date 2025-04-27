@@ -12,8 +12,8 @@ class Bus implements IBus {
 
   private constructor(
     private eventName2callbacks: IEventName2callbacks = new Map<string, ICallback[]>(),
-  ) { }
-  
+  ) {}
+
   public static get instance(): Bus {
     if (!Bus.#instance) {
       Bus.#instance = new Bus()
