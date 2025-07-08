@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useTabStore } from '@/stores/tab'
 import { storeToRefs } from 'pinia'
-import { ElTabs, ElTabPane, type TabsPaneContext, type TabPaneName, ElDivider } from 'element-plus'
+import { ElTabs, ElTabPane, type TabsPaneContext, type TabPaneName } from 'element-plus'
 
 import { name2icon } from '@/utils/icons'
 import { useRoute, useRouter } from 'vue-router'
@@ -107,7 +107,7 @@ const removeAll = () => {
         v-if="isAlive"
       >
         <li>选择关闭方式</li>
-        <li><ElDivider /></li>
+        <li><hr /></li>
         <li @click="removeAll">关闭所有标签页</li>
       </ul>
     </Transition>
