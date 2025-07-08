@@ -1,0 +1,22 @@
+.menu-list {
+  // menu-list
+  .is-active {
+    background-color: var(--color-green) !important;
+    color: #fff;
+    font-size: 16px;
+    transition: all;
+  }
+}
+
+.el-menu-item {
+  border-radius: 20px;
+  &:hover {
+    background-color: var(--color-green-light) !important;
+  }
+}
+
+.el-sub-menu__title {
+  &:hover {
+    background-color: var(--color-green-light) !important;
+  }
+}
