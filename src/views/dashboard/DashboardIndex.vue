@@ -79,7 +79,7 @@ const renderFunc = (props: { item: RevenueItem; idx: number } /** { emit, slots 
     /* HyperScript */ 'div',
     {
       style: {
-        backgroundColor: props.idx % 2 === 0 ? 'var(--color-5th)' : '#fff',
+        backgroundColor: props.idx % 2 === 0 ? '#ecfcca' : '#fff',
         display: 'flex',
         ['::-webkit-scrollbar']: {
           display: 'none !important',
