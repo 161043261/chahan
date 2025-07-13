@@ -63,7 +63,7 @@ husky 是一个 git hook 工具
 两种方式: `app.config.globalProperties/vuePlugin` 和 `app.provide/inject` 实现全局 toast, 参考
 
 - [toast.ts](./src/components/toast/toast.ts)
-- [ToastIndex.ts](./src/components/toast/ToastIndex.vue)
+- [ToastIndex.vue](./src/components/toast/ToastIndex.vue)
 - [main.ts](./src/main.ts)
 - [使用示例](./src/views/dashboard/DashboardIndex.vue)
 
@@ -95,4 +95,4 @@ router.push({
 
 ## 自定义指令: 可拖拽窗口
 
-参考 [DraggableWindow (vue 版本)](src/views/order/components/DraggableWindow.vue)
+参考 [DraggableWindow](src/views/order/components/DraggableWindow.vue)
