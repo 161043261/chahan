@@ -8,9 +8,15 @@ function Invoke-Check {
   }
 }
 
-function Build {
-  Remove-Item -Recurse -Force  -ErrorAction SilentlyContinue ./.vitepress/dist
-  Invoke-Check "pnpm build"
+function Get-CommitMessage {
+  param(
+    [Parameter(Mandatory = $true)]
+    [string]$Type,
+    [Parameter(Mandatory = $true)]
+    [string]$Message
+  )
+  $dateStamp = Get-Date -Format "yyyy-MM-dd HH:mm"
+  return "${Type}: ${Message} ($dateStamp)"
 }
 
 function GitCommit {
@@ -20,8 +26,9 @@ function GitCommit {
     [Parameter(Mandatory = $true)]
     [string]$Message
   )
+  $fullMessage = Get-CommitMessage $Type $Message
   Invoke-Check "git add -A"
-  Invoke-Check "git commit -m '$($Type): $Message'"
+  Invoke-Check "git commit -m '$fullMessage'"
   Invoke-Check "git push origin main"
 }
 
@@ -79,7 +86,7 @@ Phony:
   Perf     - Performance optimization
   Init     - Initial commit
 
-Command:
+Example:
   .\aaa.ps1 feat
 "@ | Write-Host -ForegroundColor Yellow
 }
