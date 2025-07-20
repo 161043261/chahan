@@ -104,7 +104,7 @@ elseif (Get-Command $command -ErrorAction SilentlyContinue) {
   & $command
 }
 else {
-  Write-Host "Command not found: $command" -ForegroundColor Red
+  Write-Host "Invalid command: $command" -ForegroundColor Red
   Show-Help
   exit 1
 }
