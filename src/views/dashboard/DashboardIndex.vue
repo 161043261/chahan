@@ -12,7 +12,7 @@ import { ElCol, ElRow, ElCard, ElTimeline, ElTimelineItem } from 'element-plus'
 import { useUserStore } from '@/stores/user'
 import { storeToRefs } from 'pinia'
 import RecursiveChild from './RecursiveChild.vue'
-import { useChart } from '@/composables/useChart.ts'
+import { useChart, type ICustomEventOption } from '@/composables/useChart.ts'
 import getChartOption from './chart_option.ts'
 import getChartOption2 from './chart_option2.ts'
 import getChartOption3 from './chart_option3.ts'
@@ -65,7 +65,19 @@ const chartRef = ref<HTMLDivElement | null>(null)
 const chartRef2 = ref<HTMLDivElement | null>(null)
 const chartRef3 = ref<HTMLDivElement | null>(null)
 
-const updateChart = useChart(chartRef, getChartOption)
+const customEventConfigs: ICustomEventOption[] = [
+  {
+    evName: 'updateAxisPointer',
+    handler: (event, chartInstance) => {
+      const xAxisInfo = event.axesInfo?.[0]
+      if (import.meta.env.DEV) {
+        console.log(xAxisInfo?.value, chartInstance)
+      }
+    },
+  },
+]
+
+const updateChart = useChart(chartRef, getChartOption, customEventConfigs)
 const updateChart2 = useChart(chartRef2, getChartOption2)
 const updateChart3 = useChart(chartRef3, getChartOption3)
 
