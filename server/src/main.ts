@@ -22,7 +22,7 @@ import 'dotenv/config'
 const app = express()
 
 function cors(req: ExpressRequest, res: ExpressResponse, next: NextFunction) {
-  console.log("[server] req.url:", req.url)
+  console.log('[server] req.url:', req.url)
   res.header('Access-Control-Allow-Origin', '*')
   res.header('Access-Control-Allow-Headers', '*')
   res.header('Access-Control-Allow-Credentials', 'true')

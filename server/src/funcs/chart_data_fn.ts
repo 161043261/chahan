@@ -16,7 +16,7 @@ function chartDataFn(req: ExpressRequest, res: ExpressResponse) {
   res.end(JSON.stringify(resData))
 }
 
-function chartDataFn2(req: ExpressRequest, res: ExpressResponse){
+function chartDataFn2(req: ExpressRequest, res: ExpressResponse) {
   res.setHeader('Content-Type', 'application/json')
   const resData: IChartData2 & IResData = {
     code: 200,

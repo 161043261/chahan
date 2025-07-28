@@ -2,7 +2,6 @@ import fs from 'node:fs'
 import { IRobotList } from '../types'
 import { Request as ExpressRequest, Response as ExpressResponse } from 'express'
 
-
 function readRobotList(): IRobotList['data'] {
   const jsonStr = fs.readFileSync('./plugins/assets/robot_list.json', 'utf8')
   return JSON.parse(jsonStr)

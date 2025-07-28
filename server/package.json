@@ -4,7 +4,8 @@
   "description": "",
   "private": true,
   "scripts": {
-    "start": "rm -rf ./dist && tsc && node dist/main.js"
+    "start": "rm -rf ./dist && tsc && node dist/main.js",
+    "format": "prettier --write ./src"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +20,7 @@
   },
   "devDependencies": {
     "@types/express": "^5.0.3",
-    "@types/mockjs": "^1.0.10"
+    "@types/mockjs": "^1.0.10",
+    "prettier": "^3.6.2"
   }
 }
