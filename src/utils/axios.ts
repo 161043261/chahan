@@ -9,8 +9,7 @@ import type { ITimeLineItem } from '@/types/dashboard'
 
 // axios 实例
 const httpClient: AxiosInstance = axios.create({
-  // todo: 将硬编码替换为环境变量
-  baseURL: 'http://localhost:5173', // 路由前缀
+  baseURL: import.meta.env.VITE_SERVER_URL, // 路由前缀
   timeout: 10000, // 请求超时时间
 })
 

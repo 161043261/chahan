@@ -36,3 +36,4 @@ const toast: IToast = createToast()
 app.provide<IToast>('toast', readonly(toast))
 
 app.mount('#app')
+console.log('import.meta.env.VITE_SERVER_URL:', import.meta.env.VITE_SERVER_URL)
