@@ -1,5 +1,5 @@
-import adminMenu from '../assets/admin_menu.json'
-import userMenu from '../assets/user_menu.json'
+import adminMenu from '../assets/admin-menu.json'
+import userMenu from '../assets/user-menu.json'
 
 export const enum Api {
   Login = '/api/login',

@@ -4,13 +4,13 @@ import { Connect } from 'vite'
 import url from 'node:url'
 
 function readOrderList(): IOrderList['data'] {
-  const jsonStr = fs.readFileSync('./plugins/assets/order_list.json', 'utf8')
+  const jsonStr = fs.readFileSync('./plugins/assets/order-list.json', 'utf8')
   return JSON.parse(jsonStr)
 }
 
 function writeOrderList(orderList: IOrderList['data']) {
   const jsonStr = JSON.stringify(orderList)
-  fs.writeFileSync('./plugins/assets/order_list.json', jsonStr, {
+  fs.writeFileSync('./plugins/assets/order-list.json', jsonStr, {
     encoding: 'utf8',
   })
 }

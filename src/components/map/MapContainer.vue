@@ -40,7 +40,7 @@ onMounted(() => {
 
       markerListApi().then(({ data: { list } }) => {
         // web worker
-        const worker = new Worker('/web_worker.js')
+        const worker = new Worker('/web-worker.js')
         worker.postMessage(list) // 深拷贝 list
         // worker.postMessage(list, [list]) // 转移所有权
 

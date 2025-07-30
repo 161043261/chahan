@@ -19,7 +19,7 @@ import {
 } from 'element-plus'
 import { reactive, ref } from 'vue'
 import { useRobotStore } from '@/stores/robot'
-import { usePagination } from '@/composables/usePagination'
+import { usePagination } from '@/composables/use-pagination'
 
 const robotStore = useRobotStore()
 const nameOrAddress = ref('name')

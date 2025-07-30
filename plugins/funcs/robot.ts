@@ -1,21 +1,21 @@
-import { Request as ExpressRequest, Response as ExpressResponse } from 'express'
+import { Connect } from 'vite'
 import url from 'node:url'
 import fs from 'node:fs'
 import type { IRobotList } from '../types'
 
 function readRobotList(): IRobotList['data'] {
-  const jsonStr = fs.readFileSync('./plugins/assets/robot_list.json', 'utf8')
+  const jsonStr = fs.readFileSync('./plugins/assets/robot-list.json', 'utf8')
   return JSON.parse(jsonStr)
 }
 
 function writeRobotList(robotList: IRobotList['data']) {
   const jsonStr = JSON.stringify(robotList)
-  fs.writeFileSync('./plugins/assets/robot_list.json', jsonStr, {
+  fs.writeFileSync('./plugins/assets/robot-list.json', jsonStr, {
     encoding: 'utf8',
   })
 }
 
-export function robotQueryFn(req: ExpressRequest, res: ExpressResponse) {
+export const robotQueryFn: Connect.NextHandleFunction = (req, res) => {
   res.setHeader('Content-Type', 'application/json')
   const parseUrl = url.parse(req.originalUrl!, true /* parseQueryString */).query
   const {
@@ -76,7 +76,7 @@ export function robotQueryFn(req: ExpressRequest, res: ExpressResponse) {
   )
 }
 
-export function robotAddFn(req: ExpressRequest, res: ExpressResponse) {
+export const robotAddFn: Connect.NextHandleFunction = (req, res) => {
   res.setHeader('Content-Type', 'application/json')
   const parseUrl = url.parse(req.originalUrl!, true /* parseQueryString */).query
   const { name, address, state, failureNum, admin, email, lat, lng } = parseUrl
@@ -105,7 +105,7 @@ export function robotAddFn(req: ExpressRequest, res: ExpressResponse) {
   )
 }
 
-export function robotDeleteFn(req: ExpressRequest, res: ExpressResponse) {
+export const robotDeleteFn: Connect.NextHandleFunction = (req, res) => {
   res.setHeader('Content-Type', 'application/json')
   const parseUrl = url.parse(req.originalUrl!, true /* parseQueryString */).query
   const { id } = parseUrl
@@ -121,7 +121,7 @@ export function robotDeleteFn(req: ExpressRequest, res: ExpressResponse) {
   return
 }
 
-export function robotUpdateFn(req: ExpressRequest, res: ExpressResponse) {
+export const robotUpdateFn: Connect.NextHandleFunction = (req, res) => {
   res.setHeader('Content-Type', 'application/json')
   const parseUrl = url.parse(req.originalUrl!, true /* parseQueryString */).query
   const { id, address, state, failureNum, email } = parseUrl

@@ -6,9 +6,9 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import vueDevTools from 'vite-plugin-vue-devtools'
 import tailwindcss from '@tailwindcss/vite'
 
-import viteServer from './plugins/vite_server'
+import viteServer from './plugins/vite-server'
 import { visualizer } from 'rollup-plugin-visualizer'
-import createJsonFiles from './plugins/create_json'
+import createJsonFiles from './plugins/create-json'
 
 // https://vite.dev/config/
 export default defineConfig((/** { command, mode } */) => {
@@ -26,8 +26,8 @@ export default defineConfig((/** { command, mode } */) => {
       vueJsx(),
       vueDevTools(),
       tailwindcss(),
-      // ./plugins/assets/robot_list.json
-      // ./plugins/assets/order_list.json
+      // ./plugins/assets/robot-list.json
+      // ./plugins/assets/order-list.json
       createJsonFiles(),
       visualizer({ open: true }),
     ],

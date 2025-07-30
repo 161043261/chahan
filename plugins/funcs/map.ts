@@ -3,7 +3,7 @@ import { IRobotList } from '../types'
 import { Connect } from 'vite'
 
 function readRobotList(): IRobotList['data'] {
-  const jsonStr = fs.readFileSync('./plugins/assets/robot_list.json', 'utf8')
+  const jsonStr = fs.readFileSync('./plugins/assets/robot-list.json', 'utf8')
   return JSON.parse(jsonStr)
 }
 
