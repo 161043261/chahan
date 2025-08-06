@@ -1,0 +1,51 @@
+[
+  {
+    "name": "数据看板",
+    "url": "/dashboard",
+    "icon": "DataScreen"
+  },
+  {
+    "name": "炒饭机器人",
+    "icon": "Cooking",
+    "children": [
+      { "name": "炒饭机器人列表", "url": "/chahan", "icon": "SurveillanceCameras" },
+      { "name": "炒饭机器人网格", "url": "/chahan/grid", "icon": "RobotOne" }
+    ]
+  },
+  {
+    "name": "Web 地图",
+    "url": "/map",
+    "icon": "LocalTwo"
+  },
+  {
+    "name": "快捷操作",
+    "icon": "Tag",
+    "children": [
+      {
+        "name": "订单管理",
+        "url": "/order",
+        "icon": "Order"
+      },
+      {
+        "name": "订单详情",
+        "url": "/order/detail",
+        "icon": "Find"
+      },
+      {
+        "name": "导入订单",
+        "url": "/order/add",
+        "icon": "FileAddition"
+      }
+    ]
+  },
+  {
+    "name": "广告发布",
+    "url": "/ads",
+    "icon": "GoogleAds"
+  },
+  {
+    "name": "系统设置",
+    "url": "/system",
+    "icon": "System"
+  }
+]

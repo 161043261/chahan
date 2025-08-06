@@ -1,0 +1,27 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "build": "rm -rf ./dist && tsc",
+    "start": "rm -rf ./dist && tsc && node dist/main.js",
+    "format": "prettier --write ./src"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.13.1",
+  "dependencies": {
+    "@types/body-parser": "^1.19.6",
+    "body-parser": "^2.2.0",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "mockjs": "^1.1.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/mockjs": "^1.0.10",
+    "prettier": "^3.6.2"
+  }
+}
