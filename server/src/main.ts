@@ -18,6 +18,10 @@ import {
   addressListFn,
 } from './funcs'
 import 'dotenv/config'
+import { resolve } from 'node:path'
+import { mockOrderList, mockRobotList } from './mock'
+import { randNum } from './utils'
+import { writeFileSync } from 'node:fs'
 
 const app = express()
 
@@ -55,6 +59,25 @@ app.use(Api.OrderDelete, orderDeleteFn)
 app.use(Api.AddressList, addressListFn)
 
 const port = process.env.PORT ?? 3000
+
+function createJsonFiles() {
+  console.log('[createJsonFiles] __dirname:', __dirname)
+  const jsonPath = resolve(__dirname, './assets/robot-list.json')
+
+  const robotList = mockRobotList(randNum(50, 100))
+  // 定位到上海市静安区
+  robotList[0].lat = 121.391229
+  robotList[0].lng = 31.251326
+  const jsonStr = JSON.stringify(robotList)
+  writeFileSync(jsonPath, jsonStr, { encoding: 'utf8' })
+
+  const jsonPath2 = resolve(__dirname, './assets/order-list.json')
+  const orderList = mockOrderList(randNum(250, 500), robotList)
+  const jsonStr2 = JSON.stringify(orderList)
+  writeFileSync(jsonPath2, jsonStr2, { encoding: 'utf8' })
+}
+
+createJsonFiles()
 
 app.listen(port, () => {
   console.log(`[server] http://localhost:${port}/`)
