@@ -2,15 +2,16 @@ import { Request as ExpressRequest, Response as ExpressResponse } from 'express'
 import url from 'node:url'
 import fs from 'node:fs'
 import type { IRobotList } from '../types'
+import { resolve } from 'node:path'
 
 function readRobotList(): IRobotList['data'] {
-  const jsonStr = fs.readFileSync('./plugins/assets/robot-list.json', 'utf8')
+  const jsonStr = fs.readFileSync(resolve(__dirname, '../assets/robot-list.json'), 'utf8')
   return JSON.parse(jsonStr)
 }
 
 function writeRobotList(robotList: IRobotList['data']) {
   const jsonStr = JSON.stringify(robotList)
-  fs.writeFileSync('./plugins/assets/robot-list.json', jsonStr, {
+  fs.writeFileSync(resolve(__dirname, '../assets/robot-list.json'), jsonStr, {
     encoding: 'utf8',
   })
 }

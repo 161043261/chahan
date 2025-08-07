@@ -14,7 +14,6 @@ export const enum Api {
   MarkerList = '/api/markerList',
   OrderQuery = '/api/orderQuery',
   OrderDelete = '/api/orderDelete',
-  AddressList = '/api/addressList',
 }
 
 export { adminMenu, userMenu }

@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "build": "rm -rf ./dist && tsc",
-    "start": "rm -rf ./dist && tsc && node dist/main.js",
+    "start": "rm -rf ./dist && tsc && node ./dist/main.js",
     "format": "prettier --write ./src"
   },
   "keywords": [],

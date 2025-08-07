@@ -20,15 +20,3 @@ export const markerListFn: Connect.NextHandleFunction = (req, res) => {
     }),
   )
 }
-
-export const addressListFn: Connect.NextHandleFunction = (req, res) => {
-  res.setHeader('Content-Type', 'application/json')
-  const resData = fs.readFileSync('./plugins/assets/pca_list.json', { encoding: 'utf8' })
-  res.end(
-    JSON.stringify({
-      code: 200,
-      message: '获取地图标记列表成功',
-      data: { list: JSON.parse(resData) },
-    }),
-  )
-}

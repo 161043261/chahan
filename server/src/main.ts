@@ -15,7 +15,6 @@ import {
   robotUpdateFn,
   orderQueryFn,
   orderDeleteFn,
-  addressListFn,
 } from './funcs'
 import 'dotenv/config'
 import { resolve } from 'node:path'
@@ -56,7 +55,6 @@ app.use(Api.RobotDelete, robotDeleteFn)
 app.use(Api.MarkerList, markerListFn)
 app.use(Api.OrderQuery, orderQueryFn)
 app.use(Api.OrderDelete, orderDeleteFn)
-app.use(Api.AddressList, addressListFn)
 
 const port = process.env.PORT ?? 3000
 
