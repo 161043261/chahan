@@ -41,7 +41,7 @@ const visibleInfo = reactive({
 })
 
 // 可视区数据
-const visibleData = computed(() => {
+const visiblePartialList = computed(() => {
   return largeList.value.slice(
     visibleInfo.startIdx,
     Math.min(visibleInfo.endIdx, largeList.value.length),
@@ -59,7 +59,7 @@ const handleScroll = (ev: Event) => {
   const scrollTop = (ev.target as HTMLDivElement).scrollTop
   visibleInfo.startIdx = Math.floor(scrollTop / itemHeight.value)
   visibleInfo.endIdx = visibleInfo.startIdx + visibleCnt.value
-  startOffset.value = visibleInfo.startIdx * itemHeight.value
+  startOffset.value = scrollTop
 }
 </script>
 
@@ -90,7 +90,7 @@ const handleScroll = (ev: Event) => {
       text-overflow: ellipsis;
       white-space: nowrap; -->
       <li
-        v-for="(item, idx) of visibleData"
+        v-for="(item, idx) of visiblePartialList"
         :key="item.id"
         class="box-border rounded-lg"
         :style="{

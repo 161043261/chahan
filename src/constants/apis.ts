@@ -1,6 +1,6 @@
 const version = 'v1'
 
-export enum Api {
+export const enum Api {
   RobotQuery = `/api/${version}/robotQuery`,
   RobotAdd = `/api/${version}/robotAdd`,
   RobotDelete = `/api/${version}/robotDelete`,
