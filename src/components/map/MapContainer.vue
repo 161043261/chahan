@@ -11,13 +11,14 @@ const emit = defineEmits<{
 }>()
 
 //! import.meta.glob
-const imgList: Record<string, { default: string }> = import.meta.glob(
-  ['@/assets/*.png', '@/assets/*.jpg', '@/assets/*.svg'],
-  {
-    eager: true,
-  },
-)
-// import robotSvg /** string */ from '@/assets/robot.svg'
+// const imgList: Record<string, { default: string }> = import.meta.glob(
+//   ['@/assets/*.png', '@/assets/*.jpg', '@/assets/*.svg'],
+//   {
+//     eager: true,
+//   },
+// )
+import robotSvg /** string */ from '@/assets/robot.svg'
+import localSvg /** string */ from '@/assets/local.svg'
 import { AMAP_JS_KEY, ROBOT_STATE2TEXT_AND_TYPE } from '@/constants'
 
 let map: any = null
@@ -90,7 +91,7 @@ onMounted(() => {
           const marker = new AMap.Marker({
             position: [lat, lng],
             title: item.address,
-            icon: Object.keys(imgList).find((item) => item.includes('local.svg')),
+            icon: localSvg,
           })
           // 为 marker 添加点击事件
           marker.on('click', () => {
@@ -98,7 +99,7 @@ onMounted(() => {
               `
               <div class="flex h-[200px] w-[450px] flex-none items-center justify-center">
                 <div class="w-[200px]">
-                  <img src=${Object.keys(imgList).find((item) => item.includes('robot.svg'))} alt="eva" class="w-[200px]" />
+                  <img src=${robotSvg} alt="eva" class="w-[200px]" />
                 </div>
                 <ul class="w-[250px]">
                   <li class="truncate">机器人名字: ${name}</li>

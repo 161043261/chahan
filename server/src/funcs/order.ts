@@ -2,15 +2,16 @@ import type { IOrderList } from '../types'
 import fs from 'node:fs'
 import { Request as ExpressRequest, Response as ExpressResponse } from 'express'
 import url from 'node:url'
+import { resolve } from 'node:path'
 
 function readOrderList(): IOrderList['data'] {
-  const jsonStr = fs.readFileSync('./plugins/assets/order-list.json', 'utf8')
+  const jsonStr = fs.readFileSync(resolve(__dirname, '../assets/order-list.json'), 'utf8')
   return JSON.parse(jsonStr)
 }
 
 function writeOrderList(orderList: IOrderList['data']) {
   const jsonStr = JSON.stringify(orderList)
-  fs.writeFileSync('./plugins/assets/order-list.json', jsonStr, {
+  fs.writeFileSync(resolve(__dirname, '../assets/order-list.json'), jsonStr, {
     encoding: 'utf8',
   })
 }
