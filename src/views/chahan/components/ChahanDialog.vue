@@ -11,7 +11,7 @@ import {
   ElInputNumber,
 } from 'element-plus'
 import { reactive, toRef, computed, useTemplateRef } from 'vue'
-import { ROBOT_STATES, ROBOT_STATE2TEXT_AND_TYPE } from '@/constants'
+import { ROBOT_STATES, ROBOT_STATE_2_TEXT_AND_TYPE } from '@/constants'
 import type { IRobotItem } from '@/types/robot'
 import { useRobotStore } from '@/stores/robot'
 import { storeToRefs } from 'pinia'
@@ -149,7 +149,7 @@ const handelConfirm = () => {
                   :value="idx + 1"
                   :label="state"
                 >
-                  <ElTag size="large" :type="ROBOT_STATE2TEXT_AND_TYPE.get(idx)?.type">
+                  <ElTag size="large" :type="ROBOT_STATE_2_TEXT_AND_TYPE.get(idx)?.type">
                     {{ state }}
                   </ElTag>
                 </ElOption>

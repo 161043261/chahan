@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ROBOT_STATE2TEXT_AND_TYPE } from '@/constants'
+import { ROBOT_STATE_2_TEXT_AND_TYPE } from '@/constants'
 import { toRefs } from 'vue'
 
 const props = defineProps<{
@@ -14,8 +14,12 @@ const { stateId, failureNum } = toRefs(props)
     class="grid-layout border-2nd h-[222px] w-[333px] items-center justify-center !rounded-3xl border-3 duration-1000 hover:scale-110"
   >
     <div class="flex flex-col items-center justify-between">
-      <ElTag size="large" :type="ROBOT_STATE2TEXT_AND_TYPE.get(stateId)?.type" class="!text-[15px]">
-        {{ ROBOT_STATE2TEXT_AND_TYPE.get(stateId)?.text }}
+      <ElTag
+        size="large"
+        :type="ROBOT_STATE_2_TEXT_AND_TYPE.get(stateId)?.type"
+        class="!text-[15px]"
+      >
+        {{ ROBOT_STATE_2_TEXT_AND_TYPE.get(stateId)?.text }}
       </ElTag>
       <!-- todo: 图片懒加载 -->
       <img src="@/assets/robot.svg" alt="eva" width="70px" />

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { robotDeleteApi, robotQueryApi } from '@/apis/chahan'
-import { ROBOT_STATES, ROBOT_STATE2TEXT_AND_TYPE } from '@/constants'
+import { ROBOT_STATES, ROBOT_STATE_2_TEXT_AND_TYPE } from '@/constants'
 import type { IRobotItem } from '@/types/robot'
 import { AddOne } from '@icon-park/vue-next'
 import ChahanDialog from './components/ChahanDialog.vue'
@@ -132,7 +132,7 @@ const handleClose = () => {
               :value="idx + 1"
               :key="state"
             >
-              <ElTag size="large" :type="ROBOT_STATE2TEXT_AND_TYPE.get(idx + 1)?.type">
+              <ElTag size="large" :type="ROBOT_STATE_2_TEXT_AND_TYPE.get(idx + 1)?.type">
                 {{ state }}
               </ElTag>
             </ElOption>
@@ -181,9 +181,11 @@ const handleClose = () => {
         <!-- state: stateId -->
         <ElTableColumn width="150" prop="state" label="机器人状态">
           <template #default="tableData">
-            <ElTag size="large" :type="ROBOT_STATE2TEXT_AND_TYPE.get(tableData.row.state)?.type">{{
-              ROBOT_STATE2TEXT_AND_TYPE.get(tableData.row.state)?.text
-            }}</ElTag>
+            <ElTag
+              size="large"
+              :type="ROBOT_STATE_2_TEXT_AND_TYPE.get(tableData.row.state)?.type"
+              >{{ ROBOT_STATE_2_TEXT_AND_TYPE.get(tableData.row.state)?.text }}</ElTag
+            >
           </template>
         </ElTableColumn>
 

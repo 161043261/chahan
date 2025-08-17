@@ -13,7 +13,7 @@ import { name2icon } from '@/utils/icons'
 import { orderQueryApi, orderDeleteApi } from '@/apis/order'
 import type { IOrderItem } from '@/types/order'
 import { usePagination } from '@/composables/use-pagination'
-import { ORDER_STATES, ORDER_STATE2TEXT_AND_TYPE } from '@/constants'
+import { ORDER_STATES, ORDER_STATE_2_TEXT_AND_TYPE } from '@/constants'
 import { useToast2 } from '@/components/toast/toast'
 import { useRouter } from 'vue-router'
 import DraggableWindow from './components/DraggableWindow.vue'
@@ -205,7 +205,7 @@ const export2xlsx = () => {
             :value="idx + 1"
             :key="state"
           >
-            <ElTag size="large" :type="ORDER_STATE2TEXT_AND_TYPE.get(idx + 1)?.type">
+            <ElTag size="large" :type="ORDER_STATE_2_TEXT_AND_TYPE.get(idx + 1)?.type">
               {{ state }}
             </ElTag>
           </ElOption>
@@ -278,10 +278,10 @@ const export2xlsx = () => {
             <template #default="tableData">
               <ElTag
                 size="large"
-                :type="ORDER_STATE2TEXT_AND_TYPE.get(tableData.row.state)?.type"
+                :type="ORDER_STATE_2_TEXT_AND_TYPE.get(tableData.row.state)?.type"
                 class="!text-[14px]"
               >
-                {{ ORDER_STATE2TEXT_AND_TYPE.get(tableData.row.state)?.text }}
+                {{ ORDER_STATE_2_TEXT_AND_TYPE.get(tableData.row.state)?.text }}
               </ElTag>
             </template>
           </ElTableColumn>

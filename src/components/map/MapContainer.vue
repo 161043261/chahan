@@ -18,14 +18,14 @@ const emit = defineEmits<{
 //   },
 // )
 import localSvg /** string */ from '@/assets/local.svg'
-import { AMAP_JS_KEY, ROBOT_STATE2TEXT_AND_TYPE } from '@/constants'
+import { ROBOT_STATE_2_TEXT_AND_TYPE } from '@/constants'
 
 let map: any = null
 
 const robotList = ref<IRobotItem[]>()
 onMounted(() => {
   AMapLoader.load({
-    key: AMAP_JS_KEY,
+    key: import.meta.env.VITE_AMAP_JS_KEY,
     version: '2.0',
     plugins: [
       /** 'AMap.Scale' */
@@ -99,7 +99,7 @@ onMounted(() => {
               <div class="flex h-[125px] w-[250px] items-center justify-center">
                 <ul class="w-full">
                   <li class="truncate">机器人名字: ${name}</li>
-                  <li class="truncate">机器人状态: ${ROBOT_STATE2TEXT_AND_TYPE.get(state)!.text}</li>
+                  <li class="truncate">机器人状态: ${ROBOT_STATE_2_TEXT_AND_TYPE.get(state)!.text}</li>
                   <li class="truncate">零件故障数: ${failureNum}</li>
                   <li class="truncate">管理员名字: ${admin}</li>
                   <li class="truncate">管理员邮箱: ${email}</li>

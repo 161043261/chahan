@@ -8,7 +8,7 @@ import { orderQueryApi } from '@/apis/order'
 import { robotQueryApi } from '@/apis/chahan'
 import { ElCard, ElDescriptions, ElDescriptionsItem, ElDivider, ElImage, ElTag } from 'element-plus'
 import robotSvg from '@/assets/robot.svg'
-import { ORDER_STATE2TEXT_AND_TYPE, ROBOT_STATE2TEXT_AND_TYPE } from '@/constants'
+import { ORDER_STATE_2_TEXT_AND_TYPE, ROBOT_STATE_2_TEXT_AND_TYPE } from '@/constants'
 import { ListNumbers, Order, Time } from '@icon-park/vue-next'
 
 const route = useRoute()
@@ -102,10 +102,10 @@ if (import.meta.env.DEV) {
               <template #default>
                 <ElTag
                   size="large"
-                  :type="ORDER_STATE2TEXT_AND_TYPE.get(orderData.state)?.type"
+                  :type="ORDER_STATE_2_TEXT_AND_TYPE.get(orderData.state)?.type"
                   class="!text-[14px]"
                 >
-                  {{ ORDER_STATE2TEXT_AND_TYPE.get(orderData.state)?.text }}
+                  {{ ORDER_STATE_2_TEXT_AND_TYPE.get(orderData.state)?.text }}
                 </ElTag>
               </template>
             </ElDescriptionsItem>
@@ -137,10 +137,10 @@ if (import.meta.env.DEV) {
             <ElDescriptionsItem label="机器人名字" align="center">
               <ElTag
                 size="large"
-                :type="ROBOT_STATE2TEXT_AND_TYPE.get(robotData.state)?.type"
+                :type="ROBOT_STATE_2_TEXT_AND_TYPE.get(robotData.state)?.type"
                 class="!text-[14px]"
               >
-                {{ ROBOT_STATE2TEXT_AND_TYPE.get(robotData.state)?.text }}
+                {{ ROBOT_STATE_2_TEXT_AND_TYPE.get(robotData.state)?.text }}
               </ElTag>
             </ElDescriptionsItem>
 
