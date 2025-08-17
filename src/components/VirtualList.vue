@@ -3,9 +3,13 @@
 import { computed, inject, reactive, ref, toRefs, type Ref, type VNode } from 'vue'
 
 const props = defineProps<{
+  // 虚拟列表 (可视区) 高度
   height: number
+  // 列表项高度
   itemHeight: number
+  // 获取列表项数组的函数
   fetchLargeList: () => Promise<T[]>
+  // 渲染每个列表项的函数
   renderFunc: (props: { item: T; idx: number }) => VNode
 }>()
 
@@ -15,16 +19,15 @@ defineExpose<{
 }>({
   updateLargeList: async () => {
     largeList.value = await props.fetchLargeList()
-    virtualListSize.value = largeList.value.length
+    virtualListLength.value = largeList.value.length
   },
 })
 
-const virtualListSize = inject<Ref<number>>('virtualListSize', ref(0) /** defaultVal */)
-// watchEffect(() => console.log(virtualListSize.value))
+const virtualListLength = inject<Ref<number>>('virtual-list-length', ref(0) /** defaultVal */)
 
 // 大列表
 const largeList = ref(await props.fetchLargeList())
-virtualListSize.value = largeList.value.length
+virtualListLength.value = largeList.value.length
 
 // 可视区高度, 子项高度
 const { height, itemHeight } = toRefs(props)
@@ -52,14 +55,15 @@ const visiblePartialList = computed(() => {
 const startOffset = ref(0)
 
 // 虚拟列表高度
-const transform = computed(() => `translateY(${startOffset.value}px)`)
-const fullHeight = computed(() => largeList.value.length * itemHeight.value)
+const transformVal = computed(() => `translateY(${startOffset.value}px)`)
+const largestListHeight = computed(() => largeList.value.length * itemHeight.value)
 
 const handleScroll = (ev: Event) => {
   const scrollTop = (ev.target as HTMLDivElement).scrollTop
   visibleInfo.startIdx = Math.floor(scrollTop / itemHeight.value)
   visibleInfo.endIdx = visibleInfo.startIdx + visibleCnt.value
-  startOffset.value = scrollTop
+  // startOffset.value = scrollTop
+  startOffset.value = visibleInfo.startIdx * itemHeight.value
 }
 </script>
 
@@ -68,21 +72,16 @@ const handleScroll = (ev: Event) => {
   <div
     class="virtual-list relative overflow-auto bg-slate-50"
     @scroll="handleScroll"
-    :style="{
-      height: height + 'px',
-    }"
+    :style="{ height: height + 'px' }"
   >
     <!-- 虚拟区, 用于触发 overflow-auto -->
-    <div
-      :style="{
-        height: fullHeight + 'px',
-      }"
-    ></div>
+    <div :style="{ height: largestListHeight + 'px', width: 0 }"></div>
+
     <!-- 内容区 -->
     <ul
       class="absolute top-0 left-0 w-full bg-white"
       :style="{
-        transform,
+        transform: transformVal,
       }"
     >
       <!-- ! truncate
@@ -98,7 +97,7 @@ const handleScroll = (ev: Event) => {
           lineHeight: itemHeight + 'px',
         }"
       >
-        <props.renderFunc :item="item as T" :idx="idx"></props.renderFunc>
+        <props.renderFunc :item="item as T" :idx="idx" />
       </li>
     </ul>
   </div>

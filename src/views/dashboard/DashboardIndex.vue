@@ -177,10 +177,10 @@ const handleClick = (idx: 0 | 1 | 2, callbacks: (() => void)[]) => {
 }
 
 const virtualListRef = ref /** <InstanceType<typeof VirtualList>> */()
-const virtualListSize = ref<number>(0)
+const virtualListLength = ref<number>(0)
 
 // provide
-provide('virtualListSize' /** key */, virtualListSize /** value */)
+provide('virtual-list-length' /** key */, virtualListLength /** value */)
 </script>
 
 <template>
@@ -225,7 +225,7 @@ provide('virtualListSize' /** key */, virtualListSize /** value */)
         <ElCard class="mt-[20px] !rounded-3xl">
           <template #header>
             <div class="flex items-center gap-[10px]">
-              <h1 class="text-[20px]">营收排行榜, 数据量 {{ virtualListSize }}</h1>
+              <h1 class="text-[20px]">营收排行榜, 数据量 {{ virtualListLength }}</h1>
               <Refresh
                 theme="outline"
                 size="24"

@@ -17,7 +17,6 @@ const emit = defineEmits<{
 //     eager: true,
 //   },
 // )
-import robotSvg /** string */ from '@/assets/robot.svg'
 import localSvg /** string */ from '@/assets/local.svg'
 import { AMAP_JS_KEY, ROBOT_STATE2TEXT_AND_TYPE } from '@/constants'
 
@@ -97,11 +96,8 @@ onMounted(() => {
           marker.on('click', () => {
             infoWindow.setContent(
               `
-              <div class="flex h-[200px] w-[450px] flex-none items-center justify-center">
-                <div class="w-[200px]">
-                  <img src=${robotSvg} alt="eva" class="w-[200px]" />
-                </div>
-                <ul class="w-[250px]">
+              <div class="flex h-[125px] w-[250px] items-center justify-center">
+                <ul class="w-full">
                   <li class="truncate">机器人名字: ${name}</li>
                   <li class="truncate">机器人状态: ${ROBOT_STATE2TEXT_AND_TYPE.get(state)!.text}</li>
                   <li class="truncate">零件故障数: ${failureNum}</li>
